@@ -7,7 +7,7 @@ class Simulation {
 
     private Simulation() {}
 
-    public static void startSimulation() {
-        // TODO: Simulation logic
+    public static void startSimulation(int numberOfDays) {
+        log.info("Simulation is started with days: {}", numberOfDays);
     }
 }

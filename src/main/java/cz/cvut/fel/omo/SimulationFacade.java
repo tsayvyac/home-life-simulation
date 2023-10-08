@@ -1,16 +1,16 @@
 package cz.cvut.fel.omo;
 
-import cz.cvut.fel.omo.smarthome.home.Home;
+import cz.cvut.fel.omo.io.UserInput;
 import cz.cvut.fel.omo.smarthome.home.HomeDirector;
 import cz.cvut.fel.omo.smarthome.home.StandardHomeBuilder;
 import cz.cvut.fel.omo.smarthome.room.StandardRoomBuilder;
 
-public class SimulationFacade {
+public final class SimulationFacade {
     /**
      * Singleton (eager initialization)
      */
     public static final SimulationFacade INSTANCE = new SimulationFacade();
-    private final HomeDirector homeDirector = HomeDirector.INSTANCE;
+    private static final HomeDirector homeDirector = HomeDirector.INSTANCE;
 
     private SimulationFacade() {}
 
@@ -19,7 +19,7 @@ public class SimulationFacade {
             useBigConfig();
         else
             useSmallConfig();
-//        Simulation.startSimulation();
+        Simulation.startSimulation(UserInput.getNumberOfDays());
     }
 
     private void useBigConfig() {

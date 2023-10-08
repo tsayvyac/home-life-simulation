@@ -12,9 +12,13 @@ public final class HomeDirector {
         homeBuilder.reset().setRoomBuilder(roomBuilder)
                 .addFloor(1)
                 .addRoom(RoomType.KITCHEN)
+                .addRoom(RoomType.GARAGE)
+                .addRoom(RoomType.LIVINGROOM)
                 .and()
                 .addFloor(2)
-                .addRoom(RoomType.BEDROOM);
+                .addRoom(RoomType.BEDROOM)
+                .addRoom(RoomType.CHILDRENROOM)
+                .addRoom(RoomType.WORKROOM);
     }
 
     public void buildBigHouse(HomeBuilder homeBuilder, RoomBuilder roomBuilder) {

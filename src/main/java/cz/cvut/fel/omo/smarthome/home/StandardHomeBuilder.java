@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.smarthome.home;
 
 import cz.cvut.fel.omo.entity.person.Person;
 import cz.cvut.fel.omo.entity.pet.Pet;
+import cz.cvut.fel.omo.exception.CreationException;
 import cz.cvut.fel.omo.smarthome.Floor;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
 import cz.cvut.fel.omo.smarthome.room.RoomDirector;
@@ -10,9 +11,9 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 
 public final class StandardHomeBuilder implements HomeBuilder {
     public static final StandardHomeBuilder INSTANCE = new StandardHomeBuilder();
-    private RoomBuilder roomBuilder;
-    private final RoomDirector roomDirector = RoomDirector.INSTANCE;
+    private static final RoomDirector ROOM_DIRECTOR = RoomDirector.INSTANCE;
     private Home home = Home.getInstance();
+    private RoomBuilder roomBuilder;
 
     private StandardHomeBuilder() {}
 
@@ -24,7 +25,13 @@ public final class StandardHomeBuilder implements HomeBuilder {
 
     @Override
     public FloorBuilder addFloor(int floorNumber) {
-        // TODO: check IF exist the first floor in house ELSE throw BuildException
+        if (home.getFloorList().stream().anyMatch(f -> f.getFloorNumber() <= 0))
+            throw new CreationException("Floor number must be greater than 0");
+        if (home.getFloorList().stream().anyMatch(f -> f.getFloorNumber() != floorNumber - 1) && floorNumber != 1)
+            throw new CreationException("You should create a floor number " + (floorNumber - 1));
+        if (home.getFloorList().stream().anyMatch(f -> f.getFloorNumber() == floorNumber))
+            throw new CreationException("Floor number " + floorNumber + " already exist.");
+
         Floor floor = new Floor(floorNumber);
         home.addFloor(floor);
         return new FloorBuilder(floor);
@@ -50,14 +57,13 @@ public final class StandardHomeBuilder implements HomeBuilder {
 
     protected class FloorBuilder {
         private final Floor floor;
-        private final RoomBuilder roomBuilder = StandardHomeBuilder.this.roomBuilder;
 
         public FloorBuilder(Floor floor) {
             this.floor = floor;
         }
 
         public FloorBuilder addRoom(RoomType roomType) {
-            StandardHomeBuilder.this.roomDirector.buildRoom(roomBuilder, roomType, floor);
+            ROOM_DIRECTOR.buildRoom(roomBuilder, roomType, floor);
             return this;
         }
 
