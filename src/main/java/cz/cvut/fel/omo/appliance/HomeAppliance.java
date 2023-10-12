@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.appliance;
 
 import cz.cvut.fel.omo.smarthome.room.Room;
+import cz.cvut.fel.omo.state.*;
 
 public class HomeAppliance implements Appliance {
 
@@ -8,6 +9,7 @@ public class HomeAppliance implements Appliance {
     protected String name;
     protected Room room;
     private double consumption;
+    private State state;
 
     public HomeAppliance(ApplianceType type, String name, double consumption, Room room) {
         this.type = type;
@@ -19,16 +21,28 @@ public class HomeAppliance implements Appliance {
 
     @Override
     public void turnOn() {
+        setCurrentState(new StateON(this));
     }
 
     @Override
     public void turnOff() {
-
+        setCurrentState(new StateOff(this));
     }
 
     @Override
-    public String getState() {
-        return null;
+    public void _break() {
+        setCurrentState(new BrokenState(this));
+    }
+
+    @Override
+    public void pause() {
+        setCurrentState(new IdleState(this));
+    }
+
+
+    @Override
+    public State getState() {
+        return this.state;
     }
 
     @Override
@@ -64,5 +78,10 @@ public class HomeAppliance implements Appliance {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setCurrentState(State state) {
+        this.state = state;
     }
 }
