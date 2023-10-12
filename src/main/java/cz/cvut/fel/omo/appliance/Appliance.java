@@ -1,12 +1,15 @@
 package cz.cvut.fel.omo.appliance;
 
 import cz.cvut.fel.omo.smarthome.room.Room;
+import cz.cvut.fel.omo.state.State;
 
 public interface Appliance {
 
     void turnOn();
     void turnOff();
-    String getState();
+    void _break();
+    void pause();
+    State getState();
     String collectData();
     double getConsumption();
     void setConsumption(double consumption);
@@ -14,6 +17,8 @@ public interface Appliance {
     void setRoom(Room room);
     ApplianceType getType();
     String getName();
+
+    void setCurrentState(State state);
 
 
 
