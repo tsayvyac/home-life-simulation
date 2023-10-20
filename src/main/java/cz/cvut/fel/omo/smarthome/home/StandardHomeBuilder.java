@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.smarthome.home;
 
+import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cz.cvut.fel.omo.entity.person.Person;
 import cz.cvut.fel.omo.entity.pet.Pet;
 import cz.cvut.fel.omo.exception.CreationException;
@@ -14,6 +15,7 @@ public final class StandardHomeBuilder implements HomeBuilder {
     private static final RoomDirector ROOM_DIRECTOR = RoomDirector.INSTANCE;
     private Home home = Home.getInstance();
     private RoomBuilder roomBuilder;
+    private ApplianceFactory applianceFactory;
 
     private StandardHomeBuilder() {}
 
@@ -50,8 +52,9 @@ public final class StandardHomeBuilder implements HomeBuilder {
     }
 
     @Override
-    public HomeBuilder setRoomBuilder(RoomBuilder roomBuilder) {
+    public HomeBuilder setRoomBuilderAndApplianceFactory(RoomBuilder roomBuilder, ApplianceFactory applianceFactory) {
         this.roomBuilder = roomBuilder;
+        this.applianceFactory = applianceFactory;
         return this;
     }
 
@@ -63,7 +66,7 @@ public final class StandardHomeBuilder implements HomeBuilder {
         }
 
         public FloorBuilder addRoom(RoomType roomType) {
-            ROOM_DIRECTOR.buildRoom(roomBuilder, roomType, floor);
+            ROOM_DIRECTOR.buildRoom(roomBuilder, applianceFactory, roomType, floor);
             return this;
         }
 

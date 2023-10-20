@@ -1,9 +1,8 @@
-package cz.cvut.fel.omo.state;
+package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
 
-public class FixingState implements State{
-
+public class FixingState implements State {
     HomeAppliance appliance;
     private final StateType state;
 

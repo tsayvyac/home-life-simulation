@@ -1,16 +1,16 @@
-package cz.cvut.fel.omo.state;
+package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
 
-public class BrokenState implements State{
-
+public class StateON implements State {
     HomeAppliance appliance;
     private final StateType state;
 
-    public BrokenState(HomeAppliance appliance) {
+    public StateON(HomeAppliance appliance) {
         this.appliance = appliance;
-        this.state = StateType.BROKEN;
+        this.state = StateType.ON;
     }
+
     @Override
     public StateType getStateType() {
         return state;

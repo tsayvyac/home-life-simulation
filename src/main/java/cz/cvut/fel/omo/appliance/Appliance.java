@@ -2,13 +2,12 @@ package cz.cvut.fel.omo.appliance;
 
 import cz.cvut.fel.omo.appliance.documentation.BrokennessLevel;
 import cz.cvut.fel.omo.smarthome.room.Room;
-import cz.cvut.fel.omo.state.State;
+import cz.cvut.fel.omo.appliance.state.State;
 
 public interface Appliance {
-
     void turnOn();
     void turnOff();
-    void _break();
+    void breakThis();
     void pause();
     State getState();
     String collectData();
@@ -20,12 +19,5 @@ public interface Appliance {
     String getName();
     BrokennessLevel getBrokennessLevel();
     void setBrokennessLevel();
-
     void setCurrentState(State state);
-
-
-
-
-
-
 }

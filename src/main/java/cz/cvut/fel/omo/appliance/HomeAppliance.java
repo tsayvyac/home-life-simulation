@@ -1,17 +1,19 @@
 package cz.cvut.fel.omo.appliance;
 
 import cz.cvut.fel.omo.appliance.documentation.BrokennessLevel;
+import cz.cvut.fel.omo.appliance.state.*;
 import cz.cvut.fel.omo.smarthome.room.Room;
-import cz.cvut.fel.omo.state.*;
 
-public class HomeAppliance implements Appliance{
+import java.util.Random;
 
+public class HomeAppliance implements Appliance {
     protected final ApplianceType type;
     protected String name;
     protected Room room;
     protected double consumption;
     protected State state;
     protected BrokennessLevel brokennessLevel;
+    private final Random random = new Random();
 
     public HomeAppliance(ApplianceType type, String name, double consumption, Room room) {
         this.type = type;
@@ -19,7 +21,6 @@ public class HomeAppliance implements Appliance{
         this.consumption = consumption;
         this.room = room;
     }
-
 
     @Override
     public void turnOn() {
@@ -32,7 +33,7 @@ public class HomeAppliance implements Appliance{
     }
 
     @Override
-    public void _break() {
+    public void breakThis() {
         setBrokennessLevel();
         setCurrentState(new BrokenState(this));
         // TODO change consumption
@@ -42,7 +43,6 @@ public class HomeAppliance implements Appliance{
     public void pause() {
         setCurrentState(new IdleState(this));
     }
-
 
     @Override
     public State getState() {
@@ -92,7 +92,7 @@ public class HomeAppliance implements Appliance{
     @Override
     public void setBrokennessLevel() {
         BrokennessLevel[] levels = BrokennessLevel.values();
-        int randomIndex = (int) (Math.random() * levels.length);
+        int randomIndex = random.nextInt(levels.length);
         this.brokennessLevel = levels[randomIndex];
     }
 

@@ -1,16 +1,14 @@
-package cz.cvut.fel.omo.state;
+package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
 
-public class StateOff implements State {
-
-
+public class IdleState implements State {
     HomeAppliance appliance;
     private final StateType state;
 
-    public StateOff(HomeAppliance appliance) {
+    public IdleState(HomeAppliance appliance) {
         this.appliance = appliance;
-        this.state = StateType.OFF;
+        this.state = StateType.IDLE;
     }
 
     @Override

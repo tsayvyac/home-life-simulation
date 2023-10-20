@@ -1,6 +1,9 @@
 package cz.cvut.fel.omo;
 
+import cz.cvut.fel.omo.appliance.factory.HomeApplianceFactory;
 import cz.cvut.fel.omo.smarthome.home.Home;
+import cz.cvut.fel.omo.smarthome.home.StandardHomeBuilder;
+import cz.cvut.fel.omo.smarthome.room.StandardRoomBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +20,11 @@ class DirectorsTest {
         boolean useBigConfig = true;
         System.setIn(new ByteArrayInputStream("365".getBytes()));
 
-        SimulationFacade.INSTANCE.simulate(useBigConfig);
+        new SimulationFacade(
+                StandardHomeBuilder.INSTANCE,
+                StandardRoomBuilder.INSTANCE,
+                HomeApplianceFactory.INSTANCE
+        ).simulate(useBigConfig);
         Home home = Home.getInstance();
 
         int expectedSizeOfFloorList = 2;

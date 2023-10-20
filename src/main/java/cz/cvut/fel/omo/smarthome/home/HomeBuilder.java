@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.smarthome.home;
 
+import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cz.cvut.fel.omo.entity.person.Person;
 import cz.cvut.fel.omo.entity.pet.Pet;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
@@ -9,5 +10,5 @@ public interface HomeBuilder {
     StandardHomeBuilder.FloorBuilder addFloor(int floorNumber);
     HomeBuilder addPerson(Person person);
     HomeBuilder addPet(Pet pet);
-    HomeBuilder setRoomBuilder(RoomBuilder roomBuilder);
+    HomeBuilder setRoomBuilderAndApplianceFactory(RoomBuilder roomBuilder, ApplianceFactory applianceFactory);
 }

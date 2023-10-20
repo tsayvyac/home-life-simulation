@@ -26,6 +26,7 @@ public class Room {
 
     public void addAppliance(Appliance appliance) {
         applianceList.add(appliance);
+        appliance.setRoom(this);
     }
 
     public void addItem(Item item) {

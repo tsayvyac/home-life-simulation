@@ -1,10 +1,17 @@
 package cz.cvut.fel.omo;
 
+import cz.cvut.fel.omo.appliance.factory.HomeApplianceFactory;
 import cz.cvut.fel.omo.io.UserInput;
+import cz.cvut.fel.omo.smarthome.home.StandardHomeBuilder;
+import cz.cvut.fel.omo.smarthome.room.StandardRoomBuilder;
 
 public class Main {
 
     public static void main(String[] args) {
-        SimulationFacade.INSTANCE.simulate(UserInput.getConfiguration());
+        new SimulationFacade(
+                StandardHomeBuilder.INSTANCE,
+                StandardRoomBuilder.INSTANCE,
+                HomeApplianceFactory.INSTANCE
+        ).simulate(UserInput.getConfiguration());
     }
 }
