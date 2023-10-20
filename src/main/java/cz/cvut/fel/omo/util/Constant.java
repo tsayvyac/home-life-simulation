@@ -32,6 +32,11 @@ public class Constant {
     public static final double KETTLE_IDLE = 1.2;
     public static final double STOVE_IDLE = 1.0;
 
+    /**
+     * Headers
+     */
+    public static final String MANUAL_HEADER = "********************\nMANUAL\n********************\n\n";
+
 
     private Constant() {}
 }
