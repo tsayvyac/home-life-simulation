@@ -31,7 +31,7 @@ public final class UserInput {
         int numberOfDays = 0;
         while (!isCorrectInput) {
             numberOfDays = sc.nextInt();
-            if (numberOfDays > 6 && numberOfDays < 1000)
+            if (numberOfDays > 30 && numberOfDays < 365)
                 isCorrectInput = true;
             else
                 System.err.println(USER_NUMBER_OF_DAYS_ERR);

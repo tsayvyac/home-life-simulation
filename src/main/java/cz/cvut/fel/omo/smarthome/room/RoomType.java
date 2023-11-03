@@ -8,5 +8,5 @@ public enum RoomType {
     BEDROOM,
     GARAGE,
     WORKROOM,
-
+    OUTSIDE
 }

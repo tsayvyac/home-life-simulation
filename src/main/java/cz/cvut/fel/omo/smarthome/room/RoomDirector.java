@@ -1,7 +1,11 @@
 package cz.cvut.fel.omo.smarthome.room;
 
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
-import cz.cvut.fel.omo.smarthome.Floor;
+import cz.cvut.fel.omo.entity.item.Bicycle;
+import cz.cvut.fel.omo.entity.item.Car;
+import cz.cvut.fel.omo.entity.item.PetToy;
+import cz.cvut.fel.omo.entity.item.Snowboard;
+import cz.cvut.fel.omo.smarthome.home.Floor;
 
 public final class RoomDirector {
     public static final RoomDirector INSTANCE = new RoomDirector();
@@ -39,7 +43,8 @@ public final class RoomDirector {
                 .addAppliance(applianceFactory.createFlameDetector())
                 .addAppliance(applianceFactory.createCircuitBreaker())
                 .addAppliance(applianceFactory.createTV())
-                .addAppliance(applianceFactory.createPlaystation());
+                .addAppliance(applianceFactory.createPlaystation())
+                .addItem(new PetToy());
     }
 
     private void buildBathroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -57,7 +62,8 @@ public final class RoomDirector {
                 .addAppliance(applianceFactory.createFlameDetector())
                 .addAppliance(applianceFactory.createComputer())
                 .addAppliance(applianceFactory.createTV())
-                .addAppliance(applianceFactory.createPlaystation());
+                .addAppliance(applianceFactory.createPlaystation())
+                .addItem(new PetToy());
     }
 
     private void buildBedroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -72,7 +78,10 @@ public final class RoomDirector {
         roomBuilder.reset()
                 .setFloor(floor)
                 .setRoomType(RoomType.GARAGE)
-                .addAppliance(applianceFactory.createFlameDetector());
+                .addAppliance(applianceFactory.createFlameDetector())
+                .addItem(new Car())
+                .addItem(new Bicycle())
+                .addItem(new Snowboard());
     }
 
     private void buildWorkroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {

@@ -1,4 +1,4 @@
 package cz.cvut.fel.omo.entity.item;
 
-public class Bicycle extends Item {
+public class PetToy extends Item {
 }

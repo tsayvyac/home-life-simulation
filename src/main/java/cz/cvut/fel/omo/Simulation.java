@@ -9,5 +9,8 @@ class Simulation {
 
     public static void startSimulation(int numberOfDays) {
         log.info("Simulation is started with days: {}", numberOfDays);
+//        for (int i = 0; i < numberOfDays; i++) {
+//             // Simulation loop
+//        }
     }
 }

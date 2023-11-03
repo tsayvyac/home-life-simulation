@@ -1,4 +1,4 @@
 package cz.cvut.fel.omo.entity.item;
 
-public class Snowboard {
+public class Snowboard extends Item {
 }
