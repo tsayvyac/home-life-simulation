@@ -1,11 +1,20 @@
 package cz.cvut.fel.omo.entity.activity;
 
 import cz.cvut.fel.omo.entity.living.Executor;
-import cz.cvut.fel.omo.smarthome.room.Room;
+import cz.cvut.fel.omo.entity.living.ExecutorStatus;
+import cz.cvut.fel.omo.nullable.NullableRoom;
 
 public abstract class Activity {
-    protected Room room;
-    protected Executor executor;
+    protected NullableRoom room;
+    protected int ticksToSolve;
 
-    public abstract void execute();
+    protected Activity() {}
+
+    public void execute(Executor executor) {
+        executor.setStatus(ExecutorStatus.BUSY);
+        executor.setTicks(this.ticksToSolve);
+        solve(executor);
+    }
+
+    protected abstract void solve(Executor executor);
 }

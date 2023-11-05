@@ -23,7 +23,7 @@ public final class SimulationFacade {
             useBigConfig();
         else
             useSmallConfig();
-        Simulation.startSimulation(UserInput.getNumberOfDays());
+        Simulation.startSimulation(UserInput.getNumberOfDays() * 24);
     }
 
     private void useBigConfig() {

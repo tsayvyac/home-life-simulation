@@ -1,15 +1,18 @@
 package cz.cvut.fel.omo.io;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Scanner;
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 
+@Slf4j(topic = "USER INPUT")
 public final class UserInput {
     private static final Scanner sc = new Scanner(System.in);
 
     private UserInput() {}
 
     public static boolean getConfiguration() {
-        System.out.println(USER_CONFIG_CHOICE);
+        log.info(USER_CONFIG_CHOICE);
         boolean isCorrectInput = false;
         boolean isBigConfig = false;
         while (!isCorrectInput) {
@@ -19,14 +22,14 @@ public final class UserInput {
                     isCorrectInput = true;
                 }
                 case "F", "f" -> isCorrectInput = true;
-                default -> System.err.println(USER_CONFIG_CHOICE_ERR);
+                default -> log.warn(USER_CONFIG_CHOICE_ERR);
             }
         }
         return isBigConfig;
     }
 
     public static int getNumberOfDays() {
-        System.out.println(USER_NUMBER_OF_DAYS);
+        log.info(USER_NUMBER_OF_DAYS);
         boolean isCorrectInput = false;
         int numberOfDays = 0;
         while (!isCorrectInput) {
@@ -34,7 +37,7 @@ public final class UserInput {
             if (numberOfDays > 30 && numberOfDays < 365)
                 isCorrectInput = true;
             else
-                System.err.println(USER_NUMBER_OF_DAYS_ERR);
+                log.warn(USER_NUMBER_OF_DAYS_ERR);
         }
         return numberOfDays;
     }

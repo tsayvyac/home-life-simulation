@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.smarthome.home;
 
 import cz.cvut.fel.omo.entity.living.Executor;
+import cz.cvut.fel.omo.updatable.Updatable;
 import cz.cvut.fel.omo.util.Helper;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Home {
+public class Home implements Updatable {
     private static Home instance;
     private List<Floor> floorList = new ArrayList<>();
     private boolean isPowerEnable;
@@ -36,5 +37,10 @@ public class Home {
         if (instance == null)
             instance = new Home();
         return instance;
+    }
+
+    @Override
+    public void update() {
+        floorList.forEach(Updatable::update);
     }
 }
