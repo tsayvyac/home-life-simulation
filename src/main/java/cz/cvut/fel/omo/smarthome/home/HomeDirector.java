@@ -1,6 +1,10 @@
 package cz.cvut.fel.omo.smarthome.home;
 
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
+import cz.cvut.fel.omo.entity.living.person.Person;
+import cz.cvut.fel.omo.entity.living.person.Role;
+import cz.cvut.fel.omo.entity.living.pet.Pet;
+import cz.cvut.fel.omo.entity.living.pet.Type;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
@@ -26,7 +30,17 @@ public final class HomeDirector {
                 .addFloor(2)
                 .addRoom(RoomType.BEDROOM)
                 .addRoom(RoomType.CHILDRENROOM)
-                .addRoom(RoomType.WORKROOM);
+                .addRoom(RoomType.WORKROOM)
+                .and()
+                .addPerson(new Person("Marge", Role.MOTHER))
+                .addPerson(new Person("Homer", Role.FATHER))
+                .addPerson(new Person("Bart", Role.SON))
+                .addPerson(new Person("Lisa", Role.DAUGHTER))
+                .addPerson(new Person("Abraham", Role.GRANDFATHER))
+                .addPerson(new Person("Mona", Role.GRANDMOTHER))
+                .addPet(new Pet("Santa's Little Helper", Type.DOG))
+                .addPet(new Pet("Snowball", Type.CAT))
+                .addPet(new Pet("Bart Junior", Type.FROG));
     }
 
     /**
@@ -45,6 +59,16 @@ public final class HomeDirector {
                 .addRoom(RoomType.WORKROOM)
                 .addRoom(RoomType.BEDROOM)
                 .addRoom(RoomType.LIVINGROOM)
-                .addRoom(RoomType.CHILDRENROOM);
+                .addRoom(RoomType.CHILDRENROOM)
+                .and()
+                .addPerson(new Person("Marge", Role.MOTHER))
+                .addPerson(new Person("Homer", Role.FATHER))
+                .addPerson(new Person("Bart", Role.SON))
+                .addPerson(new Person("Lisa", Role.DAUGHTER))
+                .addPerson(new Person("Abraham", Role.GRANDFATHER))
+                .addPerson(new Person("Mona", Role.GRANDMOTHER))
+                .addPet(new Pet("Santa's Little Helper", Type.DOG))
+                .addPet(new Pet("Snowball", Type.CAT))
+                .addPet(new Pet("Bart Junior", Type.FROG));
     }
 }

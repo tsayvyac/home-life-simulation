@@ -1,5 +1,8 @@
 package cz.cvut.fel.omo.smarthome.room;
 
+/**
+ * Types of room that will be created.
+ */
 public enum RoomType {
     KITCHEN,
     LIVINGROOM,
@@ -8,5 +11,5 @@ public enum RoomType {
     BEDROOM,
     GARAGE,
     WORKROOM,
-
+    OUTSIDE
 }

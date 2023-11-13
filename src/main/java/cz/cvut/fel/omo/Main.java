@@ -7,6 +7,9 @@ import cz.cvut.fel.omo.smarthome.room.StandardRoomBuilder;
 
 public class Main {
 
+    /**
+     * Starts simulation with user configuration.
+     */
     public static void main(String[] args) {
         new SimulationFacade(
                 StandardHomeBuilder.INSTANCE,
