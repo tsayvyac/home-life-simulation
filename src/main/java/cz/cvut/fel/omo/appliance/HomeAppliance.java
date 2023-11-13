@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.appliance;
 
 import cz.cvut.fel.omo.appliance.documentation.BrokennessLevel;
 import cz.cvut.fel.omo.appliance.state.*;
+import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.smarthome.room.Room;
 
 import java.util.Random;
@@ -13,6 +14,7 @@ public class HomeAppliance implements Appliance {
     protected double consumption;
     protected State state;
     protected BrokennessLevel brokennessLevel;
+
     private final Random random = new Random();
 
     public HomeAppliance(ApplianceType type, String name, double consumption, Room room) {
@@ -24,7 +26,7 @@ public class HomeAppliance implements Appliance {
 
     @Override
     public void turnOn() {
-        setCurrentState(new StateON(this));
+        setCurrentState(new StateOn(this));
     }
 
     @Override
@@ -52,6 +54,11 @@ public class HomeAppliance implements Appliance {
     @Override
     public String collectData() {
         return null;
+    }
+
+    @Override
+    public void use(Executor executor) {
+
     }
 
     @Override

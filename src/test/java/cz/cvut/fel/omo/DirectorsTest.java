@@ -52,6 +52,9 @@ class DirectorsTest {
                 .map(executor -> 1) // Count each executor as integer that equals to 1
                 .reduce(0, Integer::sum);
 
+        int allHeadsInHomeObject = home.getAllExecutors().size();
+
         assertEquals(expectedHeads, actualHeads);
+        assertEquals(expectedHeads, allHeadsInHomeObject);
     }
 }

@@ -8,14 +8,36 @@ import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
 import cz.cvut.fel.omo.smarthome.room.RoomDirector;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
-
+/**
+ * Class is an implementation of the {@link HomeBuilder} interface. It provides methods for creating and configuring a home
+ * with various floors, rooms, and inhabitants. This class follows the Singleton pattern and
+ * offers a single instance.
+ */
 public final class StandardHomeBuilder implements HomeBuilder {
+    /**
+     * The single instance of thus class.
+     */
     public static final StandardHomeBuilder INSTANCE = new StandardHomeBuilder();
+    /**
+     * The {@link RoomDirector} instance for constructing rooms.
+     */
     private static final RoomDirector ROOM_DIRECTOR = RoomDirector.INSTANCE;
+    /**
+     * The {@link Home} instance being constructed.
+     */
     private Home home = Home.getInstance();
+    /**
+     * The current {@link RoomBuilder} for configuring rooms.
+     */
     private RoomBuilder roomBuilder;
+    /**
+     * The current {@link ApplianceFactory} for configuring rooms.
+     */
     private ApplianceFactory applianceFactory;
 
+    /**
+     * Private constructor to enforce the Singleton pattern.
+     */
     private StandardHomeBuilder() {}
 
     @Override
@@ -57,18 +79,39 @@ public final class StandardHomeBuilder implements HomeBuilder {
         return this;
     }
 
+    /**
+     * Class is a nested inner class of {@link StandardHomeBuilder}. It is used for
+     * configuring and adding rooms to a specific floor within a home.
+     */
     protected class FloorBuilder {
+        /**
+         * The {@link Floor} instance being configured by this class.
+         */
         private final Floor floor;
 
+        /**
+         * Constructor.
+         *
+         * @param floor The {@link Floor} to be configured.
+         */
         public FloorBuilder(Floor floor) {
             this.floor = floor;
         }
 
+        /**
+         * Add a room of the specified type to the current floor.
+         * @param roomType The type of room to add.
+         * @return Instance of {@link FloorBuilder} for method chaining.
+         */
         public FloorBuilder addRoom(RoomType roomType) {
             ROOM_DIRECTOR.buildRoom(roomBuilder, applianceFactory, roomType, floor);
             return this;
         }
 
+        /**
+         * Complete the floor configuration and return to the parent {@link StandardHomeBuilder}.
+         * @return The parent {@link StandardHomeBuilder} instance.
+         */
         public HomeBuilder and() {
             return StandardHomeBuilder.this;
         }

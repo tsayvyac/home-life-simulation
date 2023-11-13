@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.appliance;
 
 import cz.cvut.fel.omo.appliance.documentation.BrokennessLevel;
+import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.smarthome.room.Room;
 import cz.cvut.fel.omo.appliance.state.State;
 
@@ -11,6 +12,7 @@ public interface Appliance {
     void pause();
     State getState();
     String collectData();
+    void use(Executor executor);
     double getConsumption();
     void setConsumption(double consumption);
     Room getRoom();

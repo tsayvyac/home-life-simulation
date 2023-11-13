@@ -3,7 +3,6 @@ package cz.cvut.fel.omo.smarthome.room;
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
-import cz.cvut.fel.omo.nullable.Nullable;
 import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.smarthome.home.Floor;
 import cz.cvut.fel.omo.updatable.Updatable;
@@ -34,13 +33,20 @@ public class Room implements NullableRoom, Updatable {
         appliance.setRoom(this);
     }
 
+    public void addItem(Item item) {
+        itemList.add(item);
+    }
+
+    @Override
     public void addExecutor(Executor executor) {
         executor.setRoom(this);
         executorList.add(executor);
     }
 
-    public void addItem(Item item) {
-        itemList.add(item);
+    @Override
+    public void removeExecutor(Executor executor) {
+        executor.setRoom(NullRoom.INSTANCE);
+        executorList.remove(executor);
     }
 
     @Override

@@ -2,13 +2,13 @@ package cz.cvut.fel.omo.entity.activity;
 
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
-import cz.cvut.fel.omo.nullable.NullableRoom;
 
 public abstract class Activity {
-    protected NullableRoom room;
     protected int ticksToSolve;
 
-    protected Activity() {}
+    protected Activity(int ticksToSolve) {
+        this.ticksToSolve = ticksToSolve;
+    }
 
     public void execute(Executor executor) {
         executor.setStatus(ExecutorStatus.BUSY);

@@ -14,10 +14,11 @@ import java.util.List;
 public class Home implements Updatable {
     private static Home instance;
     private List<Floor> floorList = new ArrayList<>();
+    private List<Executor> allExecutors = new ArrayList<>();
     private boolean isPowerEnable;
 
     private Home() {
-        isPowerEnable = true;
+        this.isPowerEnable = true;
     }
 
     public void addFloor(Floor floor) {
@@ -31,6 +32,7 @@ public class Home implements Updatable {
                 .getRoomList()
                 .get(Helper.getRandomInt(floorList.get(floorIndex).getRoomList().size()))
                 .addExecutor(o);
+        allExecutors.add(o);
     }
 
     public static Home getInstance() {

@@ -6,12 +6,36 @@ import cz.cvut.fel.omo.entity.item.Car;
 import cz.cvut.fel.omo.entity.item.PetToy;
 import cz.cvut.fel.omo.entity.item.Snowboard;
 import cz.cvut.fel.omo.smarthome.home.Floor;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Class is responsible for directing the construction of rooms using
+ * a {@link RoomBuilder} and various other components. It follows the Singleton pattern and provides
+ * a single instance for coordinating the building process of different room types.
+ * This class abstracts the construction details and allows for the creation of rooms with
+ * specific characteristics based on their types.
+ */
+@Slf4j(topic = "ROOM DIRECTOR")
 public final class RoomDirector {
+    /**
+     * The single instance of this class.
+     */
     public static final RoomDirector INSTANCE = new RoomDirector();
 
+    /**
+     * Private constructor to enforce the Singleton pattern.
+     */
     private RoomDirector() {}
 
+    /**
+     * Build a room with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
+     * {@link RoomType}, and {@link Floor}.
+     *
+     * @param roomBuilder      The room builder used to construct the room.
+     * @param applianceFactory The factory for creating appliances.
+     * @param roomType         The type of room to be constructed.
+     * @param floor            The floor on which the room is located.
+     */
     public void buildRoom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, RoomType roomType, Floor floor) {
         switch (roomType) {
             case KITCHEN -> buildKitchen(roomBuilder, applianceFactory, floor);
@@ -21,6 +45,7 @@ public final class RoomDirector {
             case BEDROOM -> buildBedroom(roomBuilder, applianceFactory, floor);
             case GARAGE -> buildGarage(roomBuilder, applianceFactory, floor);
             case WORKROOM -> buildWorkroom(roomBuilder, applianceFactory, floor);
+            default -> log.warn("That type of room cannot be created.");
         }
     }
 
