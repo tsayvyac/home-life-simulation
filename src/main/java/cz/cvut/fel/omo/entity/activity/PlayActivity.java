@@ -1,12 +1,13 @@
 package cz.cvut.fel.omo.entity.activity;
 
-import cz.cvut.fel.omo.entity.activity.marker.PersonActivity;
+import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.living.Executor;
+import cz.cvut.fel.omo.smarthome.room.RoomType;
 
-public class PlayActivity extends Activity implements PersonActivity {
+public class PlayActivity extends Activity {
 
-    protected PlayActivity(int ticksToSolve) {
-        super(ticksToSolve);
+    protected PlayActivity(RoomType roomType, int ticksToSolve) {
+        super(roomType, ticksToSolve, "PLAY", Type.KID);
     }
 
     @Override

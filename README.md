@@ -5,7 +5,7 @@ Prvotní Class a Use-Case diagramy najdete zde:
 - [Class diagram](diagram/uml_v1.pdf)
 - [UC diagram](diagram/uc_v1.pdf)
 
-### Předpokládané design patterny (10):
+### Předpokládané design patterny (11):
 - **Builder**. Používá se k postupnému vytváření domu a pokojů.
 - **Singleton**. Pro vytváření objektů, které budou mít jen jednu instanci.
 - **State**. Vytvoří nové třídy pro všechny možné stavy spotřebičů a lidí.
@@ -16,3 +16,4 @@ Prvotní Class a Use-Case diagramy najdete zde:
 - **Visitor**. Umístí nové chování do samostatné třídy Visitor, místo integrování do stávajících tříd.
 - **Observer**. Oznámí, pokud se rozbíje spotřebič nebo budou aktivovány senzory.
 - **Strategy**. Používá se k výběru řešení události.
+- **Template Method**. Definuje kostru aktivit, podtřídy přepisují jednotlivé kroky.

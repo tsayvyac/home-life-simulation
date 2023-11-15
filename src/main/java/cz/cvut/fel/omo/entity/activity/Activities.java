@@ -1,11 +1,19 @@
 package cz.cvut.fel.omo.entity.activity;
 
-public class Activities {
-    protected static final Activity[] list = {
-            new WorkActivity(8),
-            new SchoolActivity(8),
-            new PlayActivity(2),
-    };
+import cz.cvut.fel.omo.smarthome.room.RoomType;
+import lombok.Getter;
 
-    private Activities() {}
+@Getter
+public enum Activities {
+    WORK(new WorkActivity(RoomType.OUTSIDE, 8)),
+    SCHOOL(new SchoolActivity(RoomType.OUTSIDE, 8)),
+    PLAY(new PlayActivity(RoomType.LIVINGROOM, 3)),
+    EAT(new EatActivity(RoomType.KITCHEN, 2)),
+    PLAYTOY(new PlayToyActivity(RoomType.GARAGE, 2));
+
+    private final Activity activity;
+
+    Activities(Activity activity) {
+        this.activity = activity;
+    }
 }
