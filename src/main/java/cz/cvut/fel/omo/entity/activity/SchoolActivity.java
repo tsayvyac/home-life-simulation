@@ -8,8 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SchoolActivity extends Activity {
 
-    protected SchoolActivity(RoomType roomType, int ticksToSolve) {
-        super(roomType, ticksToSolve, "STUDY IN SCHOOL", Type.KID);
+    public SchoolActivity(RoomType roomType, int ticksToSolve) {
+        super(roomType, ticksToSolve, "STUDY IN SCHOOL");
     }
 
     @Override

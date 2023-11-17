@@ -1,6 +1,5 @@
 package cz.cvut.fel.omo.entity.activity;
 
-import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
 import cz.cvut.fel.omo.nullable.NullableRoom;
@@ -16,13 +15,11 @@ public abstract class Activity {
     protected final RoomType roomType;
     protected final int ticksToSolve;
     protected final String name;
-    protected final Type activityType;
 
-    protected Activity(RoomType roomType, int ticksToSolve, String name, Type activityType) {
+    protected Activity(RoomType roomType, int ticksToSolve, String name) {
         this.roomType = roomType;
         this.ticksToSolve = ticksToSolve;
         this.name = name;
-        this.activityType = activityType;
     }
 
     public void execute(Executor executor) {
@@ -33,7 +30,7 @@ public abstract class Activity {
         solve(executor);
     }
 
-    public void changeRoom(Executor executor, RoomType roomType) {
+    private void changeRoom(Executor executor, RoomType roomType) {
         NullableRoom toRoom = Home.getInstance().getAllRooms().stream()
                 .filter(room -> room.getRoomType() == roomType)
                 .findFirst()
@@ -43,6 +40,7 @@ public abstract class Activity {
             executor.getRoom().removeExecutor(executor);
         toRoom.addExecutor(executor);
         executor.setRoom(toRoom);
+        log.info("{} changed room to {}", executor.getRole(), toRoom.getRoomType());
     }
 
     protected abstract void solve(Executor executor);
