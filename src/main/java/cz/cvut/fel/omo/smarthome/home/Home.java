@@ -1,6 +1,9 @@
 package cz.cvut.fel.omo.smarthome.home;
 
 import cz.cvut.fel.omo.entity.living.Executor;
+import cz.cvut.fel.omo.event.Event;
+import cz.cvut.fel.omo.nullable.NullableRoom;
+import cz.cvut.fel.omo.smarthome.room.Room;
 import cz.cvut.fel.omo.updatable.Updatable;
 import cz.cvut.fel.omo.util.Helper;
 import lombok.Getter;
@@ -15,12 +18,16 @@ public class Home implements Updatable {
     private static Home instance;
     private List<Floor> floorList = new ArrayList<>();
     private List<Executor> allExecutors = new ArrayList<>();
+    private List<Event> events = new ArrayList<>();
     private boolean isPowerEnable;
 
     private Home() {
         this.isPowerEnable = true;
     }
 
+    public void addEvent(Event event){
+        events.add(event);
+    }
     public void addFloor(Floor floor) {
         floorList.add(floor);
     }
@@ -33,6 +40,14 @@ public class Home implements Updatable {
                 .get(Helper.getRandomInt(floorList.get(floorIndex).getRoomList().size()))
                 .addExecutor(o);
         allExecutors.add(o);
+    }
+
+    public List<NullableRoom> getAllRooms() {
+        List<NullableRoom> rooms = new ArrayList<>();
+        floorList.forEach(floor ->
+            rooms.addAll(floor.getRoomList())
+        );
+        return rooms;
     }
 
     public static Home getInstance() {

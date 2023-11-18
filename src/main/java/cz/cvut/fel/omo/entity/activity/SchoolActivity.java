@@ -1,20 +1,19 @@
 package cz.cvut.fel.omo.entity.activity;
 
-import cz.cvut.fel.omo.entity.activity.marker.KidActivity;
+import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.living.Executor;
-import cz.cvut.fel.omo.entity.living.person.Person;
+import cz.cvut.fel.omo.smarthome.room.RoomType;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SchoolActivity extends Activity implements KidActivity {
+public class SchoolActivity extends Activity {
 
-    protected SchoolActivity(int ticksToSolve) {
-        super(ticksToSolve);
+    public SchoolActivity(RoomType roomType, int ticksToSolve) {
+        super(roomType, ticksToSolve, "STUDY IN SCHOOL");
     }
 
     @Override
     protected void solve(Executor executor) {
-        Person person = (Person) executor;
-        log.info("{} is studying in room {}", person.getName(), person.getRoom().getRoomType());
+
     }
 }

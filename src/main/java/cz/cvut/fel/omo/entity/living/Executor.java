@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 @Slf4j
@@ -17,11 +18,17 @@ import java.util.Queue;
 public abstract class Executor implements Updatable {
     protected NullableRoom room = NullRoom.INSTANCE;
     protected ExecutorStatus status = ExecutorStatus.FREE;
-    protected Queue<Activity> emergencyActivities = new LinkedList<>();
+    protected Queue<Activity> activityQueue = new LinkedList<>();
+    protected Role role;
     private int ticks;
 
-    public void execute(Activity activity) {
-        activity.execute(this);
+    protected Executor(Role role) {
+        this.role = role;
+    }
+
+    public void addActivityToQueue(List<Activity> activities) {
+        activityQueue.addAll(activities);
+        executeFirstInQueue();
     }
 
     @Override
@@ -30,14 +37,28 @@ public abstract class Executor implements Updatable {
             log.info("UPDATE");
             ticks--;
             if (ticks == 0) {
-                status = ExecutorStatus.FREE;
-
-                Activity emergency = emergencyActivities.poll();
-                if (emergency != null) {
-                    ticks = 0;
-                    execute(emergency);
-                }
+                // TODO: Delete this. ONLY FOR TESTING
+                log.info("{}: I'M FREE!", this.getRole());
+                if (!activityQueue.isEmpty()) {
+                    Activity activity = activityQueue.poll();
+                    execute(activity);
+                } else status = ExecutorStatus.FREE;
             }
         }
+    }
+
+    private void executeFirstInQueue() {
+        if (!activityQueue.isEmpty())
+            execute(activityQueue.poll());
+    }
+
+    private void execute(Activity activity) {
+        activity.execute(this);
+    }
+
+    // TODO: Delete this. ONLY FOR TESTING
+    public void setStatus(ExecutorStatus status) {
+        this.status = status;
+        log.info("{}: I'M BUSY!", this.getRole());
     }
 }

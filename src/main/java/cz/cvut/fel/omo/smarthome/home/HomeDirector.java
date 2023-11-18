@@ -2,9 +2,8 @@ package cz.cvut.fel.omo.smarthome.home;
 
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cz.cvut.fel.omo.entity.living.person.Person;
-import cz.cvut.fel.omo.entity.living.person.Role;
+import cz.cvut.fel.omo.entity.living.Role;
 import cz.cvut.fel.omo.entity.living.pet.Pet;
-import cz.cvut.fel.omo.entity.living.pet.Type;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
@@ -38,9 +37,9 @@ public final class HomeDirector {
                 .addPerson(new Person("Lisa", Role.DAUGHTER))
                 .addPerson(new Person("Abraham", Role.GRANDFATHER))
                 .addPerson(new Person("Mona", Role.GRANDMOTHER))
-                .addPet(new Pet("Santa's Little Helper", Type.DOG))
-                .addPet(new Pet("Snowball", Type.CAT))
-                .addPet(new Pet("Bart Junior", Type.FROG));
+                .addPet(new Pet("Santa's Little Helper", Role.DOG))
+                .addPet(new Pet("Snowball", Role.CAT))
+                .addPet(new Pet("Bart Junior", Role.FROG));
     }
 
     /**
@@ -67,8 +66,8 @@ public final class HomeDirector {
                 .addPerson(new Person("Lisa", Role.DAUGHTER))
                 .addPerson(new Person("Abraham", Role.GRANDFATHER))
                 .addPerson(new Person("Mona", Role.GRANDMOTHER))
-                .addPet(new Pet("Santa's Little Helper", Type.DOG))
-                .addPet(new Pet("Snowball", Type.CAT))
-                .addPet(new Pet("Bart Junior", Type.FROG));
+                .addPet(new Pet("Santa's Little Helper", Role.DOG))
+                .addPet(new Pet("Snowball", Role.CAT))
+                .addPet(new Pet("Bart Junior", Role.FROG));
     }
 }

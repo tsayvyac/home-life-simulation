@@ -1,11 +1,11 @@
 package cz.cvut.fel.omo.entity.activity;
 
-import cz.cvut.fel.omo.entity.activity.marker.PetActivity;
 import cz.cvut.fel.omo.entity.living.Executor;
+import cz.cvut.fel.omo.smarthome.room.RoomType;
 
-public class PlayToyActivity extends Activity implements PetActivity {
-    protected PlayToyActivity(int ticksToSolve) {
-        super(ticksToSolve);
+public class PlayToyActivity extends Activity {
+    public PlayToyActivity() {
+        super(RoomType.LIVINGROOM, 2, "PLAY WITH TOY");
     }
 
     @Override
