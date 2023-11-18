@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
-import cz.cvut.fel.omo.entity.living.person.Person;
 
 public class StateOn extends State {
 
@@ -10,32 +9,24 @@ public class StateOn extends State {
     }
 
     @Override
-    public void switchOn(HomeAppliance appliance) {
+    public void switchOn() {
+        // Does not work in this state
     }
 
     @Override
-    public void switchOff(HomeAppliance appliance) {
+    public void switchOff() {
         appliance.setState(new StateOff(appliance));
     }
 
     @Override
-    public void pause(HomeAppliance appliance) {
-
+    public void switchIdle() {
+        appliance.setState(new StateIdle(appliance));
     }
 
     @Override
-    public void _break(HomeAppliance appliance) {
-        appliance.setState(new BrokenState(appliance));
-    }
-
-    @Override
-    public void repair(HomeAppliance appliance) {
-
-    }
-
-    @Override
-    public void use(Person person, HomeAppliance appliance) {
-
+    public void breakThis() {
+        setBrokennessLevel();
+        appliance.setState(new StateBroken(appliance));
     }
 }
 

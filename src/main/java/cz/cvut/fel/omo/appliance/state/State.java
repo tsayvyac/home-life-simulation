@@ -1,23 +1,24 @@
 package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
-import cz.cvut.fel.omo.entity.living.person.Person;
+import cz.cvut.fel.omo.appliance.documentation.BrokennessLevel;
+import cz.cvut.fel.omo.util.Helper;
 
 public abstract class State {
-
     HomeAppliance appliance;
 
-    public State(HomeAppliance appliance) {
+    protected State(HomeAppliance appliance) {
         this.appliance = appliance;
     }
 
-    public abstract void switchOn(HomeAppliance appliance);
-    public abstract void switchOff(HomeAppliance appliance);
-    public abstract void pause(HomeAppliance appliance);
-    public abstract void _break(HomeAppliance appliance);
-    public abstract void repair(HomeAppliance appliance);
-    public abstract void use(Person person, HomeAppliance appliance);
+    protected void setBrokennessLevel() {
+        BrokennessLevel[] levels = BrokennessLevel.values();
+        int randomIndex = Helper.getRandomInt(levels.length);
+        appliance.setBrokennessLevel(levels[randomIndex]);
+    }
 
-
-
+    public abstract void switchOn();
+    public abstract void switchOff();
+    public abstract void switchIdle();
+    public abstract void breakThis();
 }

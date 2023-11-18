@@ -2,9 +2,9 @@ package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
 
-public class StateOff extends State {
+public class StateIdle extends State {
 
-    public StateOff(HomeAppliance appliance) {
+    public StateIdle(HomeAppliance appliance) {
         super(appliance);
     }
 
@@ -15,12 +15,12 @@ public class StateOff extends State {
 
     @Override
     public void switchOff() {
-        // Does not work in this state
+        appliance.setState(new StateOff(appliance));
     }
 
     @Override
     public void switchIdle() {
-        appliance.setState(new StateIdle(appliance));
+        // Does not work in this state
     }
 
     @Override

@@ -9,66 +9,65 @@ public class HomeApplianceFactory implements ApplianceFactory {
 
     public static final HomeApplianceFactory INSTANCE = new HomeApplianceFactory();
 
-    private HomeApplianceFactory() {
+    private HomeApplianceFactory() {}
+
+    @Override
+    public Appliance createCircuitBreaker() {
+        return new CircuitBreaker(ApplianceType.ELECTRICITY, "Circuit breaker", SENSOR_IDLE);
     }
 
     @Override
-    public Sensor createCircuitBreaker() {
-        return new CircuitBreaker(ApplianceType.ELECTRICITY, "Circuit breaker", SENSOR_IDLE, null);
+    public Appliance createFlameDetector() {
+        return new FlameDetector(ApplianceType.ELECTRICITY, "Flame detector", SENSOR_IDLE);
     }
 
     @Override
-    public Sensor createFlameDetector() {
-        return new FlameDetector(ApplianceType.ELECTRICITY, "Flame detector", SENSOR_IDLE, null);
-    }
-
-    @Override
-    public Sensor createLeakDetector() {
-        return new LeakDetector(ApplianceType.ELECTRICITY, "Leak detector", SENSOR_IDLE, null);
+    public Appliance createLeakDetector() {
+        return new LeakDetector(ApplianceType.ELECTRICITY, "Leak detector", SENSOR_IDLE);
     }
 
     @Override
     public Appliance createPlaystation() {
-        return new Playstation(ApplianceType.ELECTRICITY, "Playstation 5", APPLIANCE_OFF, null);
+        return new Playstation(ApplianceType.ELECTRICITY, "Playstation 5", APPLIANCE_OFF);
     }
 
     @Override
     public Appliance createComputer() {
-        return new Computer(ApplianceType.ELECTRICITY, "Computer", APPLIANCE_OFF, null);
+        return new Computer(ApplianceType.ELECTRICITY, "Computer", APPLIANCE_OFF);
     }
 
     @Override
     public Appliance createDishwasher() {
-        return new Dishwasher(ApplianceType.ELECTRICITY, "Dishwasher", APPLIANCE_OFF, null);
+        return new Dishwasher(ApplianceType.ELECTRICITY, "Dishwasher", APPLIANCE_OFF);
     }
 
     @Override
-    public HomeAppliance createFridge() {
-        return new Fridge(ApplianceType.ELECTRICITY, "Fridge", APPLIANCE_OFF, null);
+    public Appliance createFridge() {
+        return new Fridge(ApplianceType.ELECTRICITY, "Fridge", APPLIANCE_OFF);
     }
 
     @Override
-    public HomeAppliance createOven() {
-        return new Oven(ApplianceType.ELECTRICITY, "Oven", APPLIANCE_OFF, null);
+    public Appliance createOven() {
+        return new Oven(ApplianceType.ELECTRICITY, "Oven", APPLIANCE_OFF);
     }
 
     @Override
-    public HomeAppliance createTV() {
-        return new TV(ApplianceType.ELECTRICITY, "TV", APPLIANCE_OFF, null);
+    public Appliance createTV() {
+        return new TV(ApplianceType.ELECTRICITY, "TV", APPLIANCE_OFF);
     }
 
     @Override
-    public HomeAppliance createWashingMachine() {
-        return new WashingMachine(ApplianceType.ELECTRICITY, "Washing machine", APPLIANCE_OFF, null);
+    public Appliance createWashingMachine() {
+        return new WashingMachine(ApplianceType.ELECTRICITY, "Washing machine", APPLIANCE_OFF);
     }
 
     @Override
-    public HomeAppliance createStove() {
-        return new Stove(ApplianceType.GAS, "Stove", APPLIANCE_OFF, null);
+    public Appliance createStove() {
+        return new Stove(ApplianceType.GAS, "Stove", APPLIANCE_OFF);
     }
 
     @Override
-    public HomeAppliance createKettle() {
-        return new Kettle(ApplianceType.ELECTRICITY, "Kettle", APPLIANCE_OFF, null);
+    public Appliance createKettle() {
+        return new Kettle(ApplianceType.ELECTRICITY, "Kettle", APPLIANCE_OFF);
     }
 }

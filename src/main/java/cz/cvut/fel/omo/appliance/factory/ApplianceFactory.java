@@ -1,12 +1,11 @@
 package cz.cvut.fel.omo.appliance.factory;
 
 import cz.cvut.fel.omo.appliance.Appliance;
-import cz.cvut.fel.omo.appliance.Sensor;
 
 public interface ApplianceFactory {
-    Sensor createCircuitBreaker();
-    Sensor createFlameDetector();
-    Sensor createLeakDetector();
+    Appliance createCircuitBreaker();
+    Appliance createFlameDetector();
+    Appliance createLeakDetector();
     Appliance createPlaystation();
     Appliance createComputer();
     Appliance createDishwasher();

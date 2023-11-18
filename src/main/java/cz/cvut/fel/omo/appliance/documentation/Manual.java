@@ -13,7 +13,7 @@ public class Manual {
         this.appliance = appliance;
     }
 
-    public void generateManual() throws IOException {
+    public void generateManual() {
         String applianceName = appliance.getName();
         String applianceType = appliance.getType().toString();
         BrokennessLevel brokennessLevel = appliance.getBrokennessLevel();

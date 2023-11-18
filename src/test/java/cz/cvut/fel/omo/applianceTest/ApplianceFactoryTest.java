@@ -2,20 +2,20 @@ package cz.cvut.fel.omo.applianceTest;
 
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.appliance.ApplianceType;
-import cz.cvut.fel.omo.appliance.Sensor;
 import cz.cvut.fel.omo.appliance.factory.HomeApplianceFactory;
 import org.junit.jupiter.api.Test;
 
+import static cz.cvut.fel.omo.util.Constant.ApplianceConstant.APPLIANCE_OFF;
+import static cz.cvut.fel.omo.util.Constant.ApplianceConstant.SENSOR_IDLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static cz.cvut.fel.omo.util.Constant.ApplianceConstant.*;
 
 class ApplianceFactoryTest {
 
 
     @Test
     void testCreateCircuitBreaker() {
-        Sensor circuitBreaker = HomeApplianceFactory.INSTANCE.createCircuitBreaker();
+        Appliance circuitBreaker = HomeApplianceFactory.INSTANCE.createCircuitBreaker();
         assertNotNull(circuitBreaker);
         assertEquals(ApplianceType.ELECTRICITY, circuitBreaker.getType());
         assertEquals("Circuit breaker", circuitBreaker.getName());
@@ -24,7 +24,7 @@ class ApplianceFactoryTest {
 
     @Test
     void testCreateLeakDetector() {
-        Sensor leakDetector = HomeApplianceFactory.INSTANCE.createLeakDetector();
+        Appliance leakDetector = HomeApplianceFactory.INSTANCE.createLeakDetector();
         assertNotNull(leakDetector);
         assertEquals(ApplianceType.ELECTRICITY, leakDetector.getType());
         assertEquals("Leak detector", leakDetector.getName());
