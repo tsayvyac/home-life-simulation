@@ -1,11 +1,15 @@
 package cz.cvut.fel.omo.nullable;
 
+import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
+
+import java.util.List;
 
 public interface NullableRoom extends Nullable {
     Nullable getFloor();
     RoomType getRoomType();
     void addExecutor(Executor executor);
     void removeExecutor(Executor executor);
+    List<Appliance> getApplianceList();
 }
