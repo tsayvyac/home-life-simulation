@@ -1,18 +1,41 @@
 package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
+import cz.cvut.fel.omo.entity.living.person.Person;
 
-public class StateOff implements State {
-    HomeAppliance appliance;
-    private final StateType state;
+public class StateOff extends State{
 
     public StateOff(HomeAppliance appliance) {
-        this.appliance = appliance;
-        this.state = StateType.OFF;
+        super(appliance);
     }
 
     @Override
-    public StateType getStateType() {
-        return state;
+    public void switchOn(HomeAppliance appliance) {
+        appliance.setState(new StateOn(appliance));
+    }
+
+    @Override
+    public void switchOff(HomeAppliance appliance) {
+
+    }
+
+    @Override
+    public void pause(HomeAppliance appliance) {
+
+    }
+
+    @Override
+    public void _break(HomeAppliance appliance) {
+        appliance.setState(new BrokenState(appliance));
+    }
+
+    @Override
+    public void repair(HomeAppliance appliance) {
+
+    }
+
+    @Override
+    public void use(Person person, HomeAppliance appliance) {
+
     }
 }
