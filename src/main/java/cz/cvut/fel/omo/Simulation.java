@@ -9,7 +9,7 @@ import static cz.cvut.fel.omo.util.Constant.HOURS_IN_DAY;
 /**
  * Main simulation class that contains main simulation loop.
  */
-@Slf4j(topic = "SIMULATION")
+@Slf4j(topic = "Simulation starter")
 class Simulation {
     private static final Home home = Home.getInstance();
 

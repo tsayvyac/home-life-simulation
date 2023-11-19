@@ -22,6 +22,7 @@ public class Room implements NullableRoom, Updatable {
     private List<Appliance> applianceList = new ArrayList<>();
     private List<Item> itemList = new ArrayList<>();
     private List<Executor> executorList = new ArrayList<>();
+    private List<Window> windows = new ArrayList<>();
 
     public Room(Floor floor, RoomType roomType) {
         this.floor = floor;
@@ -41,6 +42,10 @@ public class Room implements NullableRoom, Updatable {
     public void addExecutor(Executor executor) {
         executor.setRoom(this);
         executorList.add(executor);
+    }
+
+    public void addWindow(Window window) {
+        windows.add(window);
     }
 
     @Override

@@ -17,7 +17,11 @@ public class EatActivity extends Activity {
     protected void solve(Executor executor) {
         executor.getRoom().getApplianceList().forEach(appliance -> {
             if (appliance.getName().equals("Fridge")) {
-                ((Fridge) appliance).getFood();
+                Food food = ((Fridge) appliance).getFood();
+                if (food == null)
+                    log.info("Nothing to eat.");
+                else
+                    log.info("Eating {}", food.name());
             }
         });
     }

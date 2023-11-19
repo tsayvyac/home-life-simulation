@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.smarthome.home;
 
+import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.nullable.NullableRoom;
@@ -11,6 +12,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -48,6 +50,13 @@ public class Home implements Updatable {
             rooms.addAll(floor.getRoomList())
         );
         return rooms;
+    }
+
+    public List<Item> getAllItems() {
+        return floorList.stream()
+                .flatMap(floor -> floor.getRoomList().stream())
+                .flatMap(room -> room.getItemList().stream())
+                .toList();
     }
 
     public static Home getInstance() {

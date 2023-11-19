@@ -11,7 +11,7 @@ import java.util.List;
 public class Observer {
     private final List<Executor> listeners = Home.getInstance().getAllExecutors();
 
-    public void notifyListener(Event event, Type type) {
+    public void notifyRandomListener(Event event, Type type) {
         if (!listeners.isEmpty()) {
             List<Executor> adults = listeners.stream()
                     .filter(e -> e.getRole().getType().contains(type))
@@ -23,9 +23,7 @@ public class Observer {
         }
     }
 
-    public void notifyListener(Event event) {
+    public void notifyListeners(Event event) {
          listeners.forEach(e -> e.addActivityToQueue(event.getSolveChain()));
     }
-
-
 }

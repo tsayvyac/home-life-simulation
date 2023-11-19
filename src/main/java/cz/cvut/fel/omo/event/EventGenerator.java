@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.event;
 
+import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
 import cz.cvut.fel.omo.exception.EventErrorException;
@@ -27,25 +28,28 @@ public class EventGenerator {
 
     public static void generateRandomEvent(int tick) {
         Event event;
-        if (tick % 2 == 0)
-            event = generate(personEvents);
-        else if (tick % 5 == 0)
-            event = generate(petEvents);
-        else if (tick % 23 == 0)
-            event = generate(applianceEvents);
+        if (tick % 3 == 0)
+            event = generate(personEvents, true);
+        else if (tick % 8 == 0)
+            event = generate(petEvents, true);
+        else if (tick % 504 == 0)
+            event = generate(applianceEvents, false);
         else
             event = new NullEvent();
-        event.setExecutor(getRandomExecutor(event));
-        home.addEvent(event);
 
-        event.execute();
+        if (getRandomExecutor(event) != null) {
+            event.setExecutor(getRandomExecutor(event));
+            home.addEvent(event);
+
+            event.execute();
+        }
     }
 
-    private static Event generate(List<Class<? extends Event>> events) {
+    private static Event generate(List<Class<? extends Event>> events, boolean isLivingEvent) {
         int rnd = Helper.getRandomInt(events.size());
         try {
             return events.get(rnd)
-                    .getDeclaredConstructor(String.class, Executor.class)
+                    .getDeclaredConstructor(String.class, isLivingEvent? Executor.class : Appliance.class)
                     .newInstance(events.get(rnd).getSimpleName(), null);
         } catch (Exception e) {
             throw new EventErrorException("Event execution error. Please check " +
@@ -63,6 +67,9 @@ public class EventGenerator {
                                 && executor.getStatus() == ExecutorStatus.FREE
                 )
                 .toList();
-        return executors.get(Helper.getRandomInt(executors.size()));
+        if (executors.isEmpty())
+            return null;
+        else
+            return executors.get(Helper.getRandomInt(executors.size()));
     }
 }

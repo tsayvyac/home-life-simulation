@@ -9,6 +9,7 @@ public class Constant {
     public static final String PACKAGE_NAME_PERSON = "cz.cvut.fel.omo.event.person";
     public static final String PACKAGE_NAME_APPLIANCE = "cz.cvut.fel.omo.event.appliance";
     public static final String PACKAGE_NAME_PET = "cz.cvut.fel.omo.event.pet";
+    public static final String PACKAGE_NAME_EMERGENCY = "cz.cvut.fel.omo.event.emergency";
 
     public static class ApplianceConstant {
 

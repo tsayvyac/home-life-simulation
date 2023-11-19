@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
  * This class abstracts the construction details and allows for the creation of rooms with
  * specific characteristics based on their types.
  */
-@Slf4j(topic = "ROOM DIRECTOR")
+@Slf4j(topic = "Room director")
 public final class RoomDirector {
     /**
      * The single instance of this class.
@@ -58,7 +58,10 @@ public final class RoomDirector {
                 .addAppliance(applianceFactory.createKettle())
                 .addAppliance(applianceFactory.createDishwasher())
                 .addAppliance(applianceFactory.createOven())
-                .addAppliance(applianceFactory.createStove());
+                .addAppliance(applianceFactory.createStove())
+                .addWindow(new Window(new Blind()))
+                .addWindow(new Window(new Blind()));
+        log.info("Room Kitchen is built.");
     }
 
     private void buildLivingroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -69,7 +72,9 @@ public final class RoomDirector {
                 .addAppliance(applianceFactory.createCircuitBreaker())
                 .addAppliance(applianceFactory.createTV())
                 .addAppliance(applianceFactory.createPlaystation())
-                .addItem(new PetToy());
+                .addItem(new PetToy())
+                .addWindow(new Window(new Blind()));
+        log.info("Room Livingroom is built.");
     }
 
     private void buildBathroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -78,6 +83,7 @@ public final class RoomDirector {
                 .setRoomType(RoomType.BATHROOM)
                 .addAppliance(applianceFactory.createLeakDetector())
                 .addAppliance(applianceFactory.createWashingMachine());
+        log.info("Room Bathroom is built.");
     }
 
     private void buildChildrenroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -88,7 +94,9 @@ public final class RoomDirector {
                 .addAppliance(applianceFactory.createComputer())
                 .addAppliance(applianceFactory.createTV())
                 .addAppliance(applianceFactory.createPlaystation())
-                .addItem(new PetToy());
+                .addItem(new PetToy())
+                .addWindow(new Window(new Blind()));
+        log.info("Room Childrenroom is built.");
     }
 
     private void buildBedroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -96,7 +104,9 @@ public final class RoomDirector {
                 .setFloor(floor)
                 .setRoomType(RoomType.BEDROOM)
                 .addAppliance(applianceFactory.createFlameDetector())
-                .addAppliance(applianceFactory.createTV());
+                .addAppliance(applianceFactory.createTV())
+                .addWindow(new Window(new Blind()));
+        log.info("Room Bedroom is built.");
     }
 
     private void buildGarage(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -106,7 +116,10 @@ public final class RoomDirector {
                 .addAppliance(applianceFactory.createFlameDetector())
                 .addItem(new Car())
                 .addItem(new Bicycle())
-                .addItem(new Snowboard());
+                .addItem(new Snowboard())
+                .addWindow(new Window())
+                .addWindow(new Window());
+        log.info("Room Garage is built.");
     }
 
     private void buildWorkroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -115,6 +128,8 @@ public final class RoomDirector {
                 .setRoomType(RoomType.WORKROOM)
                 .addAppliance(applianceFactory.createFlameDetector())
                 .addAppliance(applianceFactory.createComputer())
-                .addAppliance(applianceFactory.createTV());
+                .addAppliance(applianceFactory.createTV())
+                .addWindow(new Window(new Blind()));
+        log.info("Room Workroom is built.");
     }
 }

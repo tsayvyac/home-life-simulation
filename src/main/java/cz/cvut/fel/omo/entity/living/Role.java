@@ -14,9 +14,12 @@ public enum Role {
     SON(Type.KID, Type.PERSON),
     GRANDMOTHER(Type.ADULT, Type.PERSON),
     GRANDFATHER(Type.ADULT, Type.PERSON),
+    UNCLE(Type.ADULT, Type.PERSON),
+    COUSIN(Type.KID, Type.KID),
     DOG(Type.PET),
     CAT(Type.PET),
-    FROG(Type.PET);
+    FROG(Type.PET),
+    RABBIT(Type.PET);
 
     private final List<Type> type;
 

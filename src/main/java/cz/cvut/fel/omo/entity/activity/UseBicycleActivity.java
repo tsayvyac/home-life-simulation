@@ -1,15 +1,11 @@
 package cz.cvut.fel.omo.entity.activity;
 
-import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-public class SchoolActivity extends Activity {
-
-    public SchoolActivity() {
-        super(RoomType.OUTSIDE, 8, "STUDY IN SCHOOL");
+public class UseBicycleActivity extends Activity {
+    public UseBicycleActivity() {
+        super(RoomType.OUTSIDE, 1, "Use bicycle");
     }
 
     @Override

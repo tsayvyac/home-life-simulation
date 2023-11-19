@@ -3,30 +3,34 @@ package cz.cvut.fel.omo.appliance;
 import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.item.Food;
 import cz.cvut.fel.omo.event.Event;
-import cz.cvut.fel.omo.event.emergency.FridgeEmptyEvent;
+import cz.cvut.fel.omo.event.person.NeedToCook;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Fridge extends HomeAppliance {
-
-    private final Queue<Food> food = new LinkedList<>();
+    private final Queue<Food> foodQueue = new LinkedList<>();
     public Fridge(ApplianceType type, String name, double consumption) {
         super(type, name, consumption);
     }
 
     public void notify(Event event) {
-        observer.notifyListener(event, Type.ADULT);
+        observer.notifyRandomListener(event, Type.ADULT);
     }
 
-    public void addFood(Food food) {
-        this.food.add(food);
+    public void addFood(Food ...food) {
+        this.foodQueue.addAll(List.of(food));
     }
 
     public Food getFood() {
-        if (food.isEmpty()) {
-            notify(new FridgeEmptyEvent(FridgeEmptyEvent.class.getSimpleName(), null, Type.ADULT));
+        if (foodQueue.isEmpty()) {
+            notify(new NeedToCook(NeedToCook.class.getSimpleName(), null));
         }
-        return food.poll();
+        return foodQueue.poll();
+    }
+
+    public Queue<Food> getFridgeContent() {
+        return foodQueue;
     }
 }
