@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Getter
@@ -61,6 +62,13 @@ public class Room implements NullableRoom, Updatable {
 
     @Override
     public void update() {
-        executorList.forEach(Updatable::update);
+        Iterator<Executor> iterator = this.executorList.iterator();
+        while (iterator.hasNext()) {
+            Executor executor = iterator.next();
+            executor.update();
+        }
+
+        for (var appliance: this.applianceList)
+            appliance.update();
     }
 }

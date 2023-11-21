@@ -1,6 +1,8 @@
 package cz.cvut.fel.omo.entity.living;
 
+import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.activity.Activity;
+import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.smarthome.room.NullRoom;
 import cz.cvut.fel.omo.updatable.Updatable;
@@ -19,6 +21,8 @@ public abstract class Executor implements Updatable {
     protected NullableRoom room = NullRoom.INSTANCE;
     protected ExecutorStatus status = ExecutorStatus.FREE;
     protected Queue<Activity> activityQueue = new LinkedList<>();
+    protected Appliance appliance;
+    protected Item item;
     protected Role role;
     private int ticks;
 
@@ -28,28 +32,43 @@ public abstract class Executor implements Updatable {
 
     public void addActivityToQueue(List<Activity> activities) {
         activityQueue.addAll(activities);
-        executeFirstInQueue();
+        if (this.status == ExecutorStatus.FREE)
+            executeFirstInQueue();
+    }
+
+    public void turnOnAppliance() {
+        this.appliance.turnOn();
     }
 
     @Override
     public void update() {
-        if (ticks > 0) {
-            log.info("UPDATE");
-            ticks--;
-            if (ticks == 0) {
-                // TODO: Delete this. ONLY FOR TESTING
+        if (this.ticks > 0) {
+            this.ticks--;
+            if (this.ticks == 0) {
+                release();
                 log.info("{}: I'M FREE!", this.getRole());
-                if (!activityQueue.isEmpty()) {
-                    Activity activity = activityQueue.poll();
-                    execute(activity);
-                } else status = ExecutorStatus.FREE;
+                this.status = ExecutorStatus.FREE;
+                executeFirstInQueue();
             }
         }
     }
 
+    private void release() {
+        if (this.appliance != null) {
+            this.appliance.idle();
+            this.appliance.decreaseDurability();
+            this.appliance = null;
+        } else if (this.item != null) {
+            this.item.setFree();
+            this.item = null;
+        }
+    }
+
     private void executeFirstInQueue() {
-        if (!activityQueue.isEmpty())
-            execute(activityQueue.poll());
+        if (!activityQueue.isEmpty()) {
+            Activity activity = activityQueue.poll();
+            execute(activity);
+        }
     }
 
     private void execute(Activity activity) {
@@ -57,8 +76,8 @@ public abstract class Executor implements Updatable {
     }
 
     // TODO: Delete this. ONLY FOR TESTING
-    public void setStatus(ExecutorStatus status) {
+    public void setStatus(ExecutorStatus status, Activity activity) {
         this.status = status;
-        log.info("{}: I'M BUSY!", this.getRole());
+        log.info("{}: I'M BUSY! {}", this.getRole(), activity.getName());
     }
 }

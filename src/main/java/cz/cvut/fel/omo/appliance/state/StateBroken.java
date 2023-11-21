@@ -6,6 +6,7 @@ public class StateBroken extends State {
 
     public StateBroken(HomeAppliance appliance) {
         super(appliance);
+        appliance.setZeroConsumption();
     }
 
     @Override

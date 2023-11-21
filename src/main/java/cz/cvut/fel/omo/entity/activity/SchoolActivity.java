@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SchoolActivity extends Activity {
 
     public SchoolActivity() {
-        super(RoomType.OUTSIDE, 8, "STUDY IN SCHOOL");
+        super(RoomType.OUTSIDE, 9, "STUDY IN SCHOOL");
     }
 
     @Override

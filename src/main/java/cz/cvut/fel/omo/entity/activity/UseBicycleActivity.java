@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 
 public class UseBicycleActivity extends Activity {
     public UseBicycleActivity() {
-        super(RoomType.OUTSIDE, 1, "Use bicycle");
+        super(RoomType.OUTSIDE, 2, "Use bicycle");
     }
 
     @Override

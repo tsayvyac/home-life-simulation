@@ -6,6 +6,7 @@ public class StateIdle extends State {
 
     public StateIdle(HomeAppliance appliance) {
         super(appliance);
+        appliance.setIdleConsumption();
     }
 
     @Override

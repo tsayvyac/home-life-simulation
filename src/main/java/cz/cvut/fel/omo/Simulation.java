@@ -24,6 +24,7 @@ class Simulation {
 
         for (int i = 0; i < hours; i++) {
             EventGenerator.generateRandomEvent(i);
+            log.info("UPDATE");
             home.update();
         }
     }
