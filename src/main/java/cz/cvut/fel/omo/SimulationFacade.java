@@ -5,12 +5,14 @@ import cz.cvut.fel.omo.io.UserInput;
 import cz.cvut.fel.omo.smarthome.home.HomeBuilder;
 import cz.cvut.fel.omo.smarthome.home.HomeDirector;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 import static cz.cvut.fel.omo.util.Constant.HOURS_IN_DAY;
 
 /**
  * Facade for simple start of the simulation.
  */
+@Slf4j(topic = "Simulation configuration")
 public final class SimulationFacade {
     private static final HomeDirector homeDirector = HomeDirector.INSTANCE;
     private final HomeBuilder homeBuilder;
@@ -45,6 +47,7 @@ public final class SimulationFacade {
      * Creates big configuration of {@link cz.cvut.fel.omo.smarthome.home.Home} using {@link HomeDirector}.
      */
     private void useBigConfig() {
+        log.info("Big configuration is used.");
         homeDirector.buildBigHouse(homeBuilder, roomBuilder, applianceFactory);
     }
 
@@ -53,5 +56,6 @@ public final class SimulationFacade {
      */
     private void useSmallConfig() {
         homeDirector.buildSmallHouse(homeBuilder, roomBuilder, applianceFactory);
+        log.info("Small configuration is used.");
     }
 }

@@ -19,7 +19,7 @@ public class Main {
         ).simulate(UserInput.getConfiguration());
 
         // TODO: refactor
-        ReportGenerator reportGenerator = new ReportGenerator();
-        reportGenerator.generate();
+//        ReportGenerator reportGenerator = new ReportGenerator();
+//        reportGenerator.generate();
     }
 }

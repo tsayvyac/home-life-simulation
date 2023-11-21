@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Scanner;
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 
-@Slf4j(topic = "USER INPUT")
+@Slf4j(topic = "User input")
 public final class UserInput {
     private static final Scanner sc = new Scanner(System.in);
 

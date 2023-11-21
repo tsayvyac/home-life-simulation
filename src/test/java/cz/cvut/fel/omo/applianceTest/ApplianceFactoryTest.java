@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.applianceTest;
 
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.appliance.ApplianceType;
+import cz.cvut.fel.omo.appliance.SourceType;
 import cz.cvut.fel.omo.appliance.factory.HomeApplianceFactory;
 import org.junit.jupiter.api.Test;
 
@@ -17,90 +18,88 @@ class ApplianceFactoryTest {
     void testCreateCircuitBreaker() {
         Appliance circuitBreaker = HomeApplianceFactory.INSTANCE.createCircuitBreaker();
         assertNotNull(circuitBreaker);
-        assertEquals(ApplianceType.ELECTRICITY, circuitBreaker.getType());
-        assertEquals("Circuit breaker", circuitBreaker.getName());
-        assertEquals(SENSOR_IDLE, circuitBreaker.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, circuitBreaker.getSourceType());
+        assertEquals(ApplianceType.CIRCUIT_BREAKER, circuitBreaker.getName());
+    }
+
+    @Test
+    void testCreateFlameDetector() {
+        Appliance flameDetector = HomeApplianceFactory.INSTANCE.createFlameDetector();
+        assertNotNull(flameDetector);
+        assertEquals(SourceType.ELECTRICITY, flameDetector.getSourceType());
+        assertEquals(ApplianceType.FLAME_DETECTOR, flameDetector.getName());
     }
 
     @Test
     void testCreateLeakDetector() {
         Appliance leakDetector = HomeApplianceFactory.INSTANCE.createLeakDetector();
         assertNotNull(leakDetector);
-        assertEquals(ApplianceType.ELECTRICITY, leakDetector.getType());
-        assertEquals("Leak detector", leakDetector.getName());
-        assertEquals(SENSOR_IDLE, leakDetector.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, leakDetector.getSourceType());
+        assertEquals(ApplianceType.LEAK_DETECTOR, leakDetector.getName());
     }
 
     @Test
     void testCreateComputer() {
         Appliance computer = HomeApplianceFactory.INSTANCE.createComputer();
         assertNotNull(computer);
-        assertEquals(ApplianceType.ELECTRICITY, computer.getType());
-        assertEquals("Computer", computer.getName());
-        assertEquals(APPLIANCE_OFF, computer.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, computer.getSourceType());
+        assertEquals(ApplianceType.COMPUTER, computer.getName());
     }
 
     @Test
     void testCreateDishwasher() {
         Appliance dishwasher = HomeApplianceFactory.INSTANCE.createDishwasher();
         assertNotNull(dishwasher);
-        assertEquals(ApplianceType.ELECTRICITY, dishwasher.getType());
-        assertEquals("Dishwasher", dishwasher.getName());
-        assertEquals(APPLIANCE_OFF, dishwasher.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, dishwasher.getSourceType());
+        assertEquals(ApplianceType.DISHWASHER, dishwasher.getName());
     }
 
     @Test
     void testCreateFridge() {
         Appliance fridge = HomeApplianceFactory.INSTANCE.createFridge();
         assertNotNull(fridge);
-        assertEquals(ApplianceType.ELECTRICITY, fridge.getType());
-        assertEquals("Fridge", fridge.getName());
-        assertEquals(APPLIANCE_OFF, fridge.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, fridge.getSourceType());
+        assertEquals(ApplianceType.FRIDGE, fridge.getName());
     }
 
     @Test
     void testCreateOven() {
         Appliance oven = HomeApplianceFactory.INSTANCE.createOven();
         assertNotNull(oven);
-        assertEquals(ApplianceType.ELECTRICITY, oven.getType());
-        assertEquals("Oven", oven.getName());
-        assertEquals(APPLIANCE_OFF, oven.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, oven.getSourceType());
+        assertEquals(ApplianceType.OVEN, oven.getName());
     }
 
     @Test
     void testCreateTV() {
         Appliance tv = HomeApplianceFactory.INSTANCE.createTV();
         assertNotNull(tv);
-        assertEquals(ApplianceType.ELECTRICITY, tv.getType());
-        assertEquals("TV", tv.getName());
-        assertEquals(APPLIANCE_OFF, tv.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, tv.getSourceType());
+        assertEquals(ApplianceType.TV, tv.getName());
     }
 
     @Test
     void testCreateWashingMachine() {
         Appliance washingMachine = HomeApplianceFactory.INSTANCE.createWashingMachine();
         assertNotNull(washingMachine);
-        assertEquals(ApplianceType.ELECTRICITY, washingMachine.getType());
-        assertEquals("Washing machine", washingMachine.getName());
-        assertEquals(APPLIANCE_OFF, washingMachine.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, washingMachine.getSourceType());
+        assertEquals(ApplianceType.WASHING_MACHINE, washingMachine.getName());
     }
 
     @Test
     void testCreateStove() {
         Appliance stove = HomeApplianceFactory.INSTANCE.createStove();
         assertNotNull(stove);
-        assertEquals(ApplianceType.GAS, stove.getType());
-        assertEquals("Stove", stove.getName());
-        assertEquals(APPLIANCE_OFF, stove.getConsumption());
+        assertEquals(SourceType.GAS, stove.getSourceType());
+        assertEquals(ApplianceType.STOVE, stove.getName());
     }
 
     @Test
     void testCreateKettle() {
         Appliance kettle = HomeApplianceFactory.INSTANCE.createKettle();
         assertNotNull(kettle);
-        assertEquals(ApplianceType.ELECTRICITY, kettle.getType());
-        assertEquals("Kettle", kettle.getName());
-        assertEquals(APPLIANCE_OFF, kettle.getConsumption());
+        assertEquals(SourceType.ELECTRICITY, kettle.getSourceType());
+        assertEquals(ApplianceType.KETTLE, kettle.getName());
     }
 
 }

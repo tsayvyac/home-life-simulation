@@ -39,4 +39,10 @@ public interface RoomBuilder {
      * @return The {@link RoomBuilder} instance for method chaining.
      */
     RoomBuilder addItem(Item item);
+    /**
+     * Add a window to the {@link Room} being constructed.
+     * @param window The {@link Window} to add to the {@link Room}.
+     * @return The {@link RoomBuilder} instance for method chaining.
+     */
+    RoomBuilder addWindow(Window window);
 }

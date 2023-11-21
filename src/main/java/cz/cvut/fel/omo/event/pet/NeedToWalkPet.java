@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.event.pet;
 
 import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.activity.Activity;
+import cz.cvut.fel.omo.entity.activity.WalkActivity;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 
@@ -16,6 +17,8 @@ public class NeedToWalkPet extends Event {
 
     @Override
     protected List<Activity> init() {
-        return Collections.emptyList();
+        return List.of(
+                new WalkActivity()
+        );
     }
 }

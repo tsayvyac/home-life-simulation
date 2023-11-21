@@ -9,6 +9,7 @@ public class Constant {
     public static final String PACKAGE_NAME_PERSON = "cz.cvut.fel.omo.event.person";
     public static final String PACKAGE_NAME_APPLIANCE = "cz.cvut.fel.omo.event.appliance";
     public static final String PACKAGE_NAME_PET = "cz.cvut.fel.omo.event.pet";
+    public static final String PACKAGE_NAME_EMERGENCY = "cz.cvut.fel.omo.event.emergency";
 
     public static class ApplianceConstant {
 
@@ -28,6 +29,7 @@ public class Constant {
         public static final double DISHWASHER_RUNNING = 10.0;
         public static final double KETTLE_RUNNING = 7.0;
         public static final double STOVE_RUNNING = 20.0;
+        public static final double PLAYSTATION_RUNNING = 18.3;
 
         /**
          * IDLE - consumption of device when it is idle
@@ -41,6 +43,20 @@ public class Constant {
         public static final double DISHWASHER_IDLE = 3.0;
         public static final double KETTLE_IDLE = 1.2;
         public static final double STOVE_IDLE = 1.0;
+        public static final double PLAYSTATION_IDLE = 1.5;
+
+        /**
+         * Durability of appliances
+         */
+        public static final int COMPUTER_DURABILITY = 19;
+        public static final int TV_DURABILITY = 16;
+        public static final int OVEN_DURABILITY = 17;
+        public static final int WASHING_MACHINE_DURABILITY = 11;
+        public static final int FRIDGE_DURABILITY = 10;
+        public static final int DISHWASHER_DURABILITY = 14;
+        public static final int KETTLE_DURABILITY = 20;
+        public static final int STOVE_DURABILITY = 21;
+        public static final int PLAYSTATION_DURABILITY = 23;
     }
 
     public static class OutputStrings {
@@ -64,11 +80,14 @@ public class Constant {
 
         public static final String MANUAL_HEADER = "********************\nMANUAL\n********************\n\n";
 
-        public static final String MANUAL_EASY = "The device is broken beyond repair. Throw it away.";
+        public static final String MANUAL_HARD = "HARD DAMAGE. " +
+                "Try to search for a solution on Stack Overflow. " +
+                "If nothing is found, try to restart the appliance.";
 
-        public static final String MANUAL_MEDIUM = "The device is broken, but you can fix it. " +
-                "Call your grandfather and he will help you.";
+        public static final String MANUAL_MEDIUM = "MEDIUM DAMAGE. " +
+                "You just need to restart the appliance twice. Unplug the plug and plug it back. TWO TIMES!";
 
-        public static final String MANUAL_HARD = "The device is slightly damaged. You will need to fix it for it to work.";
+        public static final String MANUAL_EASY = "EASY DAMAGE. " +
+                "You just need to restart the appliance. Unplug the plug and plug it back.";
     }
 }

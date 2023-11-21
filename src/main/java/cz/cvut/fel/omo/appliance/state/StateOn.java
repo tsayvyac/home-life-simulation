@@ -6,6 +6,7 @@ public class StateOn extends State {
 
     public StateOn(HomeAppliance appliance) {
         super(appliance);
+        appliance.setRunningConsumption();
     }
 
     @Override

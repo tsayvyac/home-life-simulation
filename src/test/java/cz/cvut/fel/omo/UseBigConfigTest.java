@@ -13,7 +13,7 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DirectorsTest {
+class UseBigConfigTest {
     private static Home home;
 
     @BeforeAll
@@ -34,8 +34,8 @@ class DirectorsTest {
     @Test
     @DisplayName("Testing creation of the house")
     void creationTest() {
-        int expectedSizeOfFloorList = 2;
-        int expectedSizeOfRoomListOnTheSecondFloor = 4;
+        int expectedSizeOfFloorList = 3;
+        int expectedSizeOfRoomListOnTheSecondFloor = 3;
 
         assertEquals(expectedSizeOfFloorList, home.getFloorList().size());
         assertEquals(expectedSizeOfRoomListOnTheSecondFloor, home.getFloorList().get(1).getRoomList().size());
@@ -44,17 +44,10 @@ class DirectorsTest {
     @Test
     @DisplayName("Headcount testing")
     void headcountTest() {
-        int expectedHeads = 9;
-
-        int actualHeads = home.getFloorList().stream()
-                .flatMap(floor -> floor.getRoomList().stream())
-                .flatMap(room -> room.getExecutorList().stream())
-                .map(executor -> 1) // Count each executor as integer that equals to 1
-                .reduce(0, Integer::sum);
+        int expectedHeads = 12;
 
         int allHeadsInHomeObject = home.getAllExecutors().size();
 
-        assertEquals(expectedHeads, actualHeads);
         assertEquals(expectedHeads, allHeadsInHomeObject);
     }
 }

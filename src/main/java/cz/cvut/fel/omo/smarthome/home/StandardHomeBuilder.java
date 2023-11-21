@@ -7,12 +7,14 @@ import cz.cvut.fel.omo.exception.CreationException;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
 import cz.cvut.fel.omo.smarthome.room.RoomDirector;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class is an implementation of the {@link HomeBuilder} interface. It provides methods for creating and configuring a home
  * with various floors, rooms, and inhabitants. This class follows the Singleton pattern and
  * offers a single instance.
  */
+@Slf4j(topic = "Home builder")
 public final class StandardHomeBuilder implements HomeBuilder {
     /**
      * The single instance of thus class.
@@ -50,13 +52,14 @@ public final class StandardHomeBuilder implements HomeBuilder {
     public FloorBuilder addFloor(int floorNumber) {
         if (home.getFloorList().stream().anyMatch(f -> f.getFloorNumber() <= 0))
             throw new CreationException("Floor number must be greater than 0");
-        if (home.getFloorList().stream().anyMatch(f -> f.getFloorNumber() != floorNumber - 1) && floorNumber != 1)
+        if (home.getFloorList().stream().noneMatch(f -> f.getFloorNumber() == floorNumber - 1) && floorNumber != 1)
             throw new CreationException("You should create a floor number " + (floorNumber - 1));
         if (home.getFloorList().stream().anyMatch(f -> f.getFloorNumber() == floorNumber))
             throw new CreationException("Floor number " + floorNumber + " already exist.");
 
         Floor floor = new Floor(floorNumber);
         home.addFloor(floor);
+        log.info("Floor number {} is added.", floor.getFloorNumber());
         return new FloorBuilder(floor);
     }
 

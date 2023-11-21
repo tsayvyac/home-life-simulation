@@ -53,4 +53,11 @@ public final class StandardRoomBuilder implements RoomBuilder {
         room.addItem(item);
         return this;
     }
+
+
+    @Override
+    public RoomBuilder addWindow(Window window) {
+        room.addWindow(window);
+        return this;
+    }
 }

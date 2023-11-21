@@ -3,9 +3,9 @@ package cz.cvut.fel.omo.entity.activity;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
-public class PlayToyActivity extends Activity {
-    public PlayToyActivity() {
-        super(RoomType.LIVINGROOM, 3, "PLAY WITH TOY");
+public class UseBicycleActivity extends Activity {
+    public UseBicycleActivity() {
+        super(RoomType.OUTSIDE, 2, "Use bicycle");
     }
 
     @Override

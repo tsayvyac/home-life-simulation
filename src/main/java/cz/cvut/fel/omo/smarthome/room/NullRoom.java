@@ -1,9 +1,14 @@
 package cz.cvut.fel.omo.smarthome.room;
 
+import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.nullable.Nullable;
 import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.smarthome.home.NullFloor;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class NullRoom implements NullableRoom {
     public static final NullRoom INSTANCE = new NullRoom();
@@ -32,4 +37,10 @@ public class NullRoom implements NullableRoom {
     public void removeExecutor(Executor executor) {
         // nullRoom have no logic of this method
     }
+
+    @Override
+    public List<Appliance> getApplianceList() {
+        return Collections.emptyList();
+    }
+
 }
