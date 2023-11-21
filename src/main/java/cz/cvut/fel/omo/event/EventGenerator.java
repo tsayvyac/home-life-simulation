@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.event;
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
+import cz.cvut.fel.omo.event.emergency.NeedToRepairAppliance;
 import cz.cvut.fel.omo.exception.EventErrorException;
 import cz.cvut.fel.omo.smarthome.home.Home;
 import cz.cvut.fel.omo.util.Helper;
@@ -27,30 +28,28 @@ public class EventGenerator {
     private EventGenerator() {}
 
     public static void generateRandomEvent(int tick) {
-        Event event;
         if (tick % 3 == 0)
-            event = generate(personEvents, true);
+            generate(personEvents, true);
         else if (tick % 8 == 0)
-            event = generate(petEvents, true);
-        else if (tick % 504 == 0)
-            event = generate(applianceEvents, false);
-        else
-            event = new NullEvent();
-
-        if (getRandomExecutor(event) != null) {
-            event.setExecutor(getRandomExecutor(event));
-            home.addEvent(event);
-
-            event.execute();
-        }
+            generate(petEvents, true);
+        else if (tick % 101 == 0)
+            generate(applianceEvents, false);
     }
 
-    private static Event generate(List<Class<? extends Event>> events, boolean isLivingEvent) {
+    private static void generate(List<Class<? extends Event>> events, boolean isLivingEvent) {
         int rnd = Helper.getRandomInt(events.size());
         try {
-            return events.get(rnd)
-                    .getDeclaredConstructor(String.class, isLivingEvent? Executor.class : Appliance.class)
+            Event event = events.get(rnd)
+                    .getDeclaredConstructor(
+                            String.class,
+                            isLivingEvent? Executor.class : Appliance.class
+                    )
                     .newInstance(events.get(rnd).getSimpleName(), null);
+
+            if (isLivingEvent)
+                randomExecutor(event);
+            else
+                randomAppliance(event);
         } catch (Exception e) {
             throw new EventErrorException("Event execution error. Please check " +
                     "constructor access modifier of event you want to add. It must be public!" +
@@ -58,8 +57,7 @@ public class EventGenerator {
         }
     }
 
-    // TODO: Change implementation
-    private static Executor getRandomExecutor(Event event) {
+    private static void randomExecutor(Event event) {
         List<Executor> executors = Home.getInstance().getAllExecutors()
                 .stream()
                 .filter(executor ->
@@ -67,9 +65,19 @@ public class EventGenerator {
                                 && executor.getStatus() == ExecutorStatus.FREE
                 )
                 .toList();
-        if (executors.isEmpty())
-            return null;
-        else
-            return executors.get(Helper.getRandomInt(executors.size()));
+        if (!executors.isEmpty()) {
+            event.setExecutor(executors.get(Helper.getRandomInt(executors.size())));
+            home.addEvent(event);
+            event.executeForExecutor();
+        }
+    }
+
+    private static void randomAppliance(Event event) {
+        List<Appliance> appliances = Home.getInstance().getAllAppliances();
+        if (!appliances.isEmpty()) {
+            event.setAppliance(appliances.get(Helper.getRandomInt(appliances.size())));
+            home.addEvent(event);
+            event.executeForAppliance();
+        }
     }
 }

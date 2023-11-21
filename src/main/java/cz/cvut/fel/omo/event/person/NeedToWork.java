@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.event.person;
 
 import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.activity.Activity;
+import cz.cvut.fel.omo.entity.activity.WalkActivity;
+import cz.cvut.fel.omo.entity.activity.WorkActivity;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 
@@ -16,7 +18,8 @@ public class NeedToWork extends Event {
     @Override
     protected List<Activity> init() {
         return List.of(
-
+                new WalkActivity(),
+                new WorkActivity()
         );
     }
 }

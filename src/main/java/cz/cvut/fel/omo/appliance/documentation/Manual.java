@@ -1,11 +1,12 @@
 package cz.cvut.fel.omo.appliance.documentation;
 
+import cz.cvut.fel.omo.appliance.ApplianceType;
 import cz.cvut.fel.omo.appliance.HomeAppliance;
-
-import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 
+@Slf4j
 public class Manual {
     private final HomeAppliance appliance;
 
@@ -14,14 +15,15 @@ public class Manual {
     }
 
     public void generateManual() {
-        String applianceName = appliance.getName();
-        String applianceType = appliance.getType().toString();
+        ApplianceType applianceName = appliance.getName();
+        String applianceType = appliance.getSourceType().toString();
         BrokennessLevel brokennessLevel = appliance.getBrokennessLevel();
         final String message = "Documentation for the device: " + applianceName + " of type: " + applianceType + ".\n";
 
         String result = constructResultString(message, brokennessLevel);
         String manualName = applianceName + "_manual";
-        System.out.println(result);
+//        System.out.println(result);
+        log.info(result);
         // TODO add file manager
     }
 

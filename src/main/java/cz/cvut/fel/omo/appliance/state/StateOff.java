@@ -6,6 +6,7 @@ public class StateOff extends State {
 
     public StateOff(HomeAppliance appliance) {
         super(appliance);
+        appliance.setZeroConsumption();
     }
 
     @Override

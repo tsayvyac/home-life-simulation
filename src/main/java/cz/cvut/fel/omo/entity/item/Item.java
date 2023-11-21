@@ -1,13 +1,15 @@
 package cz.cvut.fel.omo.entity.item;
 
 import cz.cvut.fel.omo.entity.living.Executable;
+import lombok.Getter;
 
 public abstract class Item implements Executable {
     private boolean isFree = true;
-    private final String name;
+    @Getter
+    private final ItemType type;
 
-    protected Item(String name) {
-        this.name = name;
+    protected Item(ItemType type) {
+        this.type = type;
     }
 
     public void use() {

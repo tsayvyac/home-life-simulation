@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.entity.activity;
 
+import cz.cvut.fel.omo.appliance.ApplianceType;
 import cz.cvut.fel.omo.appliance.Fridge;
 import cz.cvut.fel.omo.entity.item.Food;
 import cz.cvut.fel.omo.entity.living.Executor;
@@ -16,12 +17,12 @@ public class EatActivity extends Activity {
     @Override
     protected void solve(Executor executor) {
         executor.getRoom().getApplianceList().forEach(appliance -> {
-            if (appliance.getName().equals("Fridge")) {
+            if (appliance.getName() == ApplianceType.FRIDGE) {
                 Food food = ((Fridge) appliance).getFood();
                 if (food == null)
-                    log.info("Nothing to eat.");
+                    log.info("{} Nothing to eat.",executor.getRole());
                 else
-                    log.info("Eating {}", food.name());
+                    log.info("{} Eating {}", executor.getRole(), food.name());
             }
         });
     }

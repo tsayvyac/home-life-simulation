@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.smarthome.home;
 
+import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
@@ -50,6 +51,13 @@ public class Home implements Updatable {
             rooms.addAll(floor.getRoomList())
         );
         return rooms;
+    }
+
+    public List<Appliance> getAllAppliances() {
+        return floorList.stream()
+                .flatMap(floor -> floor.getRoomList().stream())
+                .flatMap(room -> room.getApplianceList().stream())
+                .toList();
     }
 
     public List<Item> getAllItems() {
