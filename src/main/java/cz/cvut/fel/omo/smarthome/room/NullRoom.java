@@ -43,4 +43,9 @@ public class NullRoom implements NullableRoom {
         return Collections.emptyList();
     }
 
+    @Override
+    public List<Window> getWindows() {
+        return Collections.emptyList();
+    }
+
 }

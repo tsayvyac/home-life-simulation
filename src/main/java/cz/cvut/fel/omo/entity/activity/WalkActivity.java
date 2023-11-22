@@ -10,7 +10,7 @@ public class WalkActivity extends Activity {
     }
 
     @Override
-    protected void solve(Executor executor) {
+    protected void solve() {
 
     }
 }
