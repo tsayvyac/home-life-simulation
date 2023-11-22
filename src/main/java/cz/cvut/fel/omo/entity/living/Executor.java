@@ -32,8 +32,6 @@ public abstract class Executor implements Updatable {
 
     public void addActivityToQueue(List<Activity> activities) {
         activityQueue.addAll(activities);
-        if (this.status == ExecutorStatus.FREE)
-            executeFirstInQueue();
     }
 
     public void turnOnAppliance() {
@@ -47,8 +45,6 @@ public abstract class Executor implements Updatable {
             if (this.ticks == 0) {
                 release();
                 log.info("{}: I'M FREE!", this.getRole());
-                this.status = ExecutorStatus.FREE;
-                executeFirstInQueue();
             }
         }
     }
@@ -62,10 +58,11 @@ public abstract class Executor implements Updatable {
             this.item.setFree();
             this.item = null;
         }
+        this.status = ExecutorStatus.FREE;
     }
 
-    private void executeFirstInQueue() {
-        if (!activityQueue.isEmpty()) {
+    public void executeFirstInQueue() {
+        if (this.status == ExecutorStatus.FREE && !activityQueue.isEmpty()) {
             Activity activity = activityQueue.poll();
             execute(activity);
         }

@@ -34,35 +34,25 @@ public class CookActivity extends Activity {
 
     @Override
     protected void solve(Executor executor) {
-//        executor.getRoom().getApplianceList().forEach(appliance -> {
-//            if (appliance.getName() == ApplianceType.FRIDGE) {
-//                if (!(appliance.getState() instanceof StateBroken) && !(appliance.getState() instanceof StateOn)) {
-//                    executor.setAppliance(appliance);
-//                    executor.turnOnAppliance();
-//                    ((Fridge) appliance).addFood(
-//                            new Food(FOOD_NAMES_ARRAY[Helper.getRandomInt(FOOD_NAMES_ARRAY.length)])
-//                    );
-//                    log.info("Fridge contains: {}", ((Fridge) appliance).getFridgeContent());
-//                } else {
-//                    executor.setStatus(ExecutorStatus.FREE);
-//                    executor.setTicks(0);
-//                }
-//            }
-//        });
-
-        Optional<Appliance> appliance1 = executor.getRoom().getApplianceList().stream()
+        var applianceList = executor.getRoom().getApplianceList();
+        Optional<Appliance> fridge = applianceList.stream()
                 .filter(app -> app.getName() == ApplianceType.FRIDGE)
+                .filter(app -> !(app.getState() instanceof StateBroken))
+                .findFirst();
+
+        Optional<Appliance> oven = applianceList.stream()
+                .filter(app -> app.getName() == ApplianceType.OVEN)
                 .filter(app -> !(app.getState() instanceof StateBroken) && !(app.getState() instanceof StateOn))
                 .findFirst();
 
-        if (appliance1.isPresent()) {
-            this.appliance = appliance1.get();
+        if (fridge.isPresent() && oven.isPresent()) {
+            this.appliance = oven.get();
             executor.setAppliance(this.appliance);
             executor.turnOnAppliance();
-            ((Fridge) this.appliance).addFood(
+            ((Fridge) fridge.get()).addFood(
                     new Food(FOOD_NAMES_ARRAY[Helper.getRandomInt(FOOD_NAMES_ARRAY.length)])
             );
-            log.info("Fridge contains: {}", ((Fridge) this.appliance).getFridgeContent());
+            log.info("Fridge contains: {}", ((Fridge) fridge.get()).getFridgeContent());
         }
     }
 }

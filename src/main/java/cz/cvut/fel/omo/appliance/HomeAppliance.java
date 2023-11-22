@@ -88,7 +88,7 @@ public abstract class HomeAppliance implements Appliance {
     public void decreaseDurability() {
         if (this.durability != 0) {
             this.durability--;
-            log.info("Durability {}", this.durability);
+            log.info("{}: Durability {}", this.name, this.durability);
             if (this.durability == 0)
                 breakYourself();
         }

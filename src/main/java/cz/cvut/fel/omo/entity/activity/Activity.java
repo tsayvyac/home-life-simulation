@@ -46,6 +46,7 @@ public abstract class Activity {
         // TODO: Change room by floor or address in memory if appliance != null and by roomType
         if (executor.getRoom().getRoomType() != this.roomType)
             changeRoom(executor, this.roomType);
+
         solve(executor);
     }
 
@@ -55,7 +56,6 @@ public abstract class Activity {
                 .findFirst()
                 .orElse(NullRoom.INSTANCE);
 
-        // TODO: Entity can be in two or more rooms at the same time -> multiple updating of entity
         NullableRoom room = executor.getRoom();
         if (roomType != RoomType.OUTSIDE) {
             room.removeExecutor(executor);

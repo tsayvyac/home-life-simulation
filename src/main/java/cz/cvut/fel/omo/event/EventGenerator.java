@@ -34,6 +34,8 @@ public class EventGenerator {
             generate(petEvents, true);
         else if (tick % 101 == 0)
             generate(applianceEvents, false);
+
+        home.getAllExecutors().forEach(Executor::executeFirstInQueue);
     }
 
     private static void generate(List<Class<? extends Event>> events, boolean isLivingEvent) {

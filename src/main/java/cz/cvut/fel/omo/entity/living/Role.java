@@ -15,7 +15,7 @@ public enum Role {
     GRANDMOTHER(Type.ADULT, Type.PERSON),
     GRANDFATHER(Type.ADULT, Type.PERSON),
     UNCLE(Type.ADULT, Type.PERSON),
-    COUSIN(Type.KID, Type.KID),
+    COUSIN(Type.KID, Type.PERSON),
     DOG(Type.PET),
     CAT(Type.PET),
     FROG(Type.PET),
