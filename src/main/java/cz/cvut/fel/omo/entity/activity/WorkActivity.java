@@ -13,6 +13,6 @@ public class WorkActivity extends Activity {
 
     @Override
     protected void solve() {
-
+        // Do nothing
     }
 }

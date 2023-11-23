@@ -1,9 +1,8 @@
 package cz.cvut.fel.omo.entity.item;
 
-import cz.cvut.fel.omo.entity.living.Executable;
 import lombok.Getter;
 
-public abstract class Item implements Executable {
+public abstract class Item {
     private boolean isFree = true;
     @Getter
     private final ItemType type;

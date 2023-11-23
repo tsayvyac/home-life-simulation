@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +51,7 @@ public class Home implements Updatable {
         floorList.forEach(floor ->
             rooms.addAll(floor.getRoomList())
         );
+        Collections.shuffle(rooms);
         return rooms;
     }
 

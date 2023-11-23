@@ -12,6 +12,6 @@ public class SchoolActivity extends Activity {
 
     @Override
     protected void solve() {
-
+        // Do nothing
     }
 }

@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
-import cz.cvut.fel.omo.appliance.documentation.BrokennessLevel;
+import cz.cvut.fel.omo.appliance.manual.BrokennessLevel;
 import cz.cvut.fel.omo.util.Helper;
 
 public abstract class State {

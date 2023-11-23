@@ -1,11 +1,8 @@
-package cz.cvut.fel.omo.appliance.documentation;
+package cz.cvut.fel.omo.appliance.manual;
 
 import cz.cvut.fel.omo.appliance.ApplianceType;
 import cz.cvut.fel.omo.appliance.HomeAppliance;
-import cz.cvut.fel.omo.util.FileManager;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
 
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 

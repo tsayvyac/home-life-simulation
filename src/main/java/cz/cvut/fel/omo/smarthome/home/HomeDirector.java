@@ -14,7 +14,7 @@ public final class HomeDirector {
 
     /**
      * Creates small house configuration
-     * 2 floors, 6 rooms, 6 persons, 3 pets
+     * 2 floors, 7 rooms, 6 persons, 3 pets
      *
      * @param homeBuilder {@link HomeBuilder} build house for this configuration
      * @param roomBuilder {@link RoomBuilder} build rooms for this configuration
@@ -25,6 +25,7 @@ public final class HomeDirector {
                 .addRoom(RoomType.KITCHEN)
                 .addRoom(RoomType.GARAGE)
                 .addRoom(RoomType.LIVINGROOM)
+                .addRoom(RoomType.BATHROOM)
                 .and()
                 .addFloor(2)
                 .addRoom(RoomType.BEDROOM)

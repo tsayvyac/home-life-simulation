@@ -19,6 +19,8 @@ public class NeedToRest extends Event {
                 new PlayComputerActivity(),
                 new PlayPlaystationActivity(),
                 new CloseBlindsActivity(),
-                new SleepActivity());
+                new SleepActivity(),
+                new OpenBlindsActivity()
+        );
     }
 }

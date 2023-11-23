@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.entity.activity;
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.appliance.ApplianceType;
 import cz.cvut.fel.omo.appliance.Fridge;
+import cz.cvut.fel.omo.appliance.Stove;
 import cz.cvut.fel.omo.appliance.state.StateBroken;
 import cz.cvut.fel.omo.entity.item.Food;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
@@ -11,19 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
+import static cz.cvut.fel.omo.util.Constant.FOOD_ON_STOVE;
+import static cz.cvut.fel.omo.util.Constant.FOOD_IN_OVEN;
+
 @Slf4j
 public class CookActivity extends Activity {
-    private static final String[] FOOD_NAMES_ARRAY = {
-            "Goulash with dumplings",
-            "Roast chicken with potatoes",
-            "Pizza peperoni",
-            "Tonkotsu Ramen",
-            "Crab cake",
-            "Teriyaki chicken",
-            "Beef Stroganoff",
-            "Apple pie",
-            "Chicken masala"
-    };
 
     public CookActivity() {
         super(RoomType.KITCHEN, 4, "COOK FOOD ACTIVITY");
@@ -37,14 +30,18 @@ public class CookActivity extends Activity {
                 .filter(app -> !(app.getState() instanceof StateBroken))
                 .findFirst();
 
-        // TODO: Add oven (?)
-        if (fridge.isPresent() && findAppliance(ApplianceType.STOVE)) {
+        boolean applianceForCook = Helper.getRandomInt(3) == 0 ?
+                findAppliance(ApplianceType.OVEN) : findAppliance(ApplianceType.STOVE);
+        if (fridge.isPresent() && applianceForCook) {
             this.executor.setAppliance(this.appliance);
             this.executor.turnOnAppliance();
 
-            ((Fridge) fridge.get()).addFood(
-                    new Food(FOOD_NAMES_ARRAY[Helper.getRandomInt(FOOD_NAMES_ARRAY.length)])
-            );
+            if (this.appliance instanceof Stove)
+                ((Fridge) fridge.get()).addFood(
+                        new Food(FOOD_ON_STOVE[Helper.getRandomInt(FOOD_ON_STOVE.length)]));
+            else
+                ((Fridge) fridge.get()).addFood(
+                        new Food(FOOD_IN_OVEN[Helper.getRandomInt(FOOD_IN_OVEN.length)]));
             log.info("Fridge contains: {}", ((Fridge) fridge.get()).getFridgeContent());
         }
     }

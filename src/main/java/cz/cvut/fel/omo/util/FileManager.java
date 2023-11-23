@@ -52,7 +52,7 @@ public class FileManager {
      *
      * @param file to write
      * @param text text to write to file
-     * @throws IOException
+     * @throws IOException exception
      */
     private static void writeToFile(File file, String text) throws IOException {
         FileWriter fileWriter = new FileWriter(file.getCanonicalPath());

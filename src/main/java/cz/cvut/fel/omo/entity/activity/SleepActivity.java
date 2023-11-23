@@ -8,13 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 public class SleepActivity extends Activity{
 
     public SleepActivity() {
-        super(RoomType.LIVINGROOM, 8, "SLEEP");
+        super(RoomType.BEDROOM, 8, "SLEEP");
     }
 
     @Override
     protected void solve() {
         this.executor.setStatus(ExecutorStatus.SLEEP);
-        log.info("bzzzzzzzzzz");
-        // Do nothing, he is sleeping (Zzzz)
     }
 }

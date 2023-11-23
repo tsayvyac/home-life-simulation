@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.event.appliance;
+package cz.cvut.fel.omo.event.sensor;
 
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.activity.Activity;

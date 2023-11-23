@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.appliance;
 
-import cz.cvut.fel.omo.appliance.documentation.BrokennessLevel;
-import cz.cvut.fel.omo.appliance.documentation.Manual;
+import cz.cvut.fel.omo.appliance.manual.BrokennessLevel;
+import cz.cvut.fel.omo.appliance.manual.Manual;
 import cz.cvut.fel.omo.appliance.observer.Observer;
 import cz.cvut.fel.omo.appliance.state.State;
 import cz.cvut.fel.omo.appliance.state.StateOff;

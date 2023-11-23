@@ -17,13 +17,13 @@ class EventLoaderTest {
     void eventLoaderTest() {
         List<Class<? extends Event>> events = Stream.of(
                         EventLoader.loadEventsFromPackage(PACKAGE_NAME_EMERGENCY),
-                        EventLoader.loadEventsFromPackage(PACKAGE_NAME_APPLIANCE),
+                        EventLoader.loadEventsFromPackage(PACKAGE_NAME_SENSOR),
                         EventLoader.loadEventsFromPackage(PACKAGE_NAME_PERSON),
                         EventLoader.loadEventsFromPackage(PACKAGE_NAME_PET))
                 .flatMap(Collection::stream)
                 .toList();
 
-        int actualNumberOfEvents = 9;
+        int actualNumberOfEvents = 13;
 
         assertEquals(actualNumberOfEvents, events.size());
     }

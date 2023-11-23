@@ -1,10 +1,7 @@
 package cz.cvut.fel.omo.smarthome.room;
 
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
-import cz.cvut.fel.omo.entity.item.Bicycle;
-import cz.cvut.fel.omo.entity.item.Car;
-import cz.cvut.fel.omo.entity.item.PetToy;
-import cz.cvut.fel.omo.entity.item.Snowboard;
+import cz.cvut.fel.omo.entity.item.*;
 import cz.cvut.fel.omo.smarthome.home.Floor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -117,6 +114,8 @@ public final class RoomDirector {
                 .addItem(new Car())
                 .addItem(new Bicycle())
                 .addItem(new Snowboard())
+                .addItem(new Skateboard())
+                .addItem(new RollerSkates())
                 .addWindow(new Window())
                 .addWindow(new Window());
         log.info("Room Garage is built.");

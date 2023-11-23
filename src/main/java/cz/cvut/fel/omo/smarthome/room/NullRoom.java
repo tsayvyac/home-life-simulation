@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.smarthome.room;
 
 import cz.cvut.fel.omo.appliance.Appliance;
+import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.nullable.Nullable;
 import cz.cvut.fel.omo.nullable.NullableRoom;
@@ -40,6 +41,11 @@ public class NullRoom implements NullableRoom {
 
     @Override
     public List<Appliance> getApplianceList() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<Item> getItemList() {
         return Collections.emptyList();
     }
 

@@ -5,11 +5,12 @@ import cz.cvut.fel.omo.smarthome.room.Window;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-@Slf4j(topic = "Close blinds activity")
-public class CloseBlindsActivity extends Activity{
 
-    public CloseBlindsActivity() {
-        super(null, 1, "CLOSE BLINDS");
+@Slf4j(topic = "Open blinds activity")
+public class OpenBlindsActivity extends Activity {
+
+    public OpenBlindsActivity() {
+        super(null, 1, "OPEN BLINDS");
     }
 
     @Override
@@ -21,8 +22,8 @@ public class CloseBlindsActivity extends Activity{
 
         if (!blinds.isEmpty()) {
             for (var blind : blinds)
-                blind.close();
+                blind.open();
         }
-        log.info("Blinds closed");
+        log.info("Blinds opened");
     }
 }

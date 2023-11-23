@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.appliance.documentation;
+package cz.cvut.fel.omo.appliance.manual;
 
 public enum BrokennessLevel {
     EASY,

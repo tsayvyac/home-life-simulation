@@ -3,7 +3,6 @@ package cz.cvut.fel.omo.event;
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
-import cz.cvut.fel.omo.event.emergency.NeedToRepairAppliance;
 import cz.cvut.fel.omo.exception.EventErrorException;
 import cz.cvut.fel.omo.smarthome.home.Home;
 import cz.cvut.fel.omo.util.Helper;
@@ -12,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 
 import static cz.cvut.fel.omo.util.Constant.PACKAGE_NAME_PERSON;
-import static cz.cvut.fel.omo.util.Constant.PACKAGE_NAME_APPLIANCE;
+import static cz.cvut.fel.omo.util.Constant.PACKAGE_NAME_SENSOR;
 import static cz.cvut.fel.omo.util.Constant.PACKAGE_NAME_PET;
 
 @Slf4j(topic = "Event Generator")
@@ -20,8 +19,8 @@ public class EventGenerator {
     private static final Home home = Home.getInstance();
     private static final List<Class<? extends Event>> personEvents =
             EventLoader.loadEventsFromPackage(PACKAGE_NAME_PERSON);
-    private static final List<Class<? extends Event>> applianceEvents =
-            EventLoader.loadEventsFromPackage(PACKAGE_NAME_APPLIANCE);
+    private static final List<Class<? extends Event>> sensorEvents =
+            EventLoader.loadEventsFromPackage(PACKAGE_NAME_SENSOR);
     private static final List<Class<? extends Event>> petEvents =
             EventLoader.loadEventsFromPackage(PACKAGE_NAME_PET);
 
@@ -32,8 +31,8 @@ public class EventGenerator {
             generate(personEvents, true);
         else if (tick % 8 == 0)
             generate(petEvents, true);
-        else if (tick % 101 == 0)
-            generate(applianceEvents, false);
+        else if (tick % 501 == 0)
+            generate(sensorEvents, false);
 
         home.getAllExecutors().forEach(Executor::executeFirstInQueue);
     }

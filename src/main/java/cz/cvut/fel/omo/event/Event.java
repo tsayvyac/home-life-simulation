@@ -41,12 +41,6 @@ public abstract class Event {
         this.solveChain = init();
     }
 
-    protected Event(String name, Item item) {
-        this.name = name;
-        this.item = item;
-        this.solveChain = init();
-    }
-
     public void executeForExecutor() {
         executor.addActivityToQueue(solveChain);
     }
