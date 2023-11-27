@@ -2,10 +2,13 @@ package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cz.cvut.fel.omo.io.UserInput;
+import cz.cvut.fel.omo.report.HomeConfigurationVisitor;
 import cz.cvut.fel.omo.smarthome.home.HomeBuilder;
 import cz.cvut.fel.omo.smarthome.home.HomeDirector;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
 
 import static cz.cvut.fel.omo.util.Constant.HOURS_IN_DAY;
 
@@ -42,6 +45,7 @@ public final class SimulationFacade {
             useBigConfig();
         else
             useSmallConfig();
+        generateHomeConfigReport();
         Simulation.startSimulation(UserInput.getNumberOfDays() * HOURS_IN_DAY);
     }
 
@@ -59,5 +63,13 @@ public final class SimulationFacade {
     private void useSmallConfig() {
         homeDirector.buildSmallHouse(homeBuilder, roomBuilder, applianceFactory);
         log.info("Small configuration is used.");
+    }
+
+    private void generateHomeConfigReport() {
+        try {
+            new HomeConfigurationVisitor().generateReport();
+        } catch (IOException e) {
+            log.warn(e.getMessage());
+        }
     }
 }

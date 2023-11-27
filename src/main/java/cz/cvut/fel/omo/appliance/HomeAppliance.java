@@ -9,6 +9,7 @@ import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.emergency.NeedToRepairAppliance;
+import cz.cvut.fel.omo.report.Visitor;
 import cz.cvut.fel.omo.smarthome.room.Room;
 import lombok.Getter;
 import lombok.Setter;
@@ -116,6 +117,11 @@ public abstract class HomeAppliance implements Appliance {
         this.state = new StateOff(this);
         this.durability = this.initialDurability;
         log.info("{} repaired by {}", this.name, executor.getRole());
+    }
+
+    @Override
+    public String accept(Visitor visitor) {
+        return visitor.visitAppliance(this);
     }
 
     @Override

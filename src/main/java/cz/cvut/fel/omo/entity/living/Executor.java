@@ -4,8 +4,9 @@ import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.activity.Activity;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.nullable.NullableRoom;
+import cz.cvut.fel.omo.report.Visitor;
 import cz.cvut.fel.omo.smarthome.room.NullRoom;
-import cz.cvut.fel.omo.updatable.Updatable;
+import cz.cvut.fel.omo.component.Component;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ import java.util.Queue;
 @Slf4j
 @Getter
 @Setter
-public abstract class Executor implements Updatable {
+public abstract class Executor implements Component {
     protected NullableRoom room = NullRoom.INSTANCE;
     protected ExecutorStatus status = ExecutorStatus.FREE;
     protected Queue<Activity> activityQueue = new LinkedList<>();
@@ -36,6 +37,11 @@ public abstract class Executor implements Updatable {
 
     public void turnOnAppliance() {
         this.appliance.turnOn();
+    }
+
+    @Override
+    public String accept(Visitor visitor) {
+        return visitor.visitExecutor(this);
     }
 
     @Override

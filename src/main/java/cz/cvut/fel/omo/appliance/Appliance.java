@@ -3,9 +3,9 @@ package cz.cvut.fel.omo.appliance;
 import cz.cvut.fel.omo.appliance.state.State;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.smarthome.room.Room;
-import cz.cvut.fel.omo.updatable.Updatable;
+import cz.cvut.fel.omo.component.Component;
 
-public interface Appliance extends Updatable {
+public interface Appliance extends Component {
     String collectData();
 
     State getState();

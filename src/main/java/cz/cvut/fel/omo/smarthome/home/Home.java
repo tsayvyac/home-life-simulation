@@ -3,11 +3,11 @@ package cz.cvut.fel.omo.smarthome.home;
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.appliance.CircuitBreaker;
 import cz.cvut.fel.omo.appliance.TemperatureSensor;
-import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.nullable.NullableRoom;
-import cz.cvut.fel.omo.updatable.Updatable;
+import cz.cvut.fel.omo.component.Component;
+import cz.cvut.fel.omo.report.Visitor;
 import cz.cvut.fel.omo.util.Helper;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ import java.util.List;
 @Getter
 @Setter
 @Slf4j
-public class Home implements Updatable {
+public class Home implements Component {
     private static Home instance;
     private List<Floor> floorList = new ArrayList<>();
     private List<Executor> allExecutors = new ArrayList<>();
@@ -81,8 +81,13 @@ public class Home implements Updatable {
     }
 
     @Override
+    public String accept(Visitor visitor) {
+        return visitor.visitHome(this);
+    }
+
+    @Override
     public void update() {
         this.circuitBreaker.update();
-        floorList.forEach(Updatable::update);
+        floorList.forEach(Component::update);
     }
 }

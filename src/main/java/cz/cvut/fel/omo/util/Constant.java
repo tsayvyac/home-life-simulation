@@ -107,5 +107,13 @@ public class Constant {
 
         public static final String MANUAL_EASY = "EASY DAMAGE. " +
                 "You just need to restart the appliance. Unplug the plug and plug it back.";
+
+        public static final String HOME_CONFIG_HEADER = "HOME CONFIGURATION REPORT\n\n";
+
+        public static final String TRIPLE_TAB = "\t\t\t";
+
+        public static final String STARRING = "\n\nSTARRING:\n";
+
+        public static final String APPLIANCE_QUANTITY = "\n\n\nAPPLIANCE QUANTITY:\n";
     }
 }
