@@ -10,6 +10,7 @@ import cz.cvut.fel.omo.event.Event;
 import java.util.List;
 
 public class NeedToSchool extends Event {
+
     public NeedToSchool(String name, Executor executor) {
         super(name, executor, Type.KID);
     }

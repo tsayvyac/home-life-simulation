@@ -3,7 +3,8 @@ package cz.cvut.fel.omo.smarthome.room;
 public class Blind {
     private boolean isOpen;
 
-    Blind() {}
+    Blind() {
+    }
 
     public void open() {
         this.isOpen = true;

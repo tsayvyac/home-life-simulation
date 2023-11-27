@@ -1,10 +1,7 @@
 package cz.cvut.fel.omo.smarthome.room;
 
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
-import cz.cvut.fel.omo.entity.item.Bicycle;
-import cz.cvut.fel.omo.entity.item.Car;
-import cz.cvut.fel.omo.entity.item.PetToy;
-import cz.cvut.fel.omo.entity.item.Snowboard;
+import cz.cvut.fel.omo.entity.item.*;
 import cz.cvut.fel.omo.smarthome.home.Floor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,7 +22,8 @@ public final class RoomDirector {
     /**
      * Private constructor to enforce the Singleton pattern.
      */
-    private RoomDirector() {}
+    private RoomDirector() {
+    }
 
     /**
      * Build a room with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
@@ -39,9 +37,9 @@ public final class RoomDirector {
     public void buildRoom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, RoomType roomType, Floor floor) {
         switch (roomType) {
             case KITCHEN -> buildKitchen(roomBuilder, applianceFactory, floor);
-            case LIVINGROOM -> buildLivingroom(roomBuilder, applianceFactory, floor);
+            case LIVINGROOM -> buildLivingRoom(roomBuilder, applianceFactory, floor);
             case BATHROOM -> buildBathroom(roomBuilder, applianceFactory, floor);
-            case CHILDRENROOM -> buildChildrenroom(roomBuilder, applianceFactory, floor);
+            case CHILDRENROOM -> buildChildrenRoom(roomBuilder, applianceFactory, floor);
             case BEDROOM -> buildBedroom(roomBuilder, applianceFactory, floor);
             case GARAGE -> buildGarage(roomBuilder, applianceFactory, floor);
             case WORKROOM -> buildWorkroom(roomBuilder, applianceFactory, floor);
@@ -64,29 +62,27 @@ public final class RoomDirector {
         log.info("Room Kitchen is built.");
     }
 
-    private void buildLivingroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
+    private void buildLivingRoom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)
                 .setRoomType(RoomType.LIVINGROOM)
                 .addAppliance(applianceFactory.createFlameDetector())
-                .addAppliance(applianceFactory.createCircuitBreaker())
                 .addAppliance(applianceFactory.createTV())
                 .addAppliance(applianceFactory.createPlaystation())
                 .addItem(new PetToy())
                 .addWindow(new Window(new Blind()));
-        log.info("Room Livingroom is built.");
+        log.info("Room LivingRoom is built.");
     }
 
     private void buildBathroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)
                 .setRoomType(RoomType.BATHROOM)
-                .addAppliance(applianceFactory.createLeakDetector())
                 .addAppliance(applianceFactory.createWashingMachine());
         log.info("Room Bathroom is built.");
     }
 
-    private void buildChildrenroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
+    private void buildChildrenRoom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)
                 .setRoomType(RoomType.CHILDRENROOM)
@@ -96,7 +92,7 @@ public final class RoomDirector {
                 .addAppliance(applianceFactory.createPlaystation())
                 .addItem(new PetToy())
                 .addWindow(new Window(new Blind()));
-        log.info("Room Childrenroom is built.");
+        log.info("Room ChildrenRoom is built.");
     }
 
     private void buildBedroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
@@ -117,6 +113,8 @@ public final class RoomDirector {
                 .addItem(new Car())
                 .addItem(new Bicycle())
                 .addItem(new Snowboard())
+                .addItem(new Skateboard())
+                .addItem(new RollerSkates())
                 .addWindow(new Window())
                 .addWindow(new Window());
         log.info("Room Garage is built.");

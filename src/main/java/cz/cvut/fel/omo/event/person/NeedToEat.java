@@ -3,6 +3,8 @@ package cz.cvut.fel.omo.event.person;
 import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.activity.Activity;
 import cz.cvut.fel.omo.entity.activity.EatActivity;
+import cz.cvut.fel.omo.entity.activity.MakeCoffeeActivity;
+import cz.cvut.fel.omo.entity.activity.WashDishesActivity;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 
@@ -17,7 +19,9 @@ public class NeedToEat extends Event {
     @Override
     protected List<Activity> init() {
         return List.of(
-                new EatActivity()
+                new MakeCoffeeActivity(),
+                new EatActivity(),
+                new WashDishesActivity()
         );
     }
 }

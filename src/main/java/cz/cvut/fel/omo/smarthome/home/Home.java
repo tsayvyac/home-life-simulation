@@ -1,36 +1,40 @@
 package cz.cvut.fel.omo.smarthome.home;
 
 import cz.cvut.fel.omo.appliance.Appliance;
+import cz.cvut.fel.omo.appliance.CircuitBreaker;
+import cz.cvut.fel.omo.appliance.TemperatureSensor;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.nullable.NullableRoom;
-import cz.cvut.fel.omo.smarthome.room.Room;
 import cz.cvut.fel.omo.updatable.Updatable;
 import cz.cvut.fel.omo.util.Helper;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Slf4j
 public class Home implements Updatable {
     private static Home instance;
     private List<Floor> floorList = new ArrayList<>();
     private List<Executor> allExecutors = new ArrayList<>();
     private List<Event> events = new ArrayList<>();
-    private boolean isPowerEnable;
+    private CircuitBreaker circuitBreaker;
+    private TemperatureSensor temperatureSensor;
 
     private Home() {
-        this.isPowerEnable = true;
     }
 
-    public void addEvent(Event event){
+    public void addEvent(Event event) {
         events.add(event);
     }
+
     public void addFloor(Floor floor) {
         floorList.add(floor);
     }
@@ -48,8 +52,9 @@ public class Home implements Updatable {
     public List<NullableRoom> getAllRooms() {
         List<NullableRoom> rooms = new ArrayList<>();
         floorList.forEach(floor ->
-            rooms.addAll(floor.getRoomList())
+                rooms.addAll(floor.getRoomList())
         );
+        Collections.shuffle(rooms);
         return rooms;
     }
 
@@ -60,11 +65,13 @@ public class Home implements Updatable {
                 .toList();
     }
 
-    public List<Item> getAllItems() {
-        return floorList.stream()
-                .flatMap(floor -> floor.getRoomList().stream())
-                .flatMap(room -> room.getItemList().stream())
-                .toList();
+    public void activateTemperatureSensor() {
+        log.info("Temperature sensor is activated!");
+        this.temperatureSensor.closeOfOpenWindows(Helper.getRandomInt(2) == 1);
+    }
+
+    public void turnOffAll() {
+        this.circuitBreaker.turnOffAll();
     }
 
     public static Home getInstance() {
@@ -75,6 +82,7 @@ public class Home implements Updatable {
 
     @Override
     public void update() {
+        this.circuitBreaker.update();
         floorList.forEach(Updatable::update);
     }
 }

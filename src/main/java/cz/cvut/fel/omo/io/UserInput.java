@@ -3,13 +3,15 @@ package cz.cvut.fel.omo.io;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Scanner;
+
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 
 @Slf4j(topic = "User input")
 public final class UserInput {
     private static final Scanner sc = new Scanner(System.in);
 
-    private UserInput() {}
+    private UserInput() {
+    }
 
     public static boolean getConfiguration() {
         log.info(USER_CONFIG_CHOICE);

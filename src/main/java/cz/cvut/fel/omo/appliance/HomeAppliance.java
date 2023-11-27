@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.appliance;
 
-import cz.cvut.fel.omo.appliance.documentation.BrokennessLevel;
-import cz.cvut.fel.omo.appliance.documentation.Manual;
+import cz.cvut.fel.omo.appliance.manual.BrokennessLevel;
+import cz.cvut.fel.omo.appliance.manual.Manual;
 import cz.cvut.fel.omo.appliance.observer.Observer;
 import cz.cvut.fel.omo.appliance.state.State;
 import cz.cvut.fel.omo.appliance.state.StateOff;
@@ -19,8 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class HomeAppliance implements Appliance {
     protected final SourceType sourceType;
     protected ApplianceType name;
-    @Setter
-    protected Room room;
+    @Setter protected Room room;
     protected double totalConsumption;
     protected double currentConsumption;
     protected double idleConsumption;

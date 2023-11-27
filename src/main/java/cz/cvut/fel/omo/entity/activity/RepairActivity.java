@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.entity.activity;
 
 import cz.cvut.fel.omo.appliance.Appliance;
-import cz.cvut.fel.omo.entity.living.Executor;
 
 public class RepairActivity extends Activity {
 
@@ -10,7 +9,7 @@ public class RepairActivity extends Activity {
     }
 
     @Override
-    protected void solve(Executor executor) {
-        this.appliance.repair(executor);
+    protected void solve() {
+        this.appliance.repair(this.executor);
     }
 }

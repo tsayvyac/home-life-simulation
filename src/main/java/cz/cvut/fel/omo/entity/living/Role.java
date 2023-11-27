@@ -23,7 +23,7 @@ public enum Role {
 
     private final List<Type> type;
 
-    Role(Type ...type) {
+    Role(Type... type) {
         this.type = Arrays.asList(type);
     }
 }

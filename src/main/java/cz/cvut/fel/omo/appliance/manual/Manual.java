@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.appliance.documentation;
+package cz.cvut.fel.omo.appliance.manual;
 
 import cz.cvut.fel.omo.appliance.ApplianceType;
 import cz.cvut.fel.omo.appliance.HomeAppliance;
@@ -21,21 +21,23 @@ public class Manual {
         final String message = "Documentation for the device: " + applianceName + " of type: " + applianceType + ".\n";
 
         String result = constructResultString(message, brokennessLevel);
-        String manualName = applianceName + "_manual";
-//        System.out.println(result);
+        String manualName = applianceName + "_manual_" + appliance.getBrokennessLevel();
         log.info(result);
-        // TODO add file manager
+//        try {
+//            FileManager.generateManual(manualName, result);
+//        } catch (IOException e) {
+//            log.error("Error while generating manual for appliance: {}", applianceName);
+//        }
     }
 
     private String constructResultString(String message, BrokennessLevel brokennessLevel) {
         StringBuilder result = new StringBuilder();
         result.append(MANUAL_HEADER);
-        result.append(message);
 
-        switch (brokennessLevel){
+        switch (brokennessLevel) {
             case HARD -> result
                     .append(message)
-                    .append(MANUAL_EASY)
+                    .append(MANUAL_HARD)
                     .append("\n");
             case MEDIUM -> result
                     .append(message)
@@ -43,7 +45,7 @@ public class Manual {
                     .append("\n");
             case EASY -> result
                     .append(message)
-                    .append(MANUAL_HARD)
+                    .append(MANUAL_EASY)
                     .append("\n");
         }
         return result.toString();

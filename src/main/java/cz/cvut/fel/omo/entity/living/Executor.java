@@ -49,6 +49,12 @@ public abstract class Executor implements Updatable {
         }
     }
 
+    public void immediatelyStopAndClearQueue() {
+        this.ticks = 0;
+        this.activityQueue.clear();
+        release();
+    }
+
     private void release() {
         if (this.appliance != null) {
             this.appliance.idle();

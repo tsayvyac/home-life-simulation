@@ -21,8 +21,9 @@ public final class SimulationFacade {
 
     /**
      * Constructor.
-     * @param homeBuilder builds {@link cz.cvut.fel.omo.smarthome.home.Home}.
-     * @param roomBuilder builds {@link cz.cvut.fel.omo.smarthome.room.Room}.
+     *
+     * @param homeBuilder      builds {@link cz.cvut.fel.omo.smarthome.home.Home}.
+     * @param roomBuilder      builds {@link cz.cvut.fel.omo.smarthome.room.Room}.
      * @param applianceFactory appliance factory that creates {@link cz.cvut.fel.omo.appliance.Appliance}.
      */
     public SimulationFacade(HomeBuilder homeBuilder, RoomBuilder roomBuilder, ApplianceFactory applianceFactory) {
@@ -33,6 +34,7 @@ public final class SimulationFacade {
 
     /**
      * Gets the configuration from user input.
+     *
      * @param useBigConfig given user house configuration (big/small).
      */
     public void simulate(boolean useBigConfig) {

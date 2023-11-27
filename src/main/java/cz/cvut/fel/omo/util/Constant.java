@@ -2,18 +2,35 @@ package cz.cvut.fel.omo.util;
 
 public class Constant {
 
-    private Constant() {}
+    private Constant() {
+    }
 
     public static final int HOURS_IN_DAY = 24;
     public static final String NULL = "null";
     public static final String PACKAGE_NAME_PERSON = "cz.cvut.fel.omo.event.person";
-    public static final String PACKAGE_NAME_APPLIANCE = "cz.cvut.fel.omo.event.appliance";
+    public static final String PACKAGE_NAME_SENSOR = "cz.cvut.fel.omo.event.sensor";
     public static final String PACKAGE_NAME_PET = "cz.cvut.fel.omo.event.pet";
     public static final String PACKAGE_NAME_EMERGENCY = "cz.cvut.fel.omo.event.emergency";
+    public static final String[] FOOD_ON_STOVE = {
+            "Goulash with dumplings",
+            "Tonkotsu Ramen",
+            "Crab cake",
+            "Teriyaki chicken",
+            "Beef Stroganoff",
+            "Chicken masala"
+    };
+    public static final String[] FOOD_IN_OVEN = {
+            "Roasted chicken with potatoes",
+            "Pizza peperoni",
+            "Apple pie",
+            "Cookies",
+            "Lasagna"
+    };
 
     public static class ApplianceConstant {
 
-        private ApplianceConstant() {}
+        private ApplianceConstant() {
+        }
 
         public static final double APPLIANCE_OFF = 0.0f;
 
@@ -48,20 +65,21 @@ public class Constant {
         /**
          * Durability of appliances
          */
-        public static final int COMPUTER_DURABILITY = 19;
-        public static final int TV_DURABILITY = 16;
-        public static final int OVEN_DURABILITY = 17;
-        public static final int WASHING_MACHINE_DURABILITY = 11;
-        public static final int FRIDGE_DURABILITY = 10;
-        public static final int DISHWASHER_DURABILITY = 14;
-        public static final int KETTLE_DURABILITY = 20;
-        public static final int STOVE_DURABILITY = 21;
-        public static final int PLAYSTATION_DURABILITY = 23;
+        public static final int COMPUTER_DURABILITY = 37;
+        public static final int TV_DURABILITY = 44;
+        public static final int OVEN_DURABILITY = 47;
+        public static final int WASHING_MACHINE_DURABILITY = 35;
+        public static final int FRIDGE_DURABILITY = 54;
+        public static final int DISHWASHER_DURABILITY = 40;
+        public static final int KETTLE_DURABILITY = 50;
+        public static final int STOVE_DURABILITY = 40;
+        public static final int PLAYSTATION_DURABILITY = 45;
     }
 
     public static class OutputStrings {
 
-        private OutputStrings() {}
+        private OutputStrings() {
+        }
 
         public static final String USER_CONFIG_CHOICE = """
                 Choose a config of simulation:\s

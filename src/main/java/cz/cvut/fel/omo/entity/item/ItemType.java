@@ -4,5 +4,8 @@ public enum ItemType {
     BICYCLE,
     CAR,
     PET_TOY,
-    SNOWBOARD
+    SNOWBOARD,
+    SKATEBOARD,
+    ROLLER_SKATES,
+
 }

@@ -22,8 +22,4 @@ public class Observer {
             Home.getInstance().addEvent(event);
         }
     }
-
-    public void notifyListeners(Event event) {
-         listeners.forEach(e -> e.addActivityToQueue(event.getSolveChain()));
-    }
 }

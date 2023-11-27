@@ -3,8 +3,8 @@ package cz.cvut.fel.omo.event;
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.activity.Activity;
-import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
+import cz.cvut.fel.omo.smarthome.home.Home;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,11 +14,11 @@ import java.util.List;
 @Setter
 public abstract class Event {
     private Executor executor;
+    private List<Executor> executorList;
     private final String name;
     private final List<Activity> solveChain;
-    private Appliance appliance;
-    private Item item;
     private Type type;
+    protected Appliance appliance;
 
     protected Event(String name, Executor executor, Type type, Appliance appliance) {
         this.name = name;
@@ -35,24 +35,40 @@ public abstract class Event {
         this.solveChain = init();
     }
 
+    protected Event(String name, Appliance appliance, List<Executor> all) {
+        this.name = name;
+        this.appliance = appliance;
+        this.executorList = all;
+        this.solveChain = init();
+    }
+
+    protected Event(String name, Type type, List<Executor> all) {
+        this.name = name;
+        this.type = type;
+        this.executorList = all;
+        this.solveChain = init();
+    }
+
     protected Event(String name, Appliance appliance) {
         this.name = name;
         this.appliance = appliance;
         this.solveChain = init();
     }
 
-    protected Event(String name, Item item) {
-        this.name = name;
-        this.item = item;
-        this.solveChain = init();
-    }
-
     public void executeForExecutor() {
-        executor.addActivityToQueue(solveChain);
+        this.executor.addActivityToQueue(this.solveChain);
     }
 
-    public void executeForAppliance() {
-        // TODO: execution for appliance event
+    public void executeForAll() {
+        this.executorList.forEach(e -> {
+            e.immediatelyStopAndClearQueue();
+            e.addActivityToQueue(this.solveChain);
+        });
+        Home.getInstance().turnOffAll();
+    }
+
+    public void executeForSensor() {
+        executeForAll();
     }
 
     protected abstract List<Activity> init();

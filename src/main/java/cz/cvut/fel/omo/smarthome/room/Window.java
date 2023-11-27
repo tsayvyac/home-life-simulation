@@ -1,5 +1,8 @@
 package cz.cvut.fel.omo.smarthome.room;
 
+import lombok.Getter;
+
+@Getter
 public class Window {
     private boolean isOpen;
     private Blind blind;
@@ -8,7 +11,8 @@ public class Window {
         this.blind = blind;
     }
 
-    Window() {}
+    Window() {
+    }
 
     public void open() {
         this.isOpen = true;
