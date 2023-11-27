@@ -8,18 +8,18 @@ import java.util.List;
 
 @Getter
 public enum Role {
-    MOTHER(Type.ADULT, Type.PERSON, Type.ALL),
-    FATHER(Type.ADULT, Type.PERSON, Type.ALL),
-    DAUGHTER(Type.KID, Type.PERSON, Type.ALL),
-    SON(Type.KID, Type.PERSON, Type.ALL),
-    GRANDMOTHER(Type.ADULT, Type.PERSON, Type.ALL),
-    GRANDFATHER(Type.ADULT, Type.PERSON, Type.ALL),
-    UNCLE(Type.ADULT, Type.PERSON, Type.ALL),
-    COUSIN(Type.KID, Type.PERSON, Type.ALL),
-    DOG(Type.PET, Type.ALL),
-    CAT(Type.PET, Type.ALL),
-    FROG(Type.PET, Type.ALL),
-    RABBIT(Type.PET, Type.ALL);
+    MOTHER(Type.ADULT, Type.PERSON),
+    FATHER(Type.ADULT, Type.PERSON),
+    DAUGHTER(Type.KID, Type.PERSON),
+    SON(Type.KID, Type.PERSON),
+    GRANDMOTHER(Type.ADULT, Type.PERSON),
+    GRANDFATHER(Type.ADULT, Type.PERSON),
+    UNCLE(Type.ADULT, Type.PERSON),
+    COUSIN(Type.KID, Type.PERSON),
+    DOG(Type.PET),
+    CAT(Type.PET),
+    FROG(Type.PET),
+    RABBIT(Type.PET);
 
     private final List<Type> type;
 

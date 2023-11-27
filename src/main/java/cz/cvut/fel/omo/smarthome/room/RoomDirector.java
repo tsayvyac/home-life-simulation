@@ -78,7 +78,6 @@ public final class RoomDirector {
         roomBuilder.reset()
                 .setFloor(floor)
                 .setRoomType(RoomType.BATHROOM)
-                .addAppliance(applianceFactory.createLeakDetector())
                 .addAppliance(applianceFactory.createWashingMachine());
         log.info("Room Bathroom is built.");
     }

@@ -5,6 +5,9 @@ import cz.cvut.fel.omo.io.UserInput;
 import cz.cvut.fel.omo.smarthome.home.StandardHomeBuilder;
 import cz.cvut.fel.omo.smarthome.room.StandardRoomBuilder;
 
+/**
+ * Main class that starts simulation.
+ */
 public class Main {
 
     /**

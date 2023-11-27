@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.smarthome.home;
 
 import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.appliance.CircuitBreaker;
+import cz.cvut.fel.omo.appliance.TemperatureSensor;
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cz.cvut.fel.omo.entity.living.person.Person;
 import cz.cvut.fel.omo.entity.living.pet.Pet;
@@ -87,6 +88,11 @@ public final class StandardHomeBuilder implements HomeBuilder {
 
     public HomeBuilder addCircuitBreaker(Appliance circuitBreaker) {
         home.setCircuitBreaker((CircuitBreaker) circuitBreaker);
+        return this;
+    }
+
+    public HomeBuilder addTemperatureSensor(Appliance temperatureSensor) {
+        home.setTemperatureSensor((TemperatureSensor) temperatureSensor);
         return this;
     }
 

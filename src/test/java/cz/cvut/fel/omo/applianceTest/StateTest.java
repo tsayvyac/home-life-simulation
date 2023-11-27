@@ -60,7 +60,7 @@ class StateTest {
     @Test
     void testSensorSwitching() {
         Appliance flameDetector = HomeApplianceFactory.INSTANCE.createFlameDetector();
-        Sensor mock = (Sensor) HomeApplianceFactory.INSTANCE.createLeakDetector();
+        Sensor mock = (Sensor) HomeApplianceFactory.INSTANCE.createTemperatureSensor();
 
         // Initial State
         State actualState = flameDetector.getState();

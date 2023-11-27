@@ -46,6 +46,14 @@ public interface HomeBuilder {
     HomeBuilder addCircuitBreaker(Appliance circuitBreaker);
 
     /**
+     * Add a temperature sensor.
+     *
+     * @param temperatureSensor The {@link cz.cvut.fel.omo.appliance.TemperatureSensor} to add.
+     * @return Instance for method chaining.
+     */
+    HomeBuilder addTemperatureSensor(Appliance temperatureSensor);
+
+    /**
      * Add a pet as an inhabitant of the home.
      *
      * @param pet The {@link Pet} to add.

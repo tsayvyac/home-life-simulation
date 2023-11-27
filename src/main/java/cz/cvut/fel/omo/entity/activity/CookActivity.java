@@ -5,6 +5,7 @@ import cz.cvut.fel.omo.appliance.ApplianceType;
 import cz.cvut.fel.omo.appliance.Fridge;
 import cz.cvut.fel.omo.appliance.Stove;
 import cz.cvut.fel.omo.appliance.state.StateBroken;
+import cz.cvut.fel.omo.appliance.state.StateOff;
 import cz.cvut.fel.omo.entity.item.Food;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 import cz.cvut.fel.omo.util.Helper;
@@ -35,6 +36,9 @@ public class CookActivity extends Activity {
         if (fridge.isPresent() && applianceForCook) {
             this.executor.setAppliance(this.appliance);
             this.executor.turnOnAppliance();
+
+            if (fridge.get().getState() instanceof StateOff)
+                fridge.get().getState().switchIdle();
 
             if (this.appliance instanceof Stove)
                 ((Fridge) fridge.get()).addFood(
