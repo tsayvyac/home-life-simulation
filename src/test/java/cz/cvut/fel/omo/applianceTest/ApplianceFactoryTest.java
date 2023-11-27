@@ -6,8 +6,6 @@ import cz.cvut.fel.omo.appliance.SourceType;
 import cz.cvut.fel.omo.appliance.factory.HomeApplianceFactory;
 import org.junit.jupiter.api.Test;
 
-import static cz.cvut.fel.omo.util.Constant.ApplianceConstant.APPLIANCE_OFF;
-import static cz.cvut.fel.omo.util.Constant.ApplianceConstant.SENSOR_IDLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -32,7 +30,7 @@ class ApplianceFactoryTest {
 
     @Test
     void testCreateLeakDetector() {
-        Appliance leakDetector = HomeApplianceFactory.INSTANCE.createLeakDetector();
+        Appliance leakDetector = HomeApplianceFactory.INSTANCE.createTemperatureSensor();
         assertNotNull(leakDetector);
         assertEquals(SourceType.ELECTRICITY, leakDetector.getSourceType());
         assertEquals(ApplianceType.LEAK_DETECTOR, leakDetector.getName());

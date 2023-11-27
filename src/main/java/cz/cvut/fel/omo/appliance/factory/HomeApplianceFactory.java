@@ -20,8 +20,8 @@ public class HomeApplianceFactory implements ApplianceFactory {
     }
 
     @Override
-    public Appliance createLeakDetector() {
-        return new LeakDetector(SourceType.ELECTRICITY, ApplianceType.LEAK_DETECTOR);
+    public Appliance createTemperatureSensor() {
+        return new TemperatureSensor(SourceType.ELECTRICITY, ApplianceType.LEAK_DETECTOR);
     }
 
     @Override

@@ -8,7 +8,7 @@ public interface ApplianceFactory {
 
     Appliance createFlameDetector();
 
-    Appliance createLeakDetector();
+    Appliance createTemperatureSensor();
 
     Appliance createPlaystation();
 

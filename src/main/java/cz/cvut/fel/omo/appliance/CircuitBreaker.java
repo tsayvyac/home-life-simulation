@@ -7,7 +7,8 @@ import java.util.List;
 
 public class CircuitBreaker extends Sensor {
     private final List<Appliance> appliances = Home.getInstance().getAllAppliances().stream()
-            .filter(appliance -> !(appliance instanceof CircuitBreaker))
+            .filter(appliance -> !(appliance instanceof Sensor))
+            .filter(appliance -> !(appliance instanceof Fridge))
             .toList();
     private final List<NullableRoom> rooms = Home.getInstance().getAllRooms();
 
@@ -24,11 +25,5 @@ public class CircuitBreaker extends Sensor {
                     if (window.getBlind() != null)
                         window.getBlind().close();
                 });
-    }
-
-    public void toIdleSensors() {
-        appliances.stream()
-                .filter(Sensor.class::isInstance)
-                .forEach(Appliance::idle);
     }
 }

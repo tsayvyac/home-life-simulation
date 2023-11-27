@@ -1,10 +1,13 @@
 package cz.cvut.fel.omo.event;
 
 import cz.cvut.fel.omo.appliance.Appliance;
+import cz.cvut.fel.omo.appliance.Sensor;
 import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
 import cz.cvut.fel.omo.event.emergency.NeedToVacation;
+import cz.cvut.fel.omo.event.sensor.FlameDetectorEvent;
+import cz.cvut.fel.omo.event.sensor.TempratureSensorEvent;
 import cz.cvut.fel.omo.exception.EventErrorException;
 import cz.cvut.fel.omo.smarthome.home.Home;
 import cz.cvut.fel.omo.util.Helper;
@@ -36,10 +39,6 @@ public class EventGenerator {
             generate(petEvents, true);
         else if (tick % 505 == 0)
             generateVacation();
-        else if (tick % (505 + 168 + 1) == 0)
-            generateSensorToIdle();
-        else if (tick % 700 == 0)
-            generate(sensorEvents, false);
 
         home.getAllExecutors().forEach(Executor::executeFirstInQueue);
     }
@@ -56,11 +55,11 @@ public class EventGenerator {
 
             if (isLivingEvent)
                 randomExecutor(event);
-            else
-                randomAppliance(event);
+            else if (event instanceof FlameDetectorEvent)
+                setSensor(event);
         } catch (Exception e) {
             throw new EventErrorException("Event execution error. Please check " +
-                    "constructor access modifier of event you want to add. It must be public!" +
+                    "constructor access modifier of event you want to add. It must be public! " +
                     "Or constructor must have only 2 parameters. 3rd you define manually");
         }
     }
@@ -73,10 +72,6 @@ public class EventGenerator {
         Event vacationEvent = new NeedToVacation("Vacation", executors);
         home.addEvent(vacationEvent);
         vacationEvent.executeForAll();
-    }
-
-    public static void generateSensorToIdle() {
-        Home.getInstance().sensorToIdle();
     }
 
     private static void randomExecutor(Event event) {
@@ -92,14 +87,28 @@ public class EventGenerator {
             home.addEvent(event);
             event.executeForExecutor();
         }
+
+        generateSensorEvent();
     }
 
-    private static void randomAppliance(Event event) {
-        List<Appliance> appliances = Home.getInstance().getAllAppliances();
+    private static void generateSensorEvent() {
+        if (Helper.getRandomInt(30) == 2)
+            new TempratureSensorEvent(TempratureSensorEvent.class.getSimpleName(), Home.getInstance().getTemperatureSensor());
+        else if (Helper.getRandomInt(280) == 1)
+            generate(sensorEvents, false);
+    }
+
+    // Set flameDetector for fire in house event
+    private static void setSensor(Event event) {
+        List<Appliance> appliances = Home.getInstance().getAllAppliances().stream()
+                .filter(Sensor.class::isInstance)
+                .toList();
+
         if (!appliances.isEmpty()) {
             event.setAppliance(appliances.get(Helper.getRandomInt(appliances.size())));
+            event.setExecutorList(Home.getInstance().getAllExecutors());
             home.addEvent(event);
-            event.executeForAppliance();
+            event.executeForSensor();
         }
     }
 }
