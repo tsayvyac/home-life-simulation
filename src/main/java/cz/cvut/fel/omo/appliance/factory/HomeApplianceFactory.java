@@ -6,7 +6,8 @@ public class HomeApplianceFactory implements ApplianceFactory {
 
     public static final HomeApplianceFactory INSTANCE = new HomeApplianceFactory();
 
-    private HomeApplianceFactory() {}
+    private HomeApplianceFactory() {
+    }
 
     @Override
     public Appliance createCircuitBreaker() {

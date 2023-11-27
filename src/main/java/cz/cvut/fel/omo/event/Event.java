@@ -5,6 +5,8 @@ import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.activity.Activity;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
+import cz.cvut.fel.omo.event.emergency.NeedToVacation;
+import cz.cvut.fel.omo.smarthome.home.Home;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Setter
 public abstract class Event {
     private Executor executor;
+    private List<Executor> executorList;
     private final String name;
     private final List<Activity> solveChain;
     private Appliance appliance;
@@ -41,8 +44,24 @@ public abstract class Event {
         this.solveChain = init();
     }
 
+    protected Event(String name, Type type, List<Executor> all) {
+        this.name = name;
+        this.type = type;
+        this.executorList = all;
+        this.solveChain = init();
+    }
+
     public void executeForExecutor() {
-        executor.addActivityToQueue(solveChain);
+        this.executor.addActivityToQueue(this.solveChain);
+    }
+
+    public void executeForAll() {
+        this.executorList.forEach(e -> {
+            e.immediatelyStopAndClearQueue();
+            e.addActivityToQueue(this.solveChain);
+        });
+        if (this instanceof NeedToVacation)
+            Home.getInstance().turnOffAll();
     }
 
     public void executeForAppliance() {

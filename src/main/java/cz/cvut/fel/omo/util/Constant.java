@@ -2,7 +2,8 @@ package cz.cvut.fel.omo.util;
 
 public class Constant {
 
-    private Constant() {}
+    private Constant() {
+    }
 
     public static final int HOURS_IN_DAY = 24;
     public static final String NULL = "null";
@@ -28,7 +29,8 @@ public class Constant {
 
     public static class ApplianceConstant {
 
-        private ApplianceConstant() {}
+        private ApplianceConstant() {
+        }
 
         public static final double APPLIANCE_OFF = 0.0f;
 
@@ -76,7 +78,8 @@ public class Constant {
 
     public static class OutputStrings {
 
-        private OutputStrings() {}
+        private OutputStrings() {
+        }
 
         public static final String USER_CONFIG_CHOICE = """
                 Choose a config of simulation:\s

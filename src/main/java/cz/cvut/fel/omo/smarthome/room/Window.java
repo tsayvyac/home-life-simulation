@@ -11,7 +11,8 @@ public class Window {
         this.blind = blind;
     }
 
-    Window() {}
+    Window() {
+    }
 
     public void open() {
         this.isOpen = true;

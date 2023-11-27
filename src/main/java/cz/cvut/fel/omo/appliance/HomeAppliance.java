@@ -19,8 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class HomeAppliance implements Appliance {
     protected final SourceType sourceType;
     protected ApplianceType name;
-    @Setter
-    protected Room room;
+    @Setter protected Room room;
     protected double totalConsumption;
     protected double currentConsumption;
     protected double idleConsumption;

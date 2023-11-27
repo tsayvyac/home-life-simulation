@@ -24,6 +24,6 @@ public class Observer {
     }
 
     public void notifyListeners(Event event) {
-         listeners.forEach(e -> e.addActivityToQueue(event.getSolveChain()));
+        listeners.forEach(e -> e.addActivityToQueue(event.getSolveChain()));
     }
 }

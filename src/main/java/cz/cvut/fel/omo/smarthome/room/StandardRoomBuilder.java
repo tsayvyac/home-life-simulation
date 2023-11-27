@@ -16,12 +16,13 @@ public final class StandardRoomBuilder implements RoomBuilder {
     /**
      * The {@link Room} object being constructed.
      */
-    private  Room room;
+    private Room room;
 
     /**
      * Private constructor to enforce the Singleton pattern.
      */
-    private StandardRoomBuilder() {}
+    private StandardRoomBuilder() {
+    }
 
     @Override
     public RoomBuilder reset() {

@@ -34,7 +34,7 @@ public class Manual {
         StringBuilder result = new StringBuilder();
         result.append(MANUAL_HEADER);
 
-        switch (brokennessLevel){
+        switch (brokennessLevel) {
             case HARD -> result
                     .append(message)
                     .append(MANUAL_HARD)

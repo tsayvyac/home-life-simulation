@@ -5,8 +5,9 @@ import cz.cvut.fel.omo.smarthome.room.Window;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+
 @Slf4j(topic = "Close blinds activity")
-public class CloseBlindsActivity extends Activity{
+public class CloseBlindsActivity extends Activity {
 
     public CloseBlindsActivity() {
         super(null, 1, "CLOSE BLINDS");

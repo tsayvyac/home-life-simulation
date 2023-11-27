@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Person extends Executor  {
+public class Person extends Executor {
     private String name;
 
     public Person(String name, Role role) {

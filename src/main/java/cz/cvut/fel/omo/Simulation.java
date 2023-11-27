@@ -13,10 +13,12 @@ import static cz.cvut.fel.omo.util.Constant.HOURS_IN_DAY;
 class Simulation {
     private static final Home home = Home.getInstance();
 
-    private Simulation() {}
+    private Simulation() {
+    }
 
     /**
      * Starts main simulation loop with given number of hours.
+     *
      * @param hours is got from user input.
      */
     public static void startSimulation(int hours) {

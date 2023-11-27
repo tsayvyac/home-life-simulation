@@ -22,7 +22,8 @@ public final class RoomDirector {
     /**
      * Private constructor to enforce the Singleton pattern.
      */
-    private RoomDirector() {}
+    private RoomDirector() {
+    }
 
     /**
      * Build a room with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
@@ -66,7 +67,6 @@ public final class RoomDirector {
                 .setFloor(floor)
                 .setRoomType(RoomType.LIVINGROOM)
                 .addAppliance(applianceFactory.createFlameDetector())
-                .addAppliance(applianceFactory.createCircuitBreaker())
                 .addAppliance(applianceFactory.createTV())
                 .addAppliance(applianceFactory.createPlaystation())
                 .addItem(new PetToy())

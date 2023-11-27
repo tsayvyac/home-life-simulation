@@ -1,8 +1,10 @@
 package cz.cvut.fel.omo.event;
 
 import cz.cvut.fel.omo.appliance.Appliance;
+import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
+import cz.cvut.fel.omo.event.emergency.NeedToVacation;
 import cz.cvut.fel.omo.exception.EventErrorException;
 import cz.cvut.fel.omo.smarthome.home.Home;
 import cz.cvut.fel.omo.util.Helper;
@@ -24,14 +26,19 @@ public class EventGenerator {
     private static final List<Class<? extends Event>> petEvents =
             EventLoader.loadEventsFromPackage(PACKAGE_NAME_PET);
 
-    private EventGenerator() {}
+    private EventGenerator() {
+    }
 
     public static void generateRandomEvent(int tick) {
         if (tick % 3 == 0)
             generate(personEvents, true);
         else if (tick % 8 == 0)
             generate(petEvents, true);
-        else if (tick % 501 == 0)
+        else if (tick % 505 == 0)
+            generateVacation();
+        else if (tick % (505 + 168 + 1) == 0)
+            generateSensorToIdle();
+        else if (tick % 700 == 0)
             generate(sensorEvents, false);
 
         home.getAllExecutors().forEach(Executor::executeFirstInQueue);
@@ -43,7 +50,7 @@ public class EventGenerator {
             Event event = events.get(rnd)
                     .getDeclaredConstructor(
                             String.class,
-                            isLivingEvent? Executor.class : Appliance.class
+                            isLivingEvent ? Executor.class : Appliance.class
                     )
                     .newInstance(events.get(rnd).getSimpleName(), null);
 
@@ -56,6 +63,20 @@ public class EventGenerator {
                     "constructor access modifier of event you want to add. It must be public!" +
                     "Or constructor must have only 2 parameters. 3rd you define manually");
         }
+    }
+
+    public static void generateVacation() {
+        List<Executor> executors = Home.getInstance().getAllExecutors()
+                .stream()
+                .filter(executor -> executor.getRole().getType().contains(Type.PERSON))
+                .toList();
+        Event vacationEvent = new NeedToVacation("Vacation", executors);
+        home.addEvent(vacationEvent);
+        vacationEvent.executeForAll();
+    }
+
+    public static void generateSensorToIdle() {
+        Home.getInstance().sensorToIdle();
     }
 
     private static void randomExecutor(Event event) {

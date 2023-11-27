@@ -11,7 +11,7 @@ public class WatchTVActivity extends Activity {
 
     @Override
     protected void solve() {
-        if (findAppliance(ApplianceType.TV)){
+        if (findAppliance(ApplianceType.TV)) {
             this.executor.setAppliance(this.appliance);
             this.executor.turnOnAppliance();
         }

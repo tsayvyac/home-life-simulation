@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j(topic = "Make coffee activity")
-public class MakeCoffeeActivity extends Activity{
+public class MakeCoffeeActivity extends Activity {
 
     public MakeCoffeeActivity() {
         super(RoomType.KITCHEN, 1, "MAKE COFFEE");

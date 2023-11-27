@@ -4,5 +4,6 @@ public enum Type {
     PERSON,
     ADULT,
     KID,
-    PET
+    PET,
+    ALL
 }

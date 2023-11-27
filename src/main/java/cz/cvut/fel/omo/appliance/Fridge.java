@@ -14,11 +14,12 @@ import java.util.Queue;
 
 public class Fridge extends HomeAppliance {
     private final Queue<Food> foodQueue = new LinkedList<>();
+
     public Fridge(SourceType type, ApplianceType name) {
         super(type, name, FRIDGE_IDLE, FRIDGE_RUNNING, FRIDGE_DURABILITY);
     }
 
-    public void addFood(Food ...food) {
+    public void addFood(Food... food) {
         this.foodQueue.addAll(List.of(food));
     }
 

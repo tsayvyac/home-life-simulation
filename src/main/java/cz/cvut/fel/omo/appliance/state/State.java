@@ -18,7 +18,10 @@ public abstract class State {
     }
 
     public abstract void switchOn();
+
     public abstract void switchOff();
+
     public abstract void switchIdle();
+
     public abstract void breakThis();
 }

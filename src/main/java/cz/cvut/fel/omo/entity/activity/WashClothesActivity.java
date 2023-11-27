@@ -11,7 +11,7 @@ public class WashClothesActivity extends Activity {
 
     @Override
     protected void solve() {
-        if (findAppliance(ApplianceType.WASHING_MACHINE)){
+        if (findAppliance(ApplianceType.WASHING_MACHINE)) {
             this.executor.setAppliance(this.appliance);
             this.executor.turnOnAppliance();
         }

@@ -1,5 +1,7 @@
 package cz.cvut.fel.omo.smarthome.home;
 
+import cz.cvut.fel.omo.appliance.Appliance;
+import cz.cvut.fel.omo.appliance.CircuitBreaker;
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cz.cvut.fel.omo.entity.living.person.Person;
 import cz.cvut.fel.omo.entity.living.pet.Pet;
@@ -40,7 +42,8 @@ public final class StandardHomeBuilder implements HomeBuilder {
     /**
      * Private constructor to enforce the Singleton pattern.
      */
-    private StandardHomeBuilder() {}
+    private StandardHomeBuilder() {
+    }
 
     @Override
     public HomeBuilder reset() {
@@ -82,6 +85,11 @@ public final class StandardHomeBuilder implements HomeBuilder {
         return this;
     }
 
+    public HomeBuilder addCircuitBreaker(Appliance circuitBreaker) {
+        home.setCircuitBreaker((CircuitBreaker) circuitBreaker);
+        return this;
+    }
+
     /**
      * Class is a nested inner class of {@link StandardHomeBuilder}. It is used for
      * configuring and adding rooms to a specific floor within a home.
@@ -103,6 +111,7 @@ public final class StandardHomeBuilder implements HomeBuilder {
 
         /**
          * Add a room of the specified type to the current floor.
+         *
          * @param roomType The type of room to add.
          * @return Instance of {@link FloorBuilder} for method chaining.
          */
@@ -113,6 +122,7 @@ public final class StandardHomeBuilder implements HomeBuilder {
 
         /**
          * Complete the floor configuration and return to the parent {@link StandardHomeBuilder}.
+         *
          * @return The parent {@link StandardHomeBuilder} instance.
          */
         public HomeBuilder and() {

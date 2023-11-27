@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
 @Slf4j(topic = "Event Loader")
 class EventLoader {
 
-    private EventLoader() {}
+    private EventLoader() {
+    }
 
     public static List<Class<? extends Event>> loadEventsFromPackage(String packageName) {
         InputStream classStream = ClassLoader

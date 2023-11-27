@@ -25,7 +25,7 @@ public class EatActivity extends Activity {
         if (appliance.isPresent()) {
             Food food = ((Fridge) appliance.get()).getFood();
             if (food == null)
-                log.info("{} Nothing to eat.",this.executor.getRole());
+                log.info("{} Nothing to eat.", this.executor.getRole());
             else
                 log.info("{} Eating {}", this.executor.getRole(), food.name());
         }

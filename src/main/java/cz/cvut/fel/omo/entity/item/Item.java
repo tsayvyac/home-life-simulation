@@ -4,8 +4,7 @@ import lombok.Getter;
 
 public abstract class Item {
     private boolean isFree = true;
-    @Getter
-    private final ItemType type;
+    @Getter private final ItemType type;
 
     protected Item(ItemType type) {
         this.type = type;
@@ -13,7 +12,6 @@ public abstract class Item {
 
     public void use() {
         this.isFree = false;
-        // TODO: Logic...
     }
 
     public void setFree() {

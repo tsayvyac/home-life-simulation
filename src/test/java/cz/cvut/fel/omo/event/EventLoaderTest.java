@@ -23,7 +23,7 @@ class EventLoaderTest {
                 .flatMap(Collection::stream)
                 .toList();
 
-        int actualNumberOfEvents = 13;
+        int actualNumberOfEvents = 14;
 
         assertEquals(actualNumberOfEvents, events.size());
     }

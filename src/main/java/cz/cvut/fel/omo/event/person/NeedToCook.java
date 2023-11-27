@@ -17,7 +17,7 @@ public class NeedToCook extends Event {
     @Override
     protected List<Activity> init() {
         return List.of(
-            new CookActivity()
+                new CookActivity()
         );
     }
 }
