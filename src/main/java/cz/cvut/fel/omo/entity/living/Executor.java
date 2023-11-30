@@ -4,20 +4,20 @@ import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.activity.Activity;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.nullable.NullableRoom;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
+import cz.cvut.fel.omo.report.Visitor;
 import cz.cvut.fel.omo.smarthome.room.NullRoom;
-import cz.cvut.fel.omo.updatable.Updatable;
+import cz.cvut.fel.omo.component.Component;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-@Slf4j
 @Getter
 @Setter
-public abstract class Executor implements Updatable {
+public abstract class Executor implements Component {
     protected NullableRoom room = NullRoom.INSTANCE;
     protected ExecutorStatus status = ExecutorStatus.FREE;
     protected Queue<Activity> activityQueue = new LinkedList<>();
@@ -39,12 +39,17 @@ public abstract class Executor implements Updatable {
     }
 
     @Override
+    public String accept(Visitor visitor) {
+        return visitor.visitExecutor(this);
+    }
+
+    @Override
     public void update() {
-        if (this.ticks > 0) {
+        if (this.ticks >= 0) {
             this.ticks--;
-            if (this.ticks == 0) {
+            if (this.ticks <= 0) {
                 release();
-                log.info("{}: I'M FREE!", this.getRole());
+                ActivityAndUsageReporter.add(this.getRole() + ": I'M FREE!");
             }
         }
     }
@@ -78,9 +83,9 @@ public abstract class Executor implements Updatable {
         activity.execute(this);
     }
 
-    // TODO: Delete this. ONLY FOR TESTING
     public void setStatus(ExecutorStatus status, Activity activity) {
         this.status = status;
-        log.info("{}: I'M BUSY! {}", this.getRole(), activity.getName());
+
+        ActivityAndUsageReporter.add(this.getRole() + ": I'M BUSY! " + activity.getName());
     }
 }

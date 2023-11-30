@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ApplianceFactoryTest {
 
-
     @Test
     void testCreateCircuitBreaker() {
         Appliance circuitBreaker = HomeApplianceFactory.INSTANCE.createCircuitBreaker();
@@ -33,7 +32,7 @@ class ApplianceFactoryTest {
         Appliance leakDetector = HomeApplianceFactory.INSTANCE.createTemperatureSensor();
         assertNotNull(leakDetector);
         assertEquals(SourceType.ELECTRICITY, leakDetector.getSourceType());
-        assertEquals(ApplianceType.LEAK_DETECTOR, leakDetector.getName());
+        assertEquals(ApplianceType.TEMPERATURE_SENSOR, leakDetector.getName());
     }
 
     @Test

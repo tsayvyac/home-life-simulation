@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 public class WalkActivity extends Activity {
 
     public WalkActivity() {
-        super(RoomType.OUTSIDE, 3, "WALK ACTIVITY");
+        super(3, "Walk activity", RoomType.OUTSIDE);
     }
 
     @Override

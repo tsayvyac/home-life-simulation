@@ -4,8 +4,9 @@ import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.nullable.NullableRoom;
+import cz.cvut.fel.omo.report.Visitor;
 import cz.cvut.fel.omo.smarthome.home.Floor;
-import cz.cvut.fel.omo.updatable.Updatable;
+import cz.cvut.fel.omo.component.Component;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Room implements NullableRoom, Updatable {
+public class Room implements NullableRoom, Component {
     private Floor floor;
     private RoomType roomType;
     private List<Appliance> applianceList = new ArrayList<>();
@@ -57,6 +58,11 @@ public class Room implements NullableRoom, Updatable {
     @Override
     public boolean isNull() {
         return false;
+    }
+
+    @Override
+    public String accept(Visitor visitor) {
+        return visitor.visitRoom(this);
     }
 
     @Override

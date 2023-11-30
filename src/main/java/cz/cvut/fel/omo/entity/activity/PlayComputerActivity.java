@@ -1,14 +1,14 @@
 package cz.cvut.fel.omo.entity.activity;
 
 import cz.cvut.fel.omo.appliance.ApplianceType;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
+import cz.cvut.fel.omo.report.KeyWrapper;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class PlayComputerActivity extends Activity {
 
     public PlayComputerActivity() {
-        super(RoomType.CHILDRENROOM, 2, "PlAY COMPUTER");
+        super(2, "Play computer activity", RoomType.CHILDRENROOM, RoomType.WORKROOM);
     }
 
     @Override
@@ -16,7 +16,9 @@ public class PlayComputerActivity extends Activity {
         if (findAppliance(ApplianceType.COMPUTER)) {
             this.executor.setAppliance(this.appliance);
             this.executor.turnOnAppliance();
+
+            ActivityAndUsageReporter.add(this.executor.getRole() + " is playing COMPUTER");
+            ActivityAndUsageReporter.put(new KeyWrapper(this.executor.getRole(), this.appliance.getName()));
         }
-        log.info("{} is playing COMPUTER", this.executor.getRole());
     }
 }

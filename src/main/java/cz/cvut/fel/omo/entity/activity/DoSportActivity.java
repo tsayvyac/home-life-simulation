@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.entity.activity;
 
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.item.ItemType;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.Optional;
 public class DoSportActivity extends Activity {
 
     public DoSportActivity() {
-        super(RoomType.GARAGE, 3, "Doing sport");
+        super(3, "Doing sport activity", RoomType.GARAGE);
     }
 
     @Override
@@ -19,11 +20,12 @@ public class DoSportActivity extends Activity {
                 .filter(Item::getStatus)
                 .findAny();
 
+        relocateToOutside();
         if (itemOptional.isPresent()) {
             executor.setItem(itemOptional.get());
             this.item = itemOptional.get();
             itemOptional.get().use();
+            ActivityAndUsageReporter.add(this.executor.getRole() + " is using " + itemOptional.get().getType());
         }
-        relocateToOutside();
     }
 }

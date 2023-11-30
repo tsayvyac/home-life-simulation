@@ -1,16 +1,15 @@
 package cz.cvut.fel.omo.entity.activity;
 
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.smarthome.room.Blind;
 import cz.cvut.fel.omo.smarthome.room.Window;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
-@Slf4j(topic = "Close blinds activity")
 public class CloseBlindsActivity extends Activity {
 
     public CloseBlindsActivity() {
-        super(null, 1, "CLOSE BLINDS");
+        super(1, "Close blinds activity");
     }
 
     @Override
@@ -24,6 +23,6 @@ public class CloseBlindsActivity extends Activity {
             for (var blind : blinds)
                 blind.close();
         }
-        log.info("Blinds closed");
+        ActivityAndUsageReporter.add("Blinds are closed");
     }
 }

@@ -7,7 +7,7 @@ public enum ApplianceType {
     CIRCUIT_BREAKER,
     FLAME_DETECTOR,
     KETTLE,
-    LEAK_DETECTOR,
+    TEMPERATURE_SENSOR,
     OVEN,
     PLAYSTATION,
     STOVE,
