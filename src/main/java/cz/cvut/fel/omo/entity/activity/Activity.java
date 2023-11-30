@@ -17,6 +17,9 @@ import lombok.Getter;
 
 import java.util.Optional;
 
+/**
+ * Abstract class for all activities
+ */
 @Getter
 public abstract class Activity {
     protected final RoomType[] roomType;
@@ -26,19 +29,39 @@ public abstract class Activity {
     protected Item item;
     protected Executor executor;
 
-    protected Activity(int ticksToSolve, String name, RoomType ...roomType) {
+    /**
+     * Constructor for Activity
+     *
+     * @param ticksToSolve number of ticks needed to solve the activity
+     * @param name         name of the activity
+     * @param roomType     type of room where the activity can be executed
+     */
+    protected Activity(int ticksToSolve, String name, RoomType... roomType) {
         this.roomType = roomType;
         this.ticksToSolve = ticksToSolve;
         this.name = name;
     }
 
-    protected Activity(int ticksToSolve, String name, Appliance appliance, RoomType ...roomType) {
+    /**
+     * Constructor for Activity
+     *
+     * @param ticksToSolve number of ticks needed to solve the activity
+     * @param name         name of the activity
+     * @param appliance    appliance needed for the activity
+     * @param roomType     type of room where the activity can be executed
+     */
+    protected Activity(int ticksToSolve, String name, Appliance appliance, RoomType... roomType) {
         this.roomType = roomType;
         this.ticksToSolve = ticksToSolve;
         this.name = name;
         this.appliance = appliance;
     }
 
+    /**
+     * Execute the activity
+     *
+     * @param executor executor who will execute the activity
+     */
     public void execute(Executor executor) {
         executor.setStatus(ExecutorStatus.BUSY, this);
         executor.setTicks(this.ticksToSolve);
@@ -52,10 +75,19 @@ public abstract class Activity {
         solve();
     }
 
+    /**
+     * Relocate the executor to outside
+     */
     protected void relocateToOutside() {
         changeRoom(this.executor, RoomType.OUTSIDE);
     }
 
+    /**
+     * Find the appliance in the room
+     *
+     * @param applianceType type of appliance
+     * @return true if the appliance was found, false otherwise
+     */
     protected boolean findAppliance(ApplianceType applianceType) {
         Optional<Appliance> app = executor.getRoom().getApplianceList().stream()
                 .filter(a -> a.getName() == applianceType)
@@ -69,8 +101,17 @@ public abstract class Activity {
         } else return false;
     }
 
+    /**
+     * Abstract method for solving the activity
+     */
     protected abstract void solve();
 
+    /**
+     * Change the room of the executor
+     *
+     * @param executor executor who will change the room
+     * @param roomType type of room where the executor will be relocated
+     */
     private void changeRoom(Executor executor, RoomType roomType) {
         NullableRoom toRoom = Home.getInstance().getAllRooms().stream()
                 .filter(room -> room.getRoomType() == roomType)

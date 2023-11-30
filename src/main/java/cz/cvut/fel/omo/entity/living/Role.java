@@ -6,6 +6,15 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Role of a person in a family.
+ * <p>
+ * Each role has a list of types that it can be assigned to.
+ * <p>
+ * For example, a mother can be assigned to an adult and a person.
+ * <p>
+ * A dog can only be assigned to a pet.
+ */
 @Getter
 public enum Role {
     MOTHER(Type.ADULT, Type.PERSON),

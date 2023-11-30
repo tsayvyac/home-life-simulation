@@ -47,6 +47,14 @@ public final class RoomDirector {
         }
     }
 
+    /**
+     * Build a kitchen with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
+     * {@link RoomType}, and {@link Floor}.
+     *
+     * @param roomBuilder      The room builder used to construct the room.
+     * @param applianceFactory The factory for creating appliances.
+     * @param floor            The floor on which the room is located.
+     */
     private void buildKitchen(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)
@@ -62,6 +70,14 @@ public final class RoomDirector {
         log.info("Room Kitchen is built.");
     }
 
+    /**
+     * Build a Living room with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
+     * {@link RoomType}, and {@link Floor}.
+     *
+     * @param roomBuilder      The room builder used to construct the room.
+     * @param applianceFactory The factory for creating appliances.
+     * @param floor            The floor on which the room is located.
+     */
     private void buildLivingRoom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)
@@ -74,6 +90,14 @@ public final class RoomDirector {
         log.info("Room LivingRoom is built.");
     }
 
+    /**
+     * Build a Bathroom with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
+     * {@link RoomType}, and {@link Floor}.
+     *
+     * @param roomBuilder      The room builder used to construct the room.
+     * @param applianceFactory The factory for creating appliances.
+     * @param floor            The floor on which the room is located.
+     */
     private void buildBathroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)
@@ -82,6 +106,14 @@ public final class RoomDirector {
         log.info("Room Bathroom is built.");
     }
 
+    /**
+     * Build a Children room with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
+     * {@link RoomType}, and {@link Floor}.
+     *
+     * @param roomBuilder      The room builder used to construct the room.
+     * @param applianceFactory The factory for creating appliances.
+     * @param floor            The floor on which the room is located.
+     */
     private void buildChildrenRoom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)
@@ -95,6 +127,14 @@ public final class RoomDirector {
         log.info("Room ChildrenRoom is built.");
     }
 
+    /**
+     * Build a Bedroom with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
+     * {@link RoomType}, and {@link Floor}.
+     *
+     * @param roomBuilder      The room builder used to construct the room.
+     * @param applianceFactory The factory for creating appliances.
+     * @param floor            The floor on which the room is located.
+     */
     private void buildBedroom(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)
@@ -105,6 +145,14 @@ public final class RoomDirector {
         log.info("Room Bedroom is built.");
     }
 
+    /**
+     * Build a Garage with the specified characteristics using a {@link RoomBuilder}, {@link ApplianceFactory},
+     * {@link RoomType}, and {@link Floor}.
+     *
+     * @param roomBuilder      The room builder used to construct the room.
+     * @param applianceFactory The factory for creating appliances.
+     * @param floor            The floor on which the room is located.
+     */
     private void buildGarage(RoomBuilder roomBuilder, ApplianceFactory applianceFactory, Floor floor) {
         roomBuilder.reset()
                 .setFloor(floor)

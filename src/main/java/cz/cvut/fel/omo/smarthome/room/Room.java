@@ -14,27 +14,70 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class representing room in the home
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 public class Room implements NullableRoom, Component {
+
+    /**
+     * Floor where the room is
+     */
     private Floor floor;
+
+    /**
+     * Type of the room
+     */
     private RoomType roomType;
+
+    /**
+     * List of appliances in the room
+     */
     private List<Appliance> applianceList = new ArrayList<>();
+
+    /**
+     * List of items in the room
+     */
     private List<Item> itemList = new ArrayList<>();
+
+    /**
+     * List of executors in the room
+     */
     private List<Executor> executorList = new ArrayList<>();
+
+    /**
+     * List of windows in the room
+     */
     private List<Window> windows = new ArrayList<>();
 
+    /**
+     * Constructor for room
+     *
+     * @param floor    floor where the room is
+     * @param roomType type of the room
+     */
     public Room(Floor floor, RoomType roomType) {
         this.floor = floor;
         this.roomType = roomType;
     }
 
+    /**
+     * Add appliance to the room
+     *
+     * @param appliance appliance to be added
+     */
     public void addAppliance(Appliance appliance) {
         applianceList.add(appliance);
         appliance.setRoom(this);
     }
 
+    /**
+     * Add item to the room
+     *
+     * @param item item to be added
+     */
     public void addItem(Item item) {
         itemList.add(item);
     }

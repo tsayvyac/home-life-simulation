@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
 
+/**
+ * StateIdle represents a state of a home appliance when it is idle.
+ * The appliance is consuming idle energy in this state.
+ */
 public class StateIdle extends State {
 
     public StateIdle(HomeAppliance appliance) {

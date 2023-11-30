@@ -12,17 +12,38 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * Fridge is an appliance that stores food.
+ */
 public class Fridge extends HomeAppliance {
+
+    /**
+     * Queue of food that is stored in fridge.
+     */
     private final Queue<Food> foodQueue = new LinkedList<>();
 
+    /**
+     * Constructor of Fridge.
+     *
+     * @param type type of source
+     * @param name name of appliance
+     */
     public Fridge(SourceType type, ApplianceType name) {
         super(type, name, FRIDGE_IDLE, FRIDGE_RUNNING, FRIDGE_DURABILITY);
     }
 
+    /**
+     * Adds food to fridge.
+     *
+     * @param food food to be added
+     */
     public void addFood(Food... food) {
         this.foodQueue.addAll(List.of(food));
     }
 
+    /**
+     * Removes first food in queue from fridge.
+     */
     public Food getFood() {
         if (foodQueue.isEmpty()) {
             notify(new NeedToCook(NeedToCook.class.getSimpleName(), null), Type.ADULT);
@@ -30,6 +51,11 @@ public class Fridge extends HomeAppliance {
         return foodQueue.poll();
     }
 
+    /**
+     * Returns queue of food in fridge.
+     *
+     * @return queue of food in fridge
+     */
     public Queue<Food> getFridgeContent() {
         return foodQueue;
     }

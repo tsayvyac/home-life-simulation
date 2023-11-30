@@ -69,6 +69,9 @@ public final class SimulationFacade {
         homeDirector.buildSmallHouse(homeBuilder, roomBuilder, applianceFactory);
     }
 
+    /**
+     * Generates all types of reports.
+     */
     private void generateAllReports() {
         log.info("All types of reports is being generated...");
         generateHomeConfigReport();
@@ -78,6 +81,9 @@ public final class SimulationFacade {
         log.info("All types of reports is generated. You can find them in the root directory in /reports.");
     }
 
+    /**
+     * Generates activity and usage report.
+     */
     private void generateActivityAndUsageReport() {
         try {
             ActivityAndUsageReporter.generateActivityAndUsageReport();
@@ -86,6 +92,9 @@ public final class SimulationFacade {
         }
     }
 
+    /**
+     * Generates event report.
+     */
     private void generateEventReport() {
         try {
             EventReporter.generateEventReport();
@@ -94,6 +103,9 @@ public final class SimulationFacade {
         }
     }
 
+    /**
+     * Generates home configuration report.
+     */
     private void generateHomeConfigReport() {
         try {
             new HomeConfigurationVisitor().generateReport();
@@ -102,6 +114,9 @@ public final class SimulationFacade {
         }
     }
 
+    /**
+     * Generates consumption report.
+     */
     private void generateConsumptionReport() {
         try {
             new ConsumptionReportVisitor().generateReport();

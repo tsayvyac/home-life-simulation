@@ -17,8 +17,14 @@ import java.util.Optional;
 import static cz.cvut.fel.omo.util.Constant.FOOD_IN_OVEN;
 import static cz.cvut.fel.omo.util.Constant.FOOD_ON_STOVE;
 
+/**
+ * Represents cooking activity.
+ */
 public class CookActivity extends Activity {
 
+    /**
+     * Constructor for CookActivity.
+     */
     public CookActivity() {
         super(4, "Cook food activity", RoomType.KITCHEN);
     }

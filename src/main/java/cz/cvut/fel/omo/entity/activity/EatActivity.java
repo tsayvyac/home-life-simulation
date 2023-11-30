@@ -10,8 +10,14 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 
 import java.util.Optional;
 
+/**
+ * Activity of eating food from fridge.
+ */
 public class EatActivity extends Activity {
 
+    /**
+     * Constructor for EatActivity.
+     */
     public EatActivity() {
         super(2, "Eat food activity", RoomType.KITCHEN);
     }

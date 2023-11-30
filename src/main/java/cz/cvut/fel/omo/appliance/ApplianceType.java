@@ -1,5 +1,8 @@
 package cz.cvut.fel.omo.appliance;
 
+/**
+ * Enum representing all possible types of appliances.
+ */
 public enum ApplianceType {
     FRIDGE,
     COMPUTER,

@@ -6,8 +6,14 @@ import cz.cvut.fel.omo.smarthome.room.Window;
 
 import java.util.List;
 
+/**
+ * Activity for opening blinds
+ */
 public class OpenBlindsActivity extends Activity {
 
+    /**
+     * Constructor for OpenBlindsActivity
+     */
     public OpenBlindsActivity() {
         super(1, "Open blinds activity");
     }
@@ -16,7 +22,7 @@ public class OpenBlindsActivity extends Activity {
     protected void solve() {
         List<Blind> blinds = this.executor.getRoom().getWindows().stream()
                 .map(Window::getBlind)
-                .filter(blind -> !blind.isClosed())
+                .filter(Blind::isOpen)
                 .toList();
 
         if (!blinds.isEmpty()) {

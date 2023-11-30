@@ -10,8 +10,17 @@ import cz.cvut.fel.omo.event.Event;
 
 import java.util.List;
 
+/**
+ * Event that is created when person needs to eat
+ */
 public class NeedToEat extends Event {
 
+    /**
+     * Constructor for NeedToEat
+     *
+     * @param name     name of the event
+     * @param executor executor of the event
+     */
     public NeedToEat(String name, Executor executor) {
         super(name, executor, Type.PERSON);
     }

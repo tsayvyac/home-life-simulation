@@ -8,8 +8,17 @@ import cz.cvut.fel.omo.event.Event;
 
 import java.util.List;
 
+/**
+ * Event that is created when person needs to go on vacation
+ */
 public class NeedToVacation extends Event {
 
+    /**
+     * Constructor for NeedToVacation
+     *
+     * @param name name of the event
+     * @param all  list of all executors
+     */
     public NeedToVacation(String name, List<Executor> all) {
         super(name, Type.PERSON, all);
     }

@@ -7,9 +7,19 @@ import cz.cvut.fel.omo.entity.living.pet.Pet;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
+/**
+ * Director for building homes
+ */
 public final class HomeDirector {
+
+    /**
+     * Singleton instance
+     */
     public static final HomeDirector INSTANCE = new HomeDirector();
 
+    /**
+     * Private constructor for director
+     */
     private HomeDirector() {
     }
 

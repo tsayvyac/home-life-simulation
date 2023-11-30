@@ -15,23 +15,90 @@ import cz.cvut.fel.omo.smarthome.room.Room;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * HomeAppliance is an abstract class that represents an appliance in a smart home.
+ */
 @Getter
 public abstract class HomeAppliance implements Appliance {
-    protected final SourceType sourceType;
-    protected ApplianceType name;
-    @Setter protected Room room;
-    protected double totalConsumption;
-    protected double currentConsumption;
-    protected double idleConsumption;
-    protected double runningConsumption;
-    protected int initialDurability;
-    @Setter protected int durability;
-    protected Manual manual;
-    @Setter protected State state;
-    @Setter protected BrokennessLevel brokennessLevel;
-    protected final Observer observer = new Observer();
-    protected double count = 0;
 
+    /**
+     * Type of source of appliance.
+     */
+    protected final SourceType sourceType;
+
+    /**
+     * Name of appliance.
+     */
+    protected ApplianceType name;
+
+    /**
+     * Room where appliance is located.
+     */
+    @Setter
+    protected Room room;
+
+    /**
+     * Total consumption of appliance.
+     */
+    protected double totalConsumption;
+
+    /**
+     * Current consumption of appliance.
+     */
+    protected double currentConsumption;
+
+    /**
+     * Consumption of appliance when it is idle.
+     */
+    protected double idleConsumption;
+
+    /**
+     * Consumption of appliance when it is running.
+     */
+    protected double runningConsumption;
+
+    /**
+     * Initial durability of appliance.
+     */
+    protected int initialDurability;
+
+    /**
+     * Durability of appliance.
+     */
+    @Setter
+    protected int durability;
+
+    /**
+     * Manual of appliance.
+     */
+    protected Manual manual;
+
+    /**
+     * State of appliance.
+     */
+    @Setter
+    protected State state;
+
+    /**
+     * Brokenness level of appliance.
+     */
+    @Setter
+    protected BrokennessLevel brokennessLevel;
+
+    /**
+     * Observer of appliance.
+     */
+    protected final Observer observer = new Observer();
+
+    /**
+     * Constructor of HomeAppliance.
+     *
+     * @param sourceType         type of source
+     * @param name               name of appliance
+     * @param idleConsumption    consumption of appliance when it is idle
+     * @param runningConsumption consumption of appliance when it is running
+     * @param initialDurability  initial durability of appliance
+     */
     protected HomeAppliance(SourceType sourceType, ApplianceType name, double idleConsumption,
                             double runningConsumption, int initialDurability) {
         this.sourceType = sourceType;
@@ -44,6 +111,12 @@ public abstract class HomeAppliance implements Appliance {
         this.durability = initialDurability;
     }
 
+    /**
+     * Notifies observer of appliance.
+     *
+     * @param event event which will be executed
+     * @param type  type of person to be notified
+     */
     public void notify(Event event, Type type) {
         observer.notifyRandomListener(event, type);
     }

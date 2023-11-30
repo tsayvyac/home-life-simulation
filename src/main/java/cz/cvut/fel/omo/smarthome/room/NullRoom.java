@@ -10,6 +10,9 @@ import cz.cvut.fel.omo.smarthome.home.NullFloor;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Null object for room
+ */
 public class NullRoom implements NullableRoom {
     public static final NullRoom INSTANCE = new NullRoom();
 

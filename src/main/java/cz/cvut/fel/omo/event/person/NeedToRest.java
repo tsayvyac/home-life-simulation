@@ -7,8 +7,17 @@ import cz.cvut.fel.omo.event.Event;
 
 import java.util.List;
 
+/**
+ * Event that is created when person needs to rest
+ */
 public class NeedToRest extends Event {
 
+    /**
+     * Constructor for NeedToRest
+     *
+     * @param name     name of the event
+     * @param executor executor of the event
+     */
     public NeedToRest(String name, Executor executor) {
         super(name, executor, Type.PERSON);
     }

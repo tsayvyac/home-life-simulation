@@ -8,8 +8,17 @@ import cz.cvut.fel.omo.smarthome.home.Home;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Event that is created when temperature sensor detects temperature change
+ */
 public class TemperatureSensorEvent extends Event {
 
+    /**
+     * Constructor for TemperatureSensorEvent
+     *
+     * @param name      name of the event
+     * @param appliance appliance of the event
+     */
     public TemperatureSensorEvent(String name, Appliance appliance) {
         super(name, appliance);
     }

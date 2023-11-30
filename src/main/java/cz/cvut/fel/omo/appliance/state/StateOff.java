@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
 
+/**
+ * StateOff represents a state of a home appliance when it is off.
+ * The appliance is not consuming any energy in this state.
+ */
 public class StateOff extends State {
 
     public StateOff(HomeAppliance appliance) {

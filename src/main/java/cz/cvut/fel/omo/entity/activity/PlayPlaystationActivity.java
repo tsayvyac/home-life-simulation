@@ -5,8 +5,14 @@ import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.report.KeyWrapper;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
+/**
+ * Activity of playing playstation
+ */
 public class PlayPlaystationActivity extends Activity {
 
+    /**
+     * Constructor for PlayPlaystationActivity
+     */
     public PlayPlaystationActivity() {
         super(2, "Play playstation activity", RoomType.LIVINGROOM, RoomType.CHILDRENROOM);
     }

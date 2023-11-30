@@ -9,8 +9,17 @@ import cz.cvut.fel.omo.event.Event;
 
 import java.util.List;
 
+/**
+ * Event that is created when adult needs to go to work
+ */
 public class NeedToWork extends Event {
 
+    /**
+     * Constructor for NeedToWork
+     *
+     * @param name     name of the event
+     * @param executor executor of the event
+     */
     public NeedToWork(String name, Executor executor) {
         super(name, executor, Type.ADULT);
     }

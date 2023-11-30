@@ -14,18 +14,42 @@ import java.util.List;
 
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.EVENT_HEADER;
 
+/**
+ * Class that generates event report
+ */
 @Slf4j(topic = "Event reporter")
 public class EventReporter {
+
+    /**
+     * List of all events
+     */
     private static final List<Event> EVENT_STORAGE = new ArrayList<>();
+
+    /**
+     * Formatter for time
+     */
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH-mm-ss.SS");
 
+    /**
+     * Private constructor for EventReporter
+     */
     private EventReporter() {
     }
 
+    /**
+     * Adds event to list
+     *
+     * @param event event to add
+     */
     public static void addEvent(Event event) {
         EVENT_STORAGE.add(event);
     }
 
+    /**
+     * Generates event report
+     *
+     * @throws IOException if file cannot be created
+     */
     public static void generateEventReport() throws IOException {
         int count = 0;
         log.info("Event report is being generated...");
@@ -51,6 +75,12 @@ public class EventReporter {
         FileManager.generateReport("event_report" + LocalDateTime.now().format(FORMATTER), stringBuilder.toString());
     }
 
+    /**
+     * Checks event with appliance
+     *
+     * @param event         event to check
+     * @param stringBuilder stringBuilder to append
+     */
     private static void checkEventWithAppliance(Event event, StringBuilder stringBuilder) {
         if (event.getAppliance() != null) {
             if (!(event instanceof TemperatureSensorEvent) && !(event instanceof FlameDetectorEvent))
