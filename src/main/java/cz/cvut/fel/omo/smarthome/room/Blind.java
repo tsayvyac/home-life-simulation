@@ -37,7 +37,7 @@ public class Blind {
      *
      * @return true if blind is open, false otherwise
      */
-    public boolean isClosed() {
-        return !isOpen;
+    public boolean isOpen() {
+        return isOpen;
     }
 }

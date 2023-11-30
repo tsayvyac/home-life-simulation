@@ -22,7 +22,7 @@ public class OpenBlindsActivity extends Activity {
     protected void solve() {
         List<Blind> blinds = this.executor.getRoom().getWindows().stream()
                 .map(Window::getBlind)
-                .filter(blind -> !blind.isClosed())
+                .filter(Blind::isOpen)
                 .toList();
 
         if (!blinds.isEmpty()) {
