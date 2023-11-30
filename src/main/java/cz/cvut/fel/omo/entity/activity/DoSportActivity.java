@@ -7,8 +7,14 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 
 import java.util.Optional;
 
+/**
+ * Activity for doing sport
+ */
 public class DoSportActivity extends Activity {
 
+    /**
+     * Constructor for DoSportActivity
+     */
     public DoSportActivity() {
         super(3, "Doing sport activity", RoomType.GARAGE);
     }

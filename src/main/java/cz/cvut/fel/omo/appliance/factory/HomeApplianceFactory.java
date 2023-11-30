@@ -2,10 +2,19 @@ package cz.cvut.fel.omo.appliance.factory;
 
 import cz.cvut.fel.omo.appliance.*;
 
+/**
+ * Factory for home appliances
+ */
 public class HomeApplianceFactory implements ApplianceFactory {
 
+    /**
+     * Singleton instance
+     */
     public static final HomeApplianceFactory INSTANCE = new HomeApplianceFactory();
 
+    /**
+     * Private constructor for singleton
+     */
     private HomeApplianceFactory() {
     }
 

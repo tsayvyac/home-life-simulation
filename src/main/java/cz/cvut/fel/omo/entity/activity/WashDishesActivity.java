@@ -5,8 +5,14 @@ import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.report.KeyWrapper;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
+/**
+ * Activity of washing dishes in dishwasher
+ */
 public class WashDishesActivity extends Activity {
 
+    /**
+     * Constructor for WashDishesActivity
+     */
     public WashDishesActivity() {
         super(1, "Wash dishes activity", RoomType.KITCHEN);
     }

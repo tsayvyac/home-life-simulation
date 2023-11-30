@@ -18,11 +18,27 @@ import static cz.cvut.fel.omo.util.Constant.ApplianceConstant.GAS_PRICE;
 import static cz.cvut.fel.omo.util.Constant.ApplianceConstant.ELECTRICITY_PRICE;
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.TRIPLE_TAB;
 
+/**
+ * Class that generates consumption report
+ */
 @Slf4j(topic = "Consumption reporter")
 public class ConsumptionReportVisitor implements Visitor {
+
+    /**
+     * Total consumption of electricity
+     */
     private double totalConsumptionOfElectricity = 0;
+
+    /**
+     * Total consumption of gas
+     */
     private double totalConsumptionOfGas = 0;
 
+    /**
+     * Generate consumption report
+     *
+     * @throws IOException if file cannot be created
+     */
     public void generateReport() throws IOException {
         log.info("Consumption report is being generated...");
         String report = CONSUMPTION_REPORT_HEADER +
@@ -32,6 +48,11 @@ public class ConsumptionReportVisitor implements Visitor {
         FileManager.generateReport("consumption_report" + LocalDateTime.now().format(FORMATTER), report);
     }
 
+    /**
+     * Gets total statistic
+     *
+     * @return total statistic
+     */
     private String getTotalStatistic() {
         return "\n\n::Total consumption:\n" +
                 "\tTotal consumption of ELECTRICITY: " +

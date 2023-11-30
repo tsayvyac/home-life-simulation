@@ -6,8 +6,14 @@ import cz.cvut.fel.omo.smarthome.room.Window;
 
 import java.util.List;
 
+/**
+ * Close blinds activity
+ */
 public class CloseBlindsActivity extends Activity {
 
+    /**
+     * Constructor for CloseBlindsActivity
+     */
     public CloseBlindsActivity() {
         super(1, "Close blinds activity");
     }

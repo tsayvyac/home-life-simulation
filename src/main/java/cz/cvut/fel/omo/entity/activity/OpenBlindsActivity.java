@@ -6,8 +6,14 @@ import cz.cvut.fel.omo.smarthome.room.Window;
 
 import java.util.List;
 
+/**
+ * Activity for opening blinds
+ */
 public class OpenBlindsActivity extends Activity {
 
+    /**
+     * Constructor for OpenBlindsActivity
+     */
     public OpenBlindsActivity() {
         super(1, "Open blinds activity");
     }

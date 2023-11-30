@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.appliance.state;
 
 import cz.cvut.fel.omo.appliance.HomeAppliance;
 
+/**
+ * StateOn represents a state of a home appliance when it is on.
+ * The appliance is consuming running energy in this state.
+ */
 public class StateOn extends State {
 
     public StateOn(HomeAppliance appliance) {

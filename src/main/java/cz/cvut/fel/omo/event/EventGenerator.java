@@ -20,19 +20,46 @@ import static cz.cvut.fel.omo.util.Constant.PACKAGE_NAME_PERSON;
 import static cz.cvut.fel.omo.util.Constant.PACKAGE_NAME_SENSOR;
 import static cz.cvut.fel.omo.util.Constant.PACKAGE_NAME_PET;
 
+/**
+ * Class that generates random events
+ */
 @Slf4j(topic = "Event Generator")
 public class EventGenerator {
+
+    /**
+     * Singleton instance of Home
+     */
     private static final Home home = Home.getInstance();
+
+    /**
+     * List of all person events
+     */
     private static final List<Class<? extends Event>> personEvents =
             EventLoader.loadEventsFromPackage(PACKAGE_NAME_PERSON);
+
+    /**
+     * List of all sensor events
+     */
     private static final List<Class<? extends Event>> sensorEvents =
             EventLoader.loadEventsFromPackage(PACKAGE_NAME_SENSOR);
+
+    /**
+     * List of all pet events
+     */
     private static final List<Class<? extends Event>> petEvents =
             EventLoader.loadEventsFromPackage(PACKAGE_NAME_PET);
 
+    /**
+     * Private constructor for EventGenerator
+     */
     private EventGenerator() {
     }
 
+    /**
+     * Generates random event
+     *
+     * @param tick certain tick needs for generating events for each category
+     */
     public static void generateRandomEvent(int tick) {
         if (tick % 3 == 0)
             generate(personEvents, true);
@@ -44,6 +71,12 @@ public class EventGenerator {
         home.getAllExecutors().forEach(Executor::executeFirstInQueue);
     }
 
+    /**
+     * Generates random event
+     *
+     * @param events        list of events
+     * @param isLivingEvent true if event is living event
+     */
     private static void generate(List<Class<? extends Event>> events, boolean isLivingEvent) {
         int rnd = Helper.getRandomInt(events.size());
         try {
@@ -65,6 +98,9 @@ public class EventGenerator {
         }
     }
 
+    /**
+     * Generates vacation event
+     */
     public static void generateVacation() {
         List<Executor> executors = Home.getInstance().getAllExecutors()
                 .stream()
@@ -76,6 +112,11 @@ public class EventGenerator {
         EventReporter.addEvent(vacationEvent);
     }
 
+    /**
+     * Generates random executor
+     *
+     * @param event event
+     */
     private static void randomExecutor(Event event) {
         List<Executor> executors = Home.getInstance().getAllExecutors()
                 .stream()
@@ -94,6 +135,9 @@ public class EventGenerator {
         generateSensorEvent();
     }
 
+    /**
+     * Generates sensor event
+     */
     private static void generateSensorEvent() {
         if (Helper.getRandomInt(30) == 2) {
             TemperatureSensorEvent event = new TemperatureSensorEvent(TemperatureSensorEvent.class.getSimpleName(), Home.getInstance().getTemperatureSensor());
@@ -102,6 +146,11 @@ public class EventGenerator {
             generate(sensorEvents, false);
     }
 
+    /**
+     * Sets sensor
+     *
+     * @param event event
+     */
     private static void setSensor(Event event) {
         List<Appliance> appliances = Home.getInstance().getAllAppliances().stream()
                 .filter(Sensor.class::isInstance)

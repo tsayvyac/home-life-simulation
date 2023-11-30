@@ -5,12 +5,26 @@ import cz.cvut.fel.omo.smarthome.home.Home;
 
 import java.util.List;
 
+/**
+ * Class representing TemperatureSensor appliance
+ */
 public class TemperatureSensor extends Sensor {
 
+    /**
+     * Constructor for TemperatureSensor
+     *
+     * @param type type of source
+     * @param name name of appliance
+     */
     public TemperatureSensor(SourceType type, ApplianceType name) {
         super(type, name);
     }
 
+    /**
+     * Method for closing or opening windows
+     *
+     * @param isCold boolean representing if it is cold
+     */
     public void closeOrOpenWindows(boolean isCold) {
         List<NullableRoom> rooms = Home.getInstance().getAllRooms();
         if (isCold) {

@@ -19,10 +19,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 
+/**
+ * Class that generates home configuration report
+ */
 @Slf4j(topic = "Home configuration report generator")
 public class HomeConfigurationVisitor implements Visitor {
+
+    /**
+     * Map of all appliances and their quantity
+     */
     private final Map<Class<? extends Component>, Integer> quantity = new HashMap<>();
 
+    /**
+     * Generate home configuration report
+     *
+     * @throws IOException if file cannot be created
+     */
     public void generateReport() throws IOException {
         log.info("Home configuration report is being generated...");
         String report = HOME_CONFIG_HEADER +
@@ -32,6 +44,11 @@ public class HomeConfigurationVisitor implements Visitor {
         FileManager.generateReport("home_config_report" + LocalDateTime.now().format(FORMATTER), report);
     }
 
+    /**
+     * Gets appliance quantity
+     *
+     * @return appliance quantity
+     */
     private String getApplianceQuantity() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(APPLIANCE_QUANTITY);
@@ -48,6 +65,12 @@ public class HomeConfigurationVisitor implements Visitor {
         return stringBuilder.toString();
     }
 
+    /**
+     * Checks map if map contains component
+     * If it does, it increments its value
+     *
+     * @param component component to check
+     */
     private void checkMap(Component component) {
         Integer count = quantity.get(component.getClass());
         if (count == null) count = 1;

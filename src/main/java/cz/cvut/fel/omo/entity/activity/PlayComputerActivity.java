@@ -5,8 +5,14 @@ import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.report.KeyWrapper;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
+/**
+ * Activity of playing computer
+ */
 public class PlayComputerActivity extends Activity {
 
+    /**
+     * Constructor for PlayComputerActivity
+     */
     public PlayComputerActivity() {
         super(2, "Play computer activity", RoomType.CHILDRENROOM, RoomType.WORKROOM);
     }

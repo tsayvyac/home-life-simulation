@@ -5,8 +5,14 @@ import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.report.KeyWrapper;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
+/**
+ * Activity of making coffee
+ */
 public class MakeCoffeeActivity extends Activity {
 
+    /**
+     * Constructor for MakeCoffeeActivity
+     */
     public MakeCoffeeActivity() {
         super(1, "Make coffee activity", RoomType.KITCHEN);
     }

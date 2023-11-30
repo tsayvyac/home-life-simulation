@@ -6,8 +6,14 @@ import cz.cvut.fel.omo.entity.living.Role;
 import cz.cvut.fel.omo.smarthome.home.Home;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 
+/**
+ * Activity of vacation
+ */
 public class VacationActivity extends Activity {
 
+    /**
+     * Constructor for VacationActivity
+     */
     public VacationActivity() {
         super(168, "Vacation activity", RoomType.OUTSIDE);
     }

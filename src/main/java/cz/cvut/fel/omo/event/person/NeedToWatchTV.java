@@ -8,8 +8,17 @@ import cz.cvut.fel.omo.event.Event;
 
 import java.util.List;
 
+/**
+ * Event that is created when person needs to watch TV
+ */
 public class NeedToWatchTV extends Event {
 
+    /**
+     * Constructor for NeedToWatchTV
+     *
+     * @param name     name of the event
+     * @param executor executor of the event
+     */
     public NeedToWatchTV(String name, Executor executor) {
         super(name, executor, Type.PERSON);
     }

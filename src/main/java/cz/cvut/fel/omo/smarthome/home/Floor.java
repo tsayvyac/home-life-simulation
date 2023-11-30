@@ -10,16 +10,37 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class representing floor in the home
+ */
 @Getter
 @Setter
 public class Floor implements Nullable, Component {
+
+    /**
+     * Floor number
+     */
     private Integer floorNumber;
+
+    /**
+     * List of rooms in the floor
+     */
     private List<Room> roomList = new ArrayList<>();
 
+    /**
+     * Constructor for floor
+     *
+     * @param floorNumber floor number
+     */
     public Floor(int floorNumber) {
         this.floorNumber = floorNumber;
     }
 
+    /**
+     * Add room to the floor
+     *
+     * @param room room to be added
+     */
     public void addRoom(Room room) {
         roomList.add(room);
     }

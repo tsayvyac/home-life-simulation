@@ -7,17 +7,37 @@ import java.util.Scanner;
 
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 
+/**
+ * Class that handles user input
+ */
 @Slf4j(topic = "User input")
 public final class UserInput {
+
+    /**
+     * Scanner for user input
+     */
     private static final Scanner sc = new Scanner(System.in);
 
+    /**
+     * Private constructor for UserInput
+     */
     private UserInput() {
     }
 
+    /**
+     * Gets parameters for simulation from user
+     *
+     * @return true if user wants big configuration, false otherwise
+     */
     public static boolean getConfiguration() {
         return userInput(USER_CONFIG_CHOICE, USER_CONFIG_CHOICE_ERR);
     }
 
+    /**
+     * Gets user input for number of days
+     *
+     * @return number of days
+     */
     public static int getNumberOfDays() {
         log.info(USER_NUMBER_OF_DAYS);
         boolean isCorrectInput = false;
@@ -34,6 +54,9 @@ public final class UserInput {
         return numberOfDays;
     }
 
+    /**
+     * Deletes all previous reports if user wants
+     */
     private static void deleteReports() {
         File[] filesInReports = new File("reports/").listFiles();
         File[] filesInManual = new File("manual/").listFiles();
@@ -46,6 +69,13 @@ public final class UserInput {
         }
     }
 
+    /**
+     * Gets user input
+     *
+     * @param info  info for user
+     * @param error error for user
+     * @return true if user input is true, false otherwise
+     */
     private static boolean userInput(String info, String error) {
         log.info(info);
         boolean isCorrectInput = false;
@@ -63,6 +93,12 @@ public final class UserInput {
         return toReturn;
     }
 
+    /**
+     * Deletes all previous reports
+     *
+     * @param reports list of reports
+     * @param manuals list of manuals
+     */
     private static void delete(File[] reports, File[] manuals) {
         for (File report : reports) {
             report.delete();
