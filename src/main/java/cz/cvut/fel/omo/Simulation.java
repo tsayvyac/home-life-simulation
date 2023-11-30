@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.event.EventGenerator;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.smarthome.home.Home;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,8 +27,9 @@ class Simulation {
 
         for (int i = 0; i < hours; i++) {
             EventGenerator.generateRandomEvent(i);
-            log.info("UPDATE");
+            ActivityAndUsageReporter.add("-----UPDATE-----");
             home.update();
         }
+        log.info("Simulation is over...");
     }
 }

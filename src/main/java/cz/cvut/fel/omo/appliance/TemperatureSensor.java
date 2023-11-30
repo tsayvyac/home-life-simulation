@@ -11,7 +11,7 @@ public class TemperatureSensor extends Sensor {
         super(type, name);
     }
 
-    public void closeOfOpenWindows(boolean isCold) {
+    public void closeOrOpenWindows(boolean isCold) {
         List<NullableRoom> rooms = Home.getInstance().getAllRooms();
         if (isCold) {
             rooms.stream()

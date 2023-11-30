@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 public class PetEatActivity extends Activity {
 
     public PetEatActivity() {
-        super(RoomType.KITCHEN, 2, "PET IS EATING");
+        super(2, "Pet eat activity", RoomType.KITCHEN, RoomType.LIVINGROOM);
     }
 
     @Override

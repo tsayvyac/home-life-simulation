@@ -1,14 +1,14 @@
 package cz.cvut.fel.omo.entity.activity;
 
 import cz.cvut.fel.omo.appliance.ApplianceType;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
+import cz.cvut.fel.omo.report.KeyWrapper;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class PlayPlaystationActivity extends Activity {
 
     public PlayPlaystationActivity() {
-        super(RoomType.LIVINGROOM, 2, "PLAY PLAYSTATION");
+        super(2, "Play playstation activity", RoomType.LIVINGROOM, RoomType.CHILDRENROOM);
     }
 
     @Override
@@ -16,7 +16,9 @@ public class PlayPlaystationActivity extends Activity {
         if (findAppliance(ApplianceType.PLAYSTATION)) {
             this.executor.setAppliance(this.appliance);
             this.executor.turnOnAppliance();
+
+            ActivityAndUsageReporter.add(this.executor.getRole() + " is playing PLAYSTATION");
+            ActivityAndUsageReporter.put(new KeyWrapper(this.executor.getRole(), this.appliance.getName()));
         }
-        log.info("{} is playing PLAYSTATION", this.executor.getRole());
     }
 }

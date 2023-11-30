@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 public class TakeShowerActivity extends Activity {
 
     public TakeShowerActivity() {
-        super(RoomType.BATHROOM, 1, "Take shower");
+        super(1, "Take shower activity", RoomType.BATHROOM);
     }
 
     @Override

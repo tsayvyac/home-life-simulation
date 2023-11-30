@@ -2,6 +2,9 @@ package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cz.cvut.fel.omo.io.UserInput;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
+import cz.cvut.fel.omo.report.ConsumptionReportVisitor;
+import cz.cvut.fel.omo.report.EventReporter;
 import cz.cvut.fel.omo.report.HomeConfigurationVisitor;
 import cz.cvut.fel.omo.smarthome.home.HomeBuilder;
 import cz.cvut.fel.omo.smarthome.home.HomeDirector;
@@ -45,8 +48,9 @@ public final class SimulationFacade {
             useBigConfig();
         else
             useSmallConfig();
-        generateHomeConfigReport();
         Simulation.startSimulation(UserInput.getNumberOfDays() * HOURS_IN_DAY);
+
+        generateAllReports();
     }
 
     /**
@@ -61,13 +65,46 @@ public final class SimulationFacade {
      * Creates small configuration of {@link cz.cvut.fel.omo.smarthome.home.Home} using {@link HomeDirector}.
      */
     private void useSmallConfig() {
-        homeDirector.buildSmallHouse(homeBuilder, roomBuilder, applianceFactory);
         log.info("Small configuration is used.");
+        homeDirector.buildSmallHouse(homeBuilder, roomBuilder, applianceFactory);
+    }
+
+    private void generateAllReports() {
+        log.info("All types of reports is being generated...");
+        generateHomeConfigReport();
+        generateEventReport();
+        generateActivityAndUsageReport();
+        generateConsumptionReport();
+        log.info("All types of reports is generated. You can find them in the root directory in /reports.");
+    }
+
+    private void generateActivityAndUsageReport() {
+        try {
+            ActivityAndUsageReporter.generateActivityAndUsageReport();
+        } catch (IOException e) {
+            log.warn(e.getMessage());
+        }
+    }
+
+    private void generateEventReport() {
+        try {
+            EventReporter.generateEventReport();
+        } catch (IOException e) {
+            log.warn(e.getMessage());
+        }
     }
 
     private void generateHomeConfigReport() {
         try {
             new HomeConfigurationVisitor().generateReport();
+        } catch (IOException e) {
+            log.warn(e.getMessage());
+        }
+    }
+
+    private void generateConsumptionReport() {
+        try {
+            new ConsumptionReportVisitor().generateReport();
         } catch (IOException e) {
             log.warn(e.getMessage());
         }

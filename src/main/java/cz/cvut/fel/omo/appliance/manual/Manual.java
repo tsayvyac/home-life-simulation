@@ -2,7 +2,10 @@ package cz.cvut.fel.omo.appliance.manual;
 
 import cz.cvut.fel.omo.appliance.ApplianceType;
 import cz.cvut.fel.omo.appliance.HomeAppliance;
+import cz.cvut.fel.omo.util.FileManager;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
 
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 
@@ -18,16 +21,15 @@ public class Manual {
         ApplianceType applianceName = appliance.getName();
         String applianceType = appliance.getSourceType().toString();
         BrokennessLevel brokennessLevel = appliance.getBrokennessLevel();
-        final String message = "Documentation for the device: " + applianceName + " of type: " + applianceType + ".\n";
+        final String message = "Repair manual for appliance: " + applianceName + " of type: " + applianceType + ".\n";
 
         String result = constructResultString(message, brokennessLevel);
         String manualName = applianceName + "_manual_" + appliance.getBrokennessLevel();
-        log.info(result);
-//        try {
-//            FileManager.generateManual(manualName, result);
-//        } catch (IOException e) {
-//            log.error("Error while generating manual for appliance: {}", applianceName);
-//        }
+        try {
+            FileManager.generateManual(manualName, result);
+        } catch (IOException e) {
+            log.error("Error while generating manual for appliance: {}", applianceName);
+        }
     }
 
     private String constructResultString(String message, BrokennessLevel brokennessLevel) {

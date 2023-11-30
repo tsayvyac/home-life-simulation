@@ -9,14 +9,13 @@ import cz.cvut.fel.omo.entity.Type;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.emergency.NeedToRepairAppliance;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.report.Visitor;
 import cz.cvut.fel.omo.smarthome.room.Room;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
 @Getter
-@Slf4j
 public abstract class HomeAppliance implements Appliance {
     protected final SourceType sourceType;
     protected ApplianceType name;
@@ -80,15 +79,10 @@ public abstract class HomeAppliance implements Appliance {
     }
 
     @Override
-    public String collectData() {
-        return null;
-    }
-
-    @Override
     public void decreaseDurability() {
         if (this.durability != 0) {
             this.durability--;
-            log.info("{}: Durability {}", this.name, this.durability);
+            ActivityAndUsageReporter.add(this.name + ": Durability " + this.durability);
             if (this.durability == 0)
                 breakYourself();
         }
@@ -97,7 +91,7 @@ public abstract class HomeAppliance implements Appliance {
     @Override
     public void breakYourself() {
         this.state.breakThis();
-        log.info("{} is broken. Please repair!", this.name);
+        ActivityAndUsageReporter.add(this.name + " is broken. Please repair!");
         notify(
                 new NeedToRepairAppliance(
                         NeedToRepairAppliance.class.getSimpleName(),
@@ -116,7 +110,7 @@ public abstract class HomeAppliance implements Appliance {
         }
         this.state = new StateOff(this);
         this.durability = this.initialDurability;
-        log.info("{} repaired by {}", this.name, executor.getRole());
+        ActivityAndUsageReporter.add(this.name + " repaired by " + executor.getRole());
     }
 
     @Override

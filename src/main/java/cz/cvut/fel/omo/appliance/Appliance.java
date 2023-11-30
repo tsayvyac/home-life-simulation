@@ -1,12 +1,12 @@
 package cz.cvut.fel.omo.appliance;
 
+import cz.cvut.fel.omo.appliance.manual.BrokennessLevel;
 import cz.cvut.fel.omo.appliance.state.State;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.smarthome.room.Room;
 import cz.cvut.fel.omo.component.Component;
 
 public interface Appliance extends Component {
-    String collectData();
 
     State getState();
 
@@ -36,7 +36,6 @@ public interface Appliance extends Component {
 
     Room getRoom();
 
-    int getDurability();
-
     void decreaseDurability();
+    BrokennessLevel getBrokennessLevel();
 }

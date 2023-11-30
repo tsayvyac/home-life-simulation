@@ -8,31 +8,31 @@ import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
 import cz.cvut.fel.omo.nullable.NullableRoom;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.smarthome.home.Home;
 import cz.cvut.fel.omo.smarthome.room.NullRoom;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
+import cz.cvut.fel.omo.util.Helper;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
-@Slf4j
 @Getter
 public abstract class Activity {
-    protected final RoomType roomType;
+    protected final RoomType[] roomType;
     protected final int ticksToSolve;
     protected final String name;
     protected Appliance appliance;
     protected Item item;
     protected Executor executor;
 
-    protected Activity(RoomType roomType, int ticksToSolve, String name) {
+    protected Activity(int ticksToSolve, String name, RoomType ...roomType) {
         this.roomType = roomType;
         this.ticksToSolve = ticksToSolve;
         this.name = name;
     }
 
-    protected Activity(RoomType roomType, int ticksToSolve, String name, Appliance appliance) {
+    protected Activity(int ticksToSolve, String name, Appliance appliance, RoomType ...roomType) {
         this.roomType = roomType;
         this.ticksToSolve = ticksToSolve;
         this.name = name;
@@ -42,8 +42,11 @@ public abstract class Activity {
     public void execute(Executor executor) {
         executor.setStatus(ExecutorStatus.BUSY, this);
         executor.setTicks(this.ticksToSolve);
-        if (this.roomType != null && executor.getRoom().getRoomType() != this.roomType)
-            changeRoom(executor, this.roomType);
+        if (this.roomType.length != 0) {
+            RoomType rndType = this.roomType[Helper.getRandomInt(this.roomType.length)];
+            if (executor.getRoom().getRoomType() != rndType)
+                changeRoom(executor, rndType);
+        }
 
         this.executor = executor;
         solve();
@@ -79,6 +82,6 @@ public abstract class Activity {
             room.removeExecutor(executor);
             toRoom.addExecutor(executor);
         }
-        log.info("{} changed room from {} to {}", executor.getRole(), room.getRoomType(), toRoom.getRoomType());
+        ActivityAndUsageReporter.add(executor.getRole() + " changed room from " + room.getRoomType() + " to " + toRoom.getRoomType());
     }
 }

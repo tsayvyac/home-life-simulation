@@ -7,11 +7,11 @@ import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.component.Component;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.report.Visitor;
 import cz.cvut.fel.omo.util.Helper;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +19,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@Slf4j
 public class Home implements Component {
     private static Home instance;
     private List<Floor> floorList = new ArrayList<>();
@@ -66,8 +65,8 @@ public class Home implements Component {
     }
 
     public void activateTemperatureSensor() {
-        log.info("Temperature sensor is activated!");
-        this.temperatureSensor.closeOfOpenWindows(Helper.getRandomInt(2) == 1);
+        ActivityAndUsageReporter.add("Temperature sensor is activated!");
+        this.temperatureSensor.closeOrOpenWindows(Helper.getRandomInt(2) == 1);
     }
 
     public void turnOffAll() {

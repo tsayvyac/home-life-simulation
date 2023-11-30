@@ -9,7 +9,7 @@ import cz.cvut.fel.omo.smarthome.room.RoomType;
 public class VacationActivity extends Activity {
 
     public VacationActivity() {
-        super(RoomType.OUTSIDE, 168, "VACATION");
+        super(168, "Vacation activity", RoomType.OUTSIDE);
     }
 
     @Override

@@ -4,16 +4,16 @@ import cz.cvut.fel.omo.appliance.Appliance;
 import cz.cvut.fel.omo.appliance.ApplianceType;
 import cz.cvut.fel.omo.appliance.Fridge;
 import cz.cvut.fel.omo.entity.item.Food;
+import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
+import cz.cvut.fel.omo.report.KeyWrapper;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
-@Slf4j
 public class EatActivity extends Activity {
 
     public EatActivity() {
-        super(RoomType.KITCHEN, 2, "EAT FOOD PERSON");
+        super(2, "Eat food activity", RoomType.KITCHEN);
     }
 
     @Override
@@ -25,9 +25,11 @@ public class EatActivity extends Activity {
         if (appliance.isPresent()) {
             Food food = ((Fridge) appliance.get()).getFood();
             if (food == null)
-                log.info("{} Nothing to eat.", this.executor.getRole());
+                ActivityAndUsageReporter.add(this.executor.getRole() + ": Nothing to eat.");
             else
-                log.info("{} Eating {}", this.executor.getRole(), food.name());
+                ActivityAndUsageReporter.add(this.executor.getRole() + ": Eating " + food.name());
+
+            ActivityAndUsageReporter.put(new KeyWrapper(this.executor.getRole(), ApplianceType.FRIDGE));
         }
     }
 }

@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -23,10 +22,9 @@ import static cz.cvut.fel.omo.util.Constant.OutputStrings.*;
 @Slf4j(topic = "Home configuration report generator")
 public class HomeConfigurationVisitor implements Visitor {
     private final Map<Class<? extends Component>, Integer> quantity = new HashMap<>();
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH-mm-ss.SS");
 
     public void generateReport() throws IOException {
-        log.info("Home configuration report is generating...");
+        log.info("Home configuration report is being generated...");
         String report = HOME_CONFIG_HEADER +
                 Home.getInstance().accept(this) +
                 getApplianceQuantity();
@@ -131,7 +129,8 @@ public class HomeConfigurationVisitor implements Visitor {
 
     @Override
     public String visitExecutor(Executor executor) {
-        return "\tExecutor " + executor.getRole() + " with name " +
+        String personOrPet = (executor instanceof Person) ? "\tPerson " : "\tPet ";
+        return personOrPet + executor.getRole() + " with name " +
                 ((executor instanceof Person person) ? person.getName() : ((Pet) executor).getName()) + "\n";
     }
 
