@@ -52,3 +52,11 @@
 - [x] Design ve formě use case diagramů, class diagramů a stručného popisu jak chcete úlohu realizovat.
 - [x] Veřejné API - Javadoc vygenerovaný pro funkce, kterými uživatel pracuje s vaším software.
 - [x] Dvě různé konfigurace domu a pro ně vygenerovány reporty za různá období. Minimální konfigurace alespoň jednoho domu je: 6 osob, 3 zvířata, 8 typů spotřebičů, 20 ks spotřebičů, 6 místností, jedny lyže, dvě kola. 
+
+## Spouštění
+
+1. Spouštění se provádí v Main třídě pomocí IDE.
+2. Zadejte T, zda chcete použít velkou konfiguraci (3 patra, 9 pokojů, 8 člověk, 4 mazlíčků), nebo F pro malou konfiguraci (2 patra, 7 pokojů, 6 člověk, 2 mazlíčky)
+3. Zadejte počet dnů pro simulaci. To číslo musí být větší než 29 a menší než 366.
+4. Pokud simulace je spouštěna podruhé, zadejte T, zda chcete odstranit předchozí reporty.
+5. Všechny reporty najdete v složce /report 
