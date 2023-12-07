@@ -60,10 +60,13 @@ public final class UserInput {
     private static void deleteReports() {
         File[] filesInReports = new File("reports/").listFiles();
         File[] filesInManual = new File("manual/").listFiles();
-        if ((filesInReports != null && filesInManual != null) && (filesInReports.length != 0 || filesInManual.length != 0)) {
+        if (filesInReports != null && filesInReports.length != 0) {
             boolean isDelete = userInput(USER_DELETE_REPORT, USER_DELETE_REPORT_ERR);
             if (isDelete) {
-                delete(filesInReports, filesInManual);
+                if (filesInManual != null && filesInManual.length != 0)
+                    delete(filesInReports, filesInManual);
+                else
+                    delete(filesInReports);
                 log.info("All previous files was deleted successfully.");
             }
         }
@@ -100,11 +103,20 @@ public final class UserInput {
      * @param manuals list of manuals
      */
     private static void delete(File[] reports, File[] manuals) {
-        for (File report : reports) {
+        for (File report : reports)
             report.delete();
-        }
-        for (File manual : manuals) {
+
+        for (File manual : manuals)
             manual.delete();
-        }
+    }
+
+    /**
+     * Deletes all previous reports
+     *
+     * @param reports list of reports
+     */
+    private static void delete(File[] reports) {
+        for (File report : reports)
+            report.delete();
     }
 }
