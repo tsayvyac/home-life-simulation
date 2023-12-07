@@ -1,12 +1,11 @@
 package cz.cvut.fel.omo.smarthome.room;
 
 import cz.cvut.fel.omo.appliance.Appliance;
+import cz.cvut.fel.omo.component.Component;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
-import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.report.Visitor;
 import cz.cvut.fel.omo.smarthome.home.Floor;
-import cz.cvut.fel.omo.component.Component;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Room implements NullableRoom, Component {
+public class Room implements Component {
 
     /**
      * Floor where the room is
@@ -82,7 +81,6 @@ public class Room implements NullableRoom, Component {
         itemList.add(item);
     }
 
-    @Override
     public void addExecutor(Executor executor) {
         executor.setRoom(this);
         executorList.add(executor);
@@ -92,15 +90,8 @@ public class Room implements NullableRoom, Component {
         windows.add(window);
     }
 
-    @Override
     public void removeExecutor(Executor executor) {
-        executor.setRoom(NullRoom.INSTANCE);
         executorList.remove(executor);
-    }
-
-    @Override
-    public boolean isNull() {
-        return false;
     }
 
     @Override

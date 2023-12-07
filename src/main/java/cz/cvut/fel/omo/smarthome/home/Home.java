@@ -5,16 +5,17 @@ import cz.cvut.fel.omo.appliance.CircuitBreaker;
 import cz.cvut.fel.omo.appliance.TemperatureSensor;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.event.Event;
-import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.component.Component;
 import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.report.Visitor;
+import cz.cvut.fel.omo.smarthome.room.Room;
 import cz.cvut.fel.omo.util.Helper;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class Home implements Component {
     /**
      * List of floors in the home
      */
-    private List<Floor> floorList = new ArrayList<>();
+    private List<Floor> floorList = new LinkedList<>();
 
     /**
      * List of all executors in the home
@@ -96,8 +97,8 @@ public class Home implements Component {
      *
      * @return list of rooms
      */
-    public List<NullableRoom> getAllRooms() {
-        List<NullableRoom> rooms = new ArrayList<>();
+    public List<Room> getAllRooms() {
+        List<Room> rooms = new ArrayList<>();
         floorList.forEach(floor ->
                 rooms.addAll(floor.getRoomList())
         );

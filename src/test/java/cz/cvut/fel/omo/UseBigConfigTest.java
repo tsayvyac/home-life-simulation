@@ -20,7 +20,7 @@ class UseBigConfigTest {
     static void setup() {
         InputStream stdin = System.in;
         boolean useBigConfig = true;
-        System.setIn(new ByteArrayInputStream("365".getBytes()));
+        System.setIn(new ByteArrayInputStream("365\nT\n".getBytes()));
 
         new SimulationFacade(
                 StandardHomeBuilder.INSTANCE,

@@ -94,7 +94,7 @@ public class Constant {
         public static final String USER_CONFIG_CHOICE_ERR =
                 "You must enter (T/t) if you want to run the simulation with a large config or otherwise (F/f)";
 
-        public static final String USER_NUMBER_OF_DAYS = "Enter the number of days for the simulation (>29 && <366):";
+        public static final String USER_NUMBER_OF_DAYS = "Enter the number of days for the simulation (30 - 365):";
 
         public static final String USER_NUMBER_OF_DAYS_ERR =
                 "The number of days must be more than 29 and less than 366!";

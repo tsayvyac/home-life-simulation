@@ -5,11 +5,10 @@
 - [Prvotní UML diagram](diagram/uml_v1.pdf)
 - [Prvotní UC diagram](diagram/uc_v1.pdf)
 
-## Použité design patterny (10):
+## Použité design patterny (9):
 - **Builder**. Používá se k postupnému vytváření domu, páter a pokojů. V package: `/smarthome/home`, `/smarthome/room`.
 - **Singleton**. Pro vytváření objektů, které budou mít jen jednu instanci. Používá se dva typy singletonu LAZY a EAGER. V package: `/smarthome`, `/appliance/factory`.
 - **State**. Vytvoří nové třídy pro všechny možné stavy spotřebičů. V package: `/appliance/state`.
-- **Null Object pattern**. Vyhnout se NPE v některých připadech. V package: `/nullable`.
 - **Lazy Loading**. Používá se ke generování dokumentace jen v připadě, kdy se spotřebič rozbíje. Ve třidě: `/appliance/HomeAppliance`.
 - **Factory Method**. Používá se při vytváření spotřebičů. V package: `/appliance/factory`.
 - **Composite**. Slouží k aktualizaci domu a jeho komponent (pátra, pokoje, executorů, spotřebičů). V package: `/component`.

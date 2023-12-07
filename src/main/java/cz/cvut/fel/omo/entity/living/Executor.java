@@ -1,13 +1,12 @@
 package cz.cvut.fel.omo.entity.living;
 
 import cz.cvut.fel.omo.appliance.Appliance;
+import cz.cvut.fel.omo.component.Component;
 import cz.cvut.fel.omo.entity.activity.Activity;
 import cz.cvut.fel.omo.entity.item.Item;
-import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.report.Visitor;
-import cz.cvut.fel.omo.smarthome.room.NullRoom;
-import cz.cvut.fel.omo.component.Component;
+import cz.cvut.fel.omo.smarthome.room.Room;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,7 +24,7 @@ public abstract class Executor implements Component {
     /**
      * Executor has a room in which he is located.
      */
-    protected NullableRoom room = NullRoom.INSTANCE;
+    protected Room room;
 
     /**
      * Executor has a status that can be either FREE or BUSY.

@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.appliance;
 
-import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.smarthome.home.Home;
+import cz.cvut.fel.omo.smarthome.room.Room;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class CircuitBreaker extends Sensor {
     /**
      * List of all rooms in the house.
      */
-    private final List<NullableRoom> rooms = Home.getInstance().getAllRooms();
+    private final List<Room> rooms = Home.getInstance().getAllRooms();
 
     /**
      * Constructor of the circuit breaker.

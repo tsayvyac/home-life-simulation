@@ -22,12 +22,11 @@ public interface HomeBuilder {
     HomeBuilder reset();
 
     /**
-     * Add a floor to the home with the specified floor number.
+     * Add a floor to the home.
      *
-     * @param floorNumber The floor number to add.
      * @return A {@link cz.cvut.fel.omo.smarthome.home.StandardHomeBuilder.FloorBuilder} instance for configuring the added floor and its rooms.
      */
-    StandardHomeBuilder.FloorBuilder addFloor(int floorNumber);
+    StandardHomeBuilder.FloorBuilder addFloor();
 
     /**
      * Add a person as an inhabitant of the home.
