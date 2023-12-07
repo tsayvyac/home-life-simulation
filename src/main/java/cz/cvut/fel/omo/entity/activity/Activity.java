@@ -7,10 +7,9 @@ import cz.cvut.fel.omo.appliance.state.StateOn;
 import cz.cvut.fel.omo.entity.item.Item;
 import cz.cvut.fel.omo.entity.living.Executor;
 import cz.cvut.fel.omo.entity.living.ExecutorStatus;
-import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.report.ActivityAndUsageReporter;
 import cz.cvut.fel.omo.smarthome.home.Home;
-import cz.cvut.fel.omo.smarthome.room.NullRoom;
+import cz.cvut.fel.omo.smarthome.room.Room;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
 import cz.cvut.fel.omo.util.Helper;
 import lombok.Getter;
@@ -113,16 +112,19 @@ public abstract class Activity {
      * @param roomType type of room where the executor will be relocated
      */
     private void changeRoom(Executor executor, RoomType roomType) {
-        NullableRoom toRoom = Home.getInstance().getAllRooms().stream()
+        Room toRoom = Home.getInstance().getAllRooms().stream()
                 .filter(room -> room.getRoomType() == roomType)
                 .findAny()
-                .orElse(NullRoom.INSTANCE);
+                .orElse(null);
 
-        NullableRoom room = executor.getRoom();
-        if (roomType != RoomType.OUTSIDE) {
+        RoomType activityInRoom = RoomType.OUTSIDE;
+        Room room = executor.getRoom();
+        if (toRoom != null && roomType != RoomType.OUTSIDE) {
             room.removeExecutor(executor);
             toRoom.addExecutor(executor);
+            activityInRoom = toRoom.getRoomType();
         }
-        ActivityAndUsageReporter.add(executor.getRole() + " changed room from " + room.getRoomType() + " to " + toRoom.getRoomType());
+
+        ActivityAndUsageReporter.add(executor.getRole() + " changed room from " + room.getRoomType() + " to " + activityInRoom);
     }
 }

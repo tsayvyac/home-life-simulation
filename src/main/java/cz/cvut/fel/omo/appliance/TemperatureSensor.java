@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.appliance;
 
-import cz.cvut.fel.omo.nullable.NullableRoom;
 import cz.cvut.fel.omo.smarthome.home.Home;
+import cz.cvut.fel.omo.smarthome.room.Room;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class TemperatureSensor extends Sensor {
      * @param isCold boolean representing if it is cold
      */
     public void closeOrOpenWindows(boolean isCold) {
-        List<NullableRoom> rooms = Home.getInstance().getAllRooms();
+        List<Room> rooms = Home.getInstance().getAllRooms();
         if (isCold) {
             rooms.stream()
                     .flatMap(r -> r.getWindows().stream())

@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static cz.cvut.fel.omo.util.Constant.OutputStrings.CONSUMPTION_REPORT_HEADER;
 import static cz.cvut.fel.omo.util.Constant.ApplianceConstant.GAS_PRICE;
@@ -33,6 +34,11 @@ public class ConsumptionReportVisitor implements Visitor {
      * Total consumption of gas
      */
     private double totalConsumptionOfGas = 0;
+
+    /**
+     *  List of floors in home
+     */
+    private final List<Floor> floorList = Home.getInstance().getFloorList();
 
     /**
      * Generate consumption report
@@ -84,7 +90,7 @@ public class ConsumptionReportVisitor implements Visitor {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
                 .append("\tFloor ")
-                .append(floor.getFloorNumber())
+                .append(floorList.indexOf(floor))
                 .append(":\n");
 
         for (var room : floor.getRoomList())

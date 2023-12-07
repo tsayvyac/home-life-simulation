@@ -6,7 +6,6 @@ import cz.cvut.fel.omo.appliance.TemperatureSensor;
 import cz.cvut.fel.omo.appliance.factory.ApplianceFactory;
 import cz.cvut.fel.omo.entity.living.person.Person;
 import cz.cvut.fel.omo.entity.living.pet.Pet;
-import cz.cvut.fel.omo.exception.CreationException;
 import cz.cvut.fel.omo.smarthome.room.RoomBuilder;
 import cz.cvut.fel.omo.smarthome.room.RoomDirector;
 import cz.cvut.fel.omo.smarthome.room.RoomType;
@@ -53,17 +52,10 @@ public final class StandardHomeBuilder implements HomeBuilder {
     }
 
     @Override
-    public FloorBuilder addFloor(int floorNumber) {
-        if (home.getFloorList().stream().anyMatch(f -> f.getFloorNumber() <= 0))
-            throw new CreationException("Floor number must be greater than 0");
-        if (home.getFloorList().stream().noneMatch(f -> f.getFloorNumber() == floorNumber - 1) && floorNumber != 1)
-            throw new CreationException("You should create a floor number " + (floorNumber - 1));
-        if (home.getFloorList().stream().anyMatch(f -> f.getFloorNumber() == floorNumber))
-            throw new CreationException("Floor number " + floorNumber + " already exist.");
-
-        Floor floor = new Floor(floorNumber);
+    public FloorBuilder addFloor() {
+        Floor floor = new Floor();
         home.addFloor(floor);
-        log.info("Floor number {} is added.", floor.getFloorNumber());
+        log.info("Floor number {} is added.", home.getFloorList().indexOf(floor));
         return new FloorBuilder(floor);
     }
 

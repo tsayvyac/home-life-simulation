@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -29,6 +30,11 @@ public class HomeConfigurationVisitor implements Visitor {
      * Map of all appliances and their quantity
      */
     private final Map<Class<? extends Component>, Integer> quantity = new HashMap<>();
+
+    /**
+     * List of floors in home
+     */
+    private final List<Floor> floorList = Home.getInstance().getFloorList();
 
     /**
      * Generate home configuration report
@@ -106,7 +112,7 @@ public class HomeConfigurationVisitor implements Visitor {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
                 .append("\tFloor ")
-                .append(floor.getFloorNumber())
+                .append(floorList.indexOf(floor))
                 .append(":\n");
 
         for (var room : floor.getRoomList())
