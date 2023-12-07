@@ -27,10 +27,4 @@ public class StateIdle extends State {
     public void switchIdle() {
         // Does not work in this state
     }
-
-    @Override
-    public void breakThis() {
-        setBrokennessLevel();
-        appliance.setState(new StateBroken(appliance));
-    }
 }

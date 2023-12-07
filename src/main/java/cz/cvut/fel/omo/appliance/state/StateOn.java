@@ -27,11 +27,5 @@ public class StateOn extends State {
     public void switchIdle() {
         appliance.setState(new StateIdle(appliance));
     }
-
-    @Override
-    public void breakThis() {
-        setBrokennessLevel();
-        appliance.setState(new StateBroken(appliance));
-    }
 }
 

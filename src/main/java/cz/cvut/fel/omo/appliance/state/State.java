@@ -56,7 +56,10 @@ public abstract class State {
     public abstract void switchIdle();
 
     /**
-     * Abstract methods to switch the appliance to break it.
+     * Method that brake the appliance.
      */
-    public abstract void breakThis();
+    public void breakThis() {
+        setBrokennessLevel();
+        appliance.setState(new StateBroken(appliance));
+    }
 }
