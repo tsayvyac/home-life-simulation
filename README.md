@@ -5,7 +5,7 @@
 - [Prvotní UML diagram](diagram/uml_v1.pdf)
 - [Prvotní UC diagram](diagram/uc_v1.pdf)
 
-## Použité design patterny (9):
+## Použité design patterny (10):
 - **Builder**. Používá se k postupnému vytváření domu, páter a pokojů. V package: `/smarthome/home`, `/smarthome/room`.
 - **Singleton**. Pro vytváření objektů, které budou mít jen jednu instanci. Používá se dva typy singletonu LAZY a EAGER. V package: `/smarthome`, `/appliance/factory`.
 - **State**. Vytvoří nové třídy pro všechny možné stavy spotřebičů. V package: `/appliance/state`.
@@ -15,6 +15,7 @@
 - **Visitor**. Umístí nové chování do samostatné třídy Visitor, místo integrování do stávajících tříd. Používá se pro generování Home Configuration Report a Consumption Report. V package: `/report`.
 - **Observer**. Oznámí, pokud se rozbíje spotřebič nebo budou aktivovány senzory. V package: `/appliance/observer`.
 - **Template Method**. Definuje kostru aktivit, podtřídy přepisují krok `solve()`. V package: `/entity/activity`.
+- **Facade**. Poskytuje jednoduchý interface pro spouštění simulaci. Class: `SimulationFacade`.
 
 ## Požadavky:
 
